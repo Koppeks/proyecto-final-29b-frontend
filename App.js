@@ -1,10 +1,13 @@
-
-import 'react-native-gesture-handler';
-import * as React from 'react';
+import React from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SignUp from "./src/screen/SignUp/SignUp";
 import NavigationBar from './src/components/NavigationBar';
 import { useFonts, Poppins_400Regular, Poppins_600SemiBold, Poppins_700Bold } from '@expo-google-fonts/poppins';
+
+const Stack = createNativeStackNavigator()
 
 export default function App()
 {
@@ -19,6 +22,12 @@ export default function App()
 
   return (
     <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="SignUp(form)"
+          component={SignUp}
+          options={{ title: 'Formulario de ingreso' }} />
+      </Stack.Navigator>
       <NavigationBar />
     </NavigationContainer>
   );
