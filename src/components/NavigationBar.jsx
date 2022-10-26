@@ -4,7 +4,7 @@ import { View, Button, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import tw from 'twrnc'
-import DetailServiceExpert from '../screen/DetailServiceExpert/DetailServiceExpert';
+import CardServsExpert from '../components/CardServsExpert';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +20,7 @@ const NavigationBar = ({ navigation, route }) =>
         //     />
         // </View>
         <Tab.Navigator>
-            <Tab.Screen name="Detalle" component={DetailServiceExpert} />
+            <Tab.Screen name="CardServs" component={CardServsExpert} />
             {/* <Tab.Screen name="Settings" component={SettingsScreen} /> */}
         </Tab.Navigator>
     )
