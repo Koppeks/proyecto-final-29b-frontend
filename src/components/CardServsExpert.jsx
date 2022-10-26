@@ -1,5 +1,5 @@
 import { View, Image, Text } from 'react-native';
-import image from './images/gasfitero.jpg';
+import image from '../images/gasfitero.jpg';
 import tw from '../lib/tailwind';
 
 const CardServsExpert = () =>

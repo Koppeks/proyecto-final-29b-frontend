@@ -22,12 +22,12 @@ export default function App()
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      {/* <Stack.Navigator>
         <Stack.Screen
           name="SignUp(form)"
           component={SignUp}
           options={{ title: 'Formulario de ingreso' }} />
-      </Stack.Navigator>
+      </Stack.Navigator> */}
       <NavigationBar />
     </NavigationContainer>
   );
