@@ -1,9 +1,11 @@
 /*
   Configuracion global de TW
 */
-
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{html,js}'],
+  content: [
+    './src/**/*.{js,jsx,ts,tsx}'
+  ],
   theme: {
     colors: {
       'blue': '#1fb6ff',
@@ -17,7 +19,7 @@ module.exports = {
       'gray-light': '#d3dce6',
     },
     fontFamily: {
-      sans: ['Graphik', 'sans-serif'],
+      sans: ['Poppins', 'sans-serif'],
       serif: ['Merriweather', 'serif'],
     },
     extend: {
