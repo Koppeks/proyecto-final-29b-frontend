@@ -3,19 +3,32 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SignUp from "./src/screen/SignUp/SignUp"
+import SignUp from "./src/screen/SignUp/SignUp";
+import NavigationBar from './src/components/NavigationBar';
+import { useFonts, Poppins_400Regular, Poppins_600SemiBold, Poppins_700Bold } from '@expo-google-fonts/poppins';
 
 const Stack = createNativeStackNavigator()
 
-export default function App() {
+export default function App()
+{
+  let [fontsLoaded] = useFonts({
+    Poppins_400Regular,
+    Poppins_600SemiBold,
+    Poppins_700Bold
+  });
+
+  if (!fontsLoaded)
+    return null;
+
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      {/* <Stack.Navigator>
         <Stack.Screen
           name="SignUp(form)"
           component={SignUp}
-          options={{ title: 'Formulario de ingreso' }}/>
-      </Stack.Navigator>
+          options={{ title: 'Formulario de ingreso' }} />
+      </Stack.Navigator> */}
+      <NavigationBar />
     </NavigationContainer>
   );
 }
