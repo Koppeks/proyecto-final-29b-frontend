@@ -1,12 +1,12 @@
 import React from "react"
 import { View, TextInput, Text, TouchableHighlight } from "react-native"
-import Form from "../../containers/Form/Form"
+import ProForm from "../../containers/ProForm/ProForm"
 
 
 const SignUp = () =>
 {
   return (
-    <Form />
+    <ProForm />
   )
 }
 
