@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 const Home = () =>
 {
     return (
