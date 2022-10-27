@@ -25,3 +25,5 @@ export const getChar = () => async (dispatch) => {
   }
 );
  */
+
+//pure
