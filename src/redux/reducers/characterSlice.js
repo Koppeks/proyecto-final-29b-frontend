@@ -14,4 +14,3 @@ const characterSlice = createSlice({
 
 export const { getCharacters } = characterSlice.actions;
 export default characterSlice.reducer;
-//commit

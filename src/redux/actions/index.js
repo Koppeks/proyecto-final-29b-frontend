@@ -25,4 +25,3 @@ export const getChar = () => async (dispatch) => {
   }
 );
  */
-//commit
