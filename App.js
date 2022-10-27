@@ -1,43 +1,26 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SignUp from "./src/screen/SignUp/SignUp";
-import NavigationBar from './src/components/NavigationBar';
-import { useFonts, Poppins_400Regular, Poppins_600SemiBold, Poppins_700Bold } from '@expo-google-fonts/poppins';
+import Home from "./src/screen/Home/Home";
+import HomeCardsProfessional from "./src/screen/Home/HomeCardsProfessional";
+import EditProfession from "./src/screen/Home/EditProfession";
+import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator();
 
-export default function App()
-{
-  let [fontsLoaded] = useFonts({
-    Poppins_400Regular,
-    Poppins_600SemiBold,
-    Poppins_700Bold
-  });
-
-  if (!fontsLoaded)
-    return null;
-
+export default function App() {
   return (
     <NavigationContainer>
-      {/* <Stack.Navigator>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
         <Stack.Screen
-          name="SignUp(form)"
-          component={SignUp}
-          options={{ title: 'Formulario de ingreso' }} />
-      </Stack.Navigator> */}
-      <NavigationBar />
+          name="Home Cards Professional"
+          component={HomeCardsProfessional}
+        />
+        <Stack.Screen
+          name="Edit Professional Profile"
+          component={EditProfession}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

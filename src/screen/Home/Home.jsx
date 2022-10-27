@@ -1,17 +1,16 @@
-import { View, Text } from 'react-native';
-import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
-const Home = () =>
-{
-    return (
 
+import { View } from "react-native";
+import React from "react";
+import ContainerHome from "../../containers/home/ContainerHome";
 
-        <View >
-            <Text>Home</Text>
-        </View>
-
-
-
-    )
-}
+const Home = ({ navigation }) => {
+  return (
+    <View>
+      <ContainerHome navigation={navigation} />
+    </View>
+  );
+};
 
 export default Home;
+
+
