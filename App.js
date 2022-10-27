@@ -1,10 +1,10 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Provider } from 'react-redux';
 import SignUp from "./src/screen/SignUp/SignUp";
 import NavigationBar from './src/components/NavigationBar';
+import store from './src/redux/store';
 import { useFonts, Poppins_400Regular, Poppins_600SemiBold, Poppins_700Bold } from '@expo-google-fonts/poppins';
 
 const Stack = createNativeStackNavigator()
@@ -21,23 +21,16 @@ export default function App()
     return null;
 
   return (
-    <NavigationContainer>
-      {/* <Stack.Navigator>
-        <Stack.Screen
+    <Provider store={store}>
+      <NavigationContainer>
+        {/* <Stack.Navigator>
+          <Stack.Screen
           name="SignUp(form)"
           component={SignUp}
           options={{ title: 'Formulario de ingreso' }} />
-      </Stack.Navigator> */}
-      <NavigationBar />
-    </NavigationContainer>
+        </Stack.Navigator> */}
+        <NavigationBar />
+      </NavigationContainer>
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
