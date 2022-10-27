@@ -2,17 +2,19 @@ import { StyleSheet, Text, View, Image,Button,TouchableOpacity } from 'react-nat
 import tw from 'twrnc'
 
 
-export const UserDetail = () => {
+export const UserDetail = ({navigation}) => {
 
-//tw`w:5 h:5 rounded-lg border-2 border-rose-500`
-    
   return (
 
-
-
     <>
-  
-  
+
+  <Button
+      title="Go to Test Home"
+      onPress={() =>
+        navigation.navigate('Home', { name: 'lo que sea' })
+      }
+    />
+ 
 
     <View style={tw`flex `} >
       <View style={tw`flex-row  justify-between pt-5 pb-3  px-3 `}>
@@ -109,8 +111,7 @@ export const UserDetail = () => {
 
 
     </View>
-          
-
+    
         
          
     </>
@@ -120,4 +121,6 @@ export const UserDetail = () => {
 
  
 }
+
+
 
