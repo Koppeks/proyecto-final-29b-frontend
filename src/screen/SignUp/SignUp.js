@@ -3,9 +3,10 @@ import { View, TextInput, Text, TouchableHighlight } from "react-native"
 import Form from "../../containers/Form/Form"
 
 
-const SignUp = () =>{
-  return(
-    <Form/>
+const SignUp = () =>
+{
+  return (
+    <Form />
   )
 }
 
