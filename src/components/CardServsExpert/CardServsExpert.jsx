@@ -1,7 +1,7 @@
 import { View, Image, Text, TouchableOpacity } from 'react-native';
-import Star from '../svg/star.svg';
-import Heart from '../svg/heart.svg';
-import image from '../images/limpiezaPersona.png';
+import Star from '../../svg/star.svg';
+import Heart from '../../svg/heart.svg';
+import image from '../../images/limpiezaPersona.png';
 import tw from 'twrnc';
 
 const CardServsExpert = () =>

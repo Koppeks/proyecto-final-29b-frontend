@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import tw from 'twrnc'
-import CartShop from '../screen/CartShop/CartShop';
-import Favs from '../screen/Favs/Favs';
-import Home from '../screen/Home/Home';
-import Message from '../screen/Message/Message';
-import Profile from '../screen/Profile/Profile';
+import CartShop from '../../screen/CartShop/CartShop';
+import Favs from '../../screen/Favs/Favs';
+import Message from '../../screen/Message/Message';
+import Profile from '../../screen/Profile/Profile';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
+import HomeNavigation from '../../screen/Home/HomeNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,13 +17,14 @@ const NavigationBar = ({ navigation, route }) =>
         <Tab.Navigator
             initialRouteName="Inicio"
             screenOptions={{
-                tabBarActiveTintColor: '#818CF8'
+                tabBarActiveTintColor: '#818CF8',
+                headerShown: false
             }}
         >
 
             <Tab.Screen
                 name="Inicio"
-                component={Home}
+                component={HomeNavigation}
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <Ionicons name="home-sharp" size={size} color={color} />
