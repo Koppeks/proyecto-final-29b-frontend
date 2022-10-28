@@ -4,17 +4,13 @@ import Heart from '../../svg/heart.svg';
 import image from '../../images/limpiezaPersona.png';
 import tw from 'twrnc';
 
-const CardServsExpert = ({navigation}) =>
+const CardServsExpert = () =>
 {
     return (
 
-        <TouchableOpacity style={tw`bg-white rounded-md m-7 flex-row items-center`}   onPress={() =>
-            navigation.navigate("UserDetail")
-          }>
-                
-        
+        <TouchableOpacity style={tw`bg-white rounded-md mr-7 mt-2 flex-row items-center w-80`}>
             <View >
-                <Image style={tw`h-28 w-28 m-6 md:h-80 md:h-80 rounded-md`} source={image} />
+                <Image style={tw`h-28 w-28 m-6 mt-7 md:h-80 md:h-80 rounded-md`} source={image} />
             </View>
             <View>
                 <View style={tw`flex flex-row-reverse`}>
@@ -27,7 +23,7 @@ const CardServsExpert = ({navigation}) =>
 
                     <Text style={tw`font-sans text-black`}>
                         <Star height={17} width={17} fill={'#818CF8'} />
-                        4,7
+                        4,7 
                     </Text>
                 </View>
             </View>

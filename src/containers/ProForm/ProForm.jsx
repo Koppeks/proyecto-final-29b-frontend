@@ -4,8 +4,13 @@ import { Formik } from "formik"
 import {basicSchema} from "../../schemas"
 import FormInput from "../../components/FormInput/FormInput"
 import FormSubmitButton from "../../components/FormSubmitButton/FormSubmitButton"
+import { useDispatch } from "react-redux"
+import { postPro } from "../../redux/actions/index"
+
 
 const ProForm = () =>{
+
+  const dispatch = useDispatch()
 
   const userInfo = { 
       fullName: '',
@@ -24,8 +29,19 @@ const ProForm = () =>{
         initialValues={userInfo}
         validationSchema= {basicSchema}
         onSubmit={(values, formikActions)=>{
-          console.log(values)
-          console.log(formikActions)
+
+          const data ={
+            fullName: values.fullName,
+            phoneNumber: values.phoneNumber,
+            email: values.email,
+            password: values.password,
+            occupation: [values.occupation],
+            description: values.description,
+            address: values.address
+          }
+
+          dispatch(postPro(data))
+          
           setTimeout(() => {
             formikActions.resetForm()
             formikActions.setSubmitting(false)
