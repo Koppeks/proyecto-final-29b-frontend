@@ -2,14 +2,13 @@ import { StyleSheet, Text, View, Image,ScrollView,TouchableOpacity } from 'react
 import tw from 'twrnc'
 
 
-export const UserDetail = ({navigation , route}) => {
+export const UserDetail = () => {
 
   return (
 
     <>
 
  
-
     <ScrollView style={tw`flex `} >
       <View style={tw`flex-row  justify-between pt-5 pb-3  px-3 `}>
               
@@ -45,7 +44,7 @@ export const UserDetail = ({navigation , route}) => {
            </View >
 
            <View style={tw`justify-center p-4`}>
-           <Text style={tw`pl-25 pr-25 justify-around `}>
+           <Text style={tw`pl-30 pr-30  `}>
               About me
               
            </Text>

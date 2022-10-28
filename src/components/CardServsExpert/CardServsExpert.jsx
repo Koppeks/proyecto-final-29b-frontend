@@ -8,19 +8,17 @@ const CardServsExpert = ({navigation}) =>
 {
     return (
 
-        <TouchableOpacity style={tw`bg-white rounded-md m-7 flex-row items-center`}
-               
-     
-      onPress={() =>
-        navigation.navigate("UserDetail")
-      }
-        >
+        <TouchableOpacity style={tw`bg-white rounded-md m-7 flex-row items-center`}   onPress={() =>
+            navigation.navigate("UserDetail")
+          }>
+                
+        
             <View >
                 <Image style={tw`h-28 w-28 m-6 md:h-80 md:h-80 rounded-md`} source={image} />
             </View>
             <View>
                 <View style={tw`flex flex-row-reverse`}>
-                   {<Heart height={20} width={20} fill={'#9CA3AF'} />}
+                    <Heart height={20} width={20} fill={'#9CA3AF'} />
                 </View>
                 <View style={tw`mt-3`}>
                     <Text style={tw`font-sans text-gray-500 mb-1`}>Tania Sanchez</Text>
@@ -28,7 +26,7 @@ const CardServsExpert = ({navigation}) =>
                     <Text style={tw`text-indigo-400 font-sans mb-1`}>$8/hora</Text>
 
                     <Text style={tw`font-sans text-black`}>
-                      { <Star height={17} width={17} fill={'#818CF8'} /> }
+                        <Star height={17} width={17} fill={'#818CF8'} />
                         4,7
                     </Text>
                 </View>
