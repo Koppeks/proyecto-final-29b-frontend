@@ -1,11 +1,17 @@
-import { View, Text } from "react-native";
+import { ScrollView, Text, Button } from "react-native";
 import React from "react";
+import ProForm from "../../containers/ProForm/ProForm"
 
-const EditProfession = () => {
+const EditProfession = ({navigation}) => {
   return (
-    <View>
+    <ScrollView>
       <Text>EditProfession</Text>
-    </View>
+      <Button 
+        title="Vuelve al inicio"
+        onPress={()=> navigation.goBack()}
+        />
+      <ProForm/>
+    </ScrollView>
   );
 };
 
