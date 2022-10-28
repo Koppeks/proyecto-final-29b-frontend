@@ -23,7 +23,7 @@ const CardServsExpert = () =>
 
                     <Text style={tw`font-sans text-black`}>
                         <Star height={17} width={17} fill={'#818CF8'} />
-                        4,7
+                        4,7 
                     </Text>
                 </View>
             </View>
