@@ -25,8 +25,12 @@ export const basicSchema = yup.object().shape({
     occupation: yup.string()
       .required("Campo requerido"),
     description: yup.string()
-      .min(60, "La descripción es demaciado corto")
+      .min(60, "La descripción es demaciado corto, mínimo de caracteres es 50")
+      .max(255, "La descripción es demaciado larga, máximo de caracteres es 255")
       .required("Campo requerido"),
     address: yup.string()
-      .required("Campo requerido")
+      .required("Campo requerido"),
+    image: yup.string()
+      .matches(/(http(s?):\/\/.*\.(?:png|jpg))/i,'Esa no es una imagen correcta')
+      .required('Campo requerido, pega una URL/dirección')
 })
