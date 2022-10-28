@@ -1,8 +1,6 @@
-import { NavigationContainer } from "@react-navigation/native";
-
-import Home from "./Home";
-import HomeCardsProfessional from "./HomeCardsProfessional";
-import EditProfession from "./EditProfession";
+import Home from "../screen/Home/Home"
+import HomeCardsProfessional from "../screen/Home/HomeCardsProfessional";
+import EditProfession from "../screen/Home/EditProfession";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 

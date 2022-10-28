@@ -1,16 +1,15 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import tw from 'twrnc'
-import CartShop from '../../screen/CartShop/CartShop';
-import Favs from '../../screen/Favs/Favs';
-import Message from '../../screen/Message/Message';
-import Profile from '../../screen/Profile/Profile';
+import CartShop from '../screen/CartShop/CartShop';
+import Favs from '../screen/Favs/Favs';
+import Message from '../screen/Message/Message';
+import SignUp from '../screen/SignUp/SignUp';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
-import HomeNavigation from '../../screen/Home/HomeNavigation';
+import HomeNavigation from './HomeNavigation';
 
 const Tab = createBottomTabNavigator();
 
-const NavigationBar = ({ navigation, route }) =>
+const NavigationBar = () =>
 {
     return (
 
@@ -32,8 +31,8 @@ const NavigationBar = ({ navigation, route }) =>
                 }}
             />
             <Tab.Screen
-                name="Perfil"
-                component={Profile}
+                name="SignUp"
+                component={SignUp}
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <Ionicons name="ios-person-outline" size={size} color={color} />
