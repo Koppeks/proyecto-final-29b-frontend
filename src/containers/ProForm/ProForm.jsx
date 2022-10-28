@@ -21,6 +21,7 @@ const ProForm = () =>{
       occupation: '',
       description: '',
       address: '',
+      image: '',
   }
 
   return(
@@ -37,7 +38,8 @@ const ProForm = () =>{
             password: values.password,
             occupation: [values.occupation],
             description: values.description,
-            address: values.address
+            address: values.address,
+            image: values.image
           }
 
           dispatch(postPro(data))
@@ -50,7 +52,7 @@ const ProForm = () =>{
       >
         {({values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting}) =>{
           
-          const {fullName, phoneNumber, email, password, confirmPassword, description, occupation, address} = values
+          const {fullName, phoneNumber, email, password, confirmPassword, description, occupation, address, image} = values
 
           return(
             <>
@@ -117,6 +119,14 @@ const ProForm = () =>{
                 label="Dirección: "
                 onChangeText={handleChange('address')}
                 onBlur={handleBlur("address")}
+              />
+              <FormInput 
+                value={image}
+                error={touched.image && errors.image}
+                placeholder="Pega el URL/Dirección de tu imagen aquí"
+                label="Imagen: "
+                onChangeText={handleChange('image')}
+                onBlur={handleBlur("image")}
               />
               <FormSubmitButton error={errors} submitting={isSubmitting} onPress={handleSubmit} title="Enviar"/>
             </>
