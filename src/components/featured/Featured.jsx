@@ -16,5 +16,4 @@ const Featured = () =>
     </View>
   );
 };
-
 export default Featured;

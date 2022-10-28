@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Image } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React from "react";
 import tw from "twrnc";
 import Jarden from '../../svg/jarden.svg';
