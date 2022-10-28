@@ -7,8 +7,8 @@ const Featured = () =>
 {
   return (
     <View>
-      <Text style={tw`mt-5`}>Destacados</Text>
-      <ScrollView horizontal={true}>
+      <Text style={tw`mt-5 text-lg font-bold`}>Destacados</Text>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <CardServsExpert />
         <CardServsExpert />
         <CardServsExpert />

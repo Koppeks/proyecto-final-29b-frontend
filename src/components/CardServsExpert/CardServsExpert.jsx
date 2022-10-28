@@ -8,9 +8,9 @@ const CardServsExpert = () =>
 {
     return (
 
-        <TouchableOpacity style={tw`bg-white rounded-md m-7 flex-row items-center`}>
+        <TouchableOpacity style={tw`bg-white rounded-md mr-7 mt-2 flex-row items-center w-80`}>
             <View >
-                <Image style={tw`h-28 w-28 m-6 md:h-80 md:h-80 rounded-md`} source={image} />
+                <Image style={tw`h-28 w-28 m-6 mt-7 md:h-80 md:h-80 rounded-md`} source={image} />
             </View>
             <View>
                 <View style={tw`flex flex-row-reverse`}>
