@@ -39,8 +39,9 @@ const ProForm = () =>{
             description: values.description,
             address: values.address
           }
-          // console.log(data)
+
           dispatch(postPro(data))
+          
           setTimeout(() => {
             formikActions.resetForm()
             formikActions.setSubmitting(false)
