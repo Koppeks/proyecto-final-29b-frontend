@@ -10,7 +10,10 @@ const HomeNavigation = () =>
 {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen
+                name="Home"
+                component={Home}
+            />
             <Stack.Screen
                 name="Home Cards Professional"
                 component={HomeCardsProfessional}

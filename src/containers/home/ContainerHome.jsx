@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { ScrollView } from "react-native";
 import React from "react";
 import UserName from "../../components/username/UserName";
 import Profile from "../../components/profile/Profile";
@@ -9,12 +9,12 @@ import tw from "twrnc";
 const ContainerHome = ({ navigation }) =>
 {
   return (
-    <View style={tw`flex m-2 p-4`}>
+    <ScrollView style={tw`flex m-2 p-4`}>
       <UserName />
       <Profile navigation={navigation} />
       <Categories />
       <Featured />
-    </View>
+    </ScrollView>
   );
 };
 
