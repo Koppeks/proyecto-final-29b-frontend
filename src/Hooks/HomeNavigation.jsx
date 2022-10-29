@@ -20,7 +20,7 @@ const HomeNavigation = ({navigation}) =>
             name=" " 
             component={Home} 
             options={{
-                headerLeft:()=><Image source={logo} style={tw`w-12 h-10 ml-5`}/>,
+                headerLeft:()=><Image source={logo} style={tw`w-10 h-10 ml-1`}/>,
                 headerRight:()=>
                 <View style={tw`flex-row`}>
 
