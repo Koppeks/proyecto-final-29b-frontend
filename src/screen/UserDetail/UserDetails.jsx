@@ -1,9 +1,23 @@
 import { Button, Text, View, Image,ScrollView,TouchableOpacity } from 'react-native';
 import tw from 'twrnc'
 import React from "react";
+import  {useEffect}from "react";
+import {useDispatch,useSelector} from 'react-redux'
+import {getChar} from '../../redux/actions'
+
+
 
 
  export const UserDetails = ({ navigation }) => {
+
+
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+      dispatch(getChar())
+  },[])
+
+  const{characters}=useSelector(state=>state.characters)
 
   return (
 
