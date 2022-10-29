@@ -1,11 +1,12 @@
 import React from "react"
-import { View, Text, TouchableHighlight } from "react-native"
+import { ScrollView, Text } from "react-native"
 import { Formik } from "formik"
 import {basicSchema} from "../../schemas"
 import FormInput from "../../components/FormInput/FormInput"
-import FormSubmitButton from "../../components/FormSubmitButton/FormSubmitButton"
+import FormSubmitButton from "../../components/button/FormSubmitButton"
 import { useDispatch } from "react-redux"
 import { postPro } from "../../redux/actions/index"
+import tw from "twrnc"
 
 
 const ProForm = () =>{
@@ -21,10 +22,12 @@ const ProForm = () =>{
       occupation: '',
       description: '',
       address: '',
+      image: '',
   }
 
   return(
-    <View>
+    <ScrollView style={tw`mx-3 mt-10 mb-10 p-3 bg-white shadow-md rounded-lg`}>
+      <Text style={tw`text-center w-full p-2 text-lg`}>Formulario de registro</Text>
       <Formik
         initialValues={userInfo}
         validationSchema= {basicSchema}
@@ -37,10 +40,12 @@ const ProForm = () =>{
             password: values.password,
             occupation: [values.occupation],
             description: values.description,
-            address: values.address
+            address: values.address,
+            image: values.image
           }
-          // console.log(data)
+
           dispatch(postPro(data))
+          
           setTimeout(() => {
             formikActions.resetForm()
             formikActions.setSubmitting(false)
@@ -49,7 +54,7 @@ const ProForm = () =>{
       >
         {({values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting}) =>{
           
-          const {fullName, phoneNumber, email, password, confirmPassword, description, occupation, address} = values
+          const {fullName, phoneNumber, email, password, confirmPassword, description, occupation, address, image} = values
 
           return(
             <>
@@ -57,7 +62,7 @@ const ProForm = () =>{
                 value={fullName}
                 error={touched.fullName && errors.fullName}
                 placeholder="Escribe tu nombre completo aquí"
-                label="Nombre completo: "
+                label="Nombre completo"
                 onChangeText={handleChange('fullName')}
                 onBlur={handleBlur("fullName")}
               />
@@ -65,7 +70,7 @@ const ProForm = () =>{
                 value={phoneNumber}
                 error={touched.phoneNumber && errors.phoneNumber}
                 placeholder="Escribe tu numero de telefono aquí"
-                label="Teléfono: "
+                label="Teléfono"
                 onChangeText={handleChange('phoneNumber')}
                 onBlur={handleBlur("phoneNumber")}
               />
@@ -73,7 +78,7 @@ const ProForm = () =>{
                 value={email}
                 error={touched.email && errors.email}
                 placeholder="Escribe tu email aquí"
-                label="Email: "
+                label="Email"
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur("email")}
               />
@@ -81,7 +86,7 @@ const ProForm = () =>{
                 value={password}
                 error={touched.password && errors.password}
                 placeholder="Escribe tu contraseña aquí"
-                label="Contraseña: "
+                label="Contraseña"
                 onChangeText={handleChange('password')}
                 onBlur={handleBlur("password")}
               />
@@ -89,7 +94,7 @@ const ProForm = () =>{
                 value={confirmPassword}
                 error={touched.confirmPassword && errors.confirmPassword}
                 placeholder="Escribe tu contraseña aquí"
-                label="Repita su contraseña: "
+                label="Repita su contraseña"
                 onChangeText={handleChange('confirmPassword')}
                 onBlur={handleBlur("confirmPassword")}
               />
@@ -97,7 +102,7 @@ const ProForm = () =>{
                 value={occupation}
                 error={touched.occupation && errors.occupation}
                 placeholder="Escribe tu ocupación aquí"
-                label="Profesión: "
+                label="Profesión"
                 onChangeText={handleChange('occupation')}
                 onBlur={handleBlur("occupation")}
               />
@@ -105,7 +110,7 @@ const ProForm = () =>{
                 value={description}
                 error={touched.description && errors.description}
                 placeholder="Escribe tu descripción aquí"
-                label="Descripción: "
+                label="Descripción"
                 onChangeText={handleChange('description')}
                 onBlur={handleBlur("description")}
               />
@@ -113,9 +118,17 @@ const ProForm = () =>{
                 value={address}
                 error={touched.address && errors.address}
                 placeholder="Escribe tu dirección aquí"
-                label="Dirección: "
+                label="Dirección"
                 onChangeText={handleChange('address')}
                 onBlur={handleBlur("address")}
+              />
+              <FormInput 
+                value={image}
+                error={touched.image && errors.image}
+                placeholder="Pega el URL/Dirección de tu imagen aquí"
+                label="Imagen"
+                onChangeText={handleChange('image')}
+                onBlur={handleBlur("image")}
               />
               <FormSubmitButton error={errors} submitting={isSubmitting} onPress={handleSubmit} title="Enviar"/>
             </>
@@ -123,7 +136,7 @@ const ProForm = () =>{
           }
         }
       </Formik>
-    </View>
+    </ScrollView>
   )
 }
 

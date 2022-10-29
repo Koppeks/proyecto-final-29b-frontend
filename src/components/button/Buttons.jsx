@@ -4,9 +4,10 @@ import { Image } from 'react-native-elements'
 import tw from 'twrnc'
 
 
-export function Buttons(props) {
-  const{ image,onPress}=props
-  
+export function Buttons(props)
+{
+  const { image, onPress } = props
+
   return (
     <TouchableOpacity
      style={tw`shadow-lg w-16 h-16 items-center`}

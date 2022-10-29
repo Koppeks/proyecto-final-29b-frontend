@@ -22,7 +22,12 @@ export const getPro = () => async (dispatch) =>{
 
 //post de profesionales
 export const postPro = (data) => async () =>{
-  axios.post("http://localhost:3001/profetional", data)
+  console.log(data)
+  await axios({
+    method: 'POST',
+    url: "http://localhost:3001/professional",
+    data: data
+  })
 }
 
 /* export const getCharacter = () => async (dispatch) => {
