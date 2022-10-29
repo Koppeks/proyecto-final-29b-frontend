@@ -1,34 +1,31 @@
-import { StyleSheet, Text, View, Image,Button,TouchableOpacity } from 'react-native';
+import { Button, Text, View, Image,ScrollView,TouchableOpacity } from 'react-native';
 import tw from 'twrnc'
+import React from "react";
 
 
-export const UserDetail = ({navigation}) => {
+ export const UserDetails = ({ navigation }) => {
 
   return (
 
-    <>
+    
+    <ScrollView style={tw`flex `} >
 
-  <Button
+    <Button
       title="Go to Test Home"
       onPress={() =>
         navigation.navigate('Home', { name: 'lo que sea' })
       }
     />
- 
-
-    <View style={tw`flex `} >
       <View style={tw`flex-row  justify-between pt-5 pb-3  px-3 `}>
               
-      <TouchableOpacity style={tw`w-7  h-7 rounded-lg border-2 border-rose-500 justify-center pl-1`}>
-
-            <Text>X</Text>
-            </TouchableOpacity>
             
-                <Text  style={tw`pt-5 px-3 text-2xl`} >detalle</Text>
+
+                <Text  style={tw`pt-5 px-3 text-2xl  items-center`} >detalle</Text>
 
               <TouchableOpacity style={tw`w-12  h-7 rounded-lg border-2 border-rose-500 justify-center pl-1`}>
             <Text>Share</Text>
             </TouchableOpacity>
+
          </View>
 
            <View   style={tw` items-center`}>  
@@ -110,17 +107,12 @@ export const UserDetail = ({navigation}) => {
          </View>
 
 
-    </View>
+    </ScrollView>
     
         
          
-    </>
-  )
+    
+  );
 
-
-
- 
-}
-
-
+};
 

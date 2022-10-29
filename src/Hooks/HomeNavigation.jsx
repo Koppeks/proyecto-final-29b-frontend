@@ -9,6 +9,7 @@ import tw from 'twrnc'
 import Search from '../components/Serach/Search'
 import Filtros from '../screen/Filter/Filtros'
 import ButtonNav from '../components/button/ButtonNav'
+import {UserDetails} from '../screen/UserDetail/UserDetails'
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,8 @@ const HomeNavigation = ({navigation}) =>
                 name="Home Cards Professional"
                 component={HomeCardsProfessional}
             />
+               <Stack.Screen name="UserDetails"
+                      component={UserDetails} />
             <Stack.Screen
                 name="Edit Professional Profile"
                 component={EditProfession}
