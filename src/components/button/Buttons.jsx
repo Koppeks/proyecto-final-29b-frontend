@@ -10,10 +10,10 @@ export function Buttons(props)
 
   return (
     <TouchableOpacity
-      style={tw`shadow-lg w-16 h-16 items-center`}
+     style={tw`shadow-lg w-16 h-16 items-center`}
       onPress={onPress}
-    >
-      <Image source={image} style={tw`mt-2 w-12 h-12`} />
+      >
+      <Image source={image} style={tw`mt-2 w-12 h-12`}/> 
     </TouchableOpacity>
   )
 }

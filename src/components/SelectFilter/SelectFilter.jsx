@@ -1,35 +1,47 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import React from 'react'
 import tw from 'twrnc'
-import Select from 'react-select'
+import SelectList from 'react-native-select-dropdown'
 
 export default function SelectFilter() {
-    const options1 = [
-        { value: 'menor precio', label: 'menor precio' },
-        { value: 'mayor precio', label: 'mayor precio' },
-      ]
-      const options2 = [
-        { value: '1', label: '1' },
-        { value: '2', label: '2' },
-        { value: '3', label: '3' },
-        { value: '4', label: '4' },
-        { value: '5', label: '5' },
-       
-      ]
+  const RangoPrecio = ["Mayor Precio", "Menor precio"]
+  const rating= [1,2,3,4,5]
+
   return (
-    <View style={tw`z-40 flex-row mt-3`}>
 
+  <View style={tw`z-40  mt-3`}>
     <View style={tw`ml-8 items-center flex-row`}>
-    <Text>Precio/h </Text>
 
-    <Select options={options1} />
-
-    </View>
-    <View style={tw`ml-8 items-center flex-row`}>
-    <Text>Rating </Text>
-    <Select options={options2} />
-    </View>
+    <Text> Precio h/ </Text>
+    <SelectList
     
+    data={RangoPrecio}
+    onSelect={(selectedItem, index) => {
+      console.log(selectedItem, index)
+    }}
+    buttonTextAfterSelection={(selectedItem, index) => {
+      return selectedItem
+    }}
+    rowTextForSelection={(item, index) => {
+      return item
+    }}
+    />
     </View>
+    <View style={tw`ml-8 items-center flex-row`}>
+    <Text> Rating</Text>
+    <SelectList
+      data={rating}
+      onSelect={(selectedItem, index) => {
+        console.log(selectedItem, index)
+      }}
+      buttonTextAfterSelection={(selectedItem, index) => {
+        return selectedItem
+      }}
+      rowTextForSelection={(item, index) => {
+        return item
+      }}
+      />
+       </View>
+  </View>
   )
 }
