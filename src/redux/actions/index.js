@@ -1,6 +1,6 @@
 import axios from "axios";
 //import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getCharacters } from "../reducers/characterSlice";
+import { getCharacters,getCharacterId } from "../reducers/characterSlice";
 import { getProfetional } from "../reducers/profetionalSlice";
 
 //https://rickandmortyapi.com/api/character
@@ -10,6 +10,13 @@ export const getChar = () => async (dispatch) => {
   axios
     .get("https://rickandmortyapi.com/api/character")
     .then((res) => dispatch(getCharacters(res.data.results)))
+    .catch((e) => console.log(e));
+};
+
+export const getCharid = (id) => async (dispatch) => {
+  axios
+    .get("https://rickandmortyapi.com/api/character/"+id)
+    .then((res) => dispatch(getCharacterId(res.data)))
     .catch((e) => console.log(e));
 };
 

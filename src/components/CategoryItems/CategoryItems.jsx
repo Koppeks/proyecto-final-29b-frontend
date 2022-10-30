@@ -13,27 +13,27 @@ import tw from 'twrnc'
 export default function CategoryItems() {
   return (
 <ScrollView horizontal={true} style={tw`flex-row`} >
-    <View style={tw`mt-5 ml-8 mb-5 items-center`}>
+    <View style={tw`mt-5 ml-8 mb-5 `}>
     <Buttons onPress={()=>alert("boton uno")} image={todos}></Buttons>
     <Text>Todos</Text>
     </View>
-    <View style={tw`mt-5 ml-8 mb-5 items-center`}>
+    <View style={tw`mt-5 ml-8 mb-5`}>
     <Buttons onPress={()=>alert("boton dos")} image={electricista}></Buttons>
     <Text>Electricista</Text>
     </View>
-    <View style={tw`mt-5 ml-8 mb-5 items-center`}>
+    <View style={tw`mt-5 ml-8 mb-5 `}>
     <Buttons onPress={()=>alert("boton tres")} image={albanil}></Buttons>
     <Text>Albañil</Text>
     </View>
-    <View style={tw`mt-5 ml-8 mb-5 items-center`}>
+    <View style={tw`mt-5 ml-8 mb-5 `}>
     <Buttons onPress={()=>alert("boton cuatro")} image={medicina}></Buttons>
     <Text>Medicina</Text>
     </View>
-    <View style={tw`mt-5 ml-8 mb-5 items-center`}>
+    <View style={tw`mt-5 ml-8 mb-5 `}>
     <Buttons onPress={()=>alert("boton cinco")} image={abogado}></Buttons>
     <Text>Abogado</Text>
     </View>
-    <View style={tw`mt-5 ml-8 mb-5 items-center`}>
+    <View style={tw`mt-5 ml-8 mb-5 `}>
     <Buttons onPress={()=>alert("boton siete")} image={limpieza}></Buttons>
     <Text>limpieza</Text>
     </View>

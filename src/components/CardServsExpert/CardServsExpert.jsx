@@ -3,7 +3,10 @@ import { View, Image, Text, TouchableOpacity } from 'react-native';
 // import Heart from '../../svg/heart.svg';
 import image from '../../images/limpiezaPersona.png';
 import tw from 'twrnc';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+import {getCharid } from '../../redux/actions'
+import {useDispatch} from 'react-redux'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
@@ -11,19 +14,16 @@ import {useState} from 'react'
 const CardServsExpert = ({ navigation, elem}) =>
 {
    
-    const [id , setId] = useState('')
+  const dispatch = useDispatch()
+  
+ 
+  const onPressId = (e) =>{
+    dispatch(getCharid(e))
+  }
+  
 
-    const setLocalStorage= value =>{
-        try{
-            setId(value)
-            window.localStorage.setItem('text', value)
-    
-        }catch(error){
-          console.log(error)
-        }
-        console.log(value)
-      }
-   
+
+ 
     return (
 
         <>
@@ -31,9 +31,10 @@ const CardServsExpert = ({ navigation, elem}) =>
         <TouchableOpacity style={tw`bg-white rounded-md mr-7 mt-2 flex-row items-center w-80`}
         
         onPress={() =>   
-        { navigation.navigate("UserDetails", { name: "UserDetails"}) , 
-        setLocalStorage(elem.id)
-            console.log(elem.id)}    
+        { navigation.navigate("UserDetails", { name: "UserDetails"})   
+        onPressId(elem.id)
+
+         }    
         }
         >
             <View >
