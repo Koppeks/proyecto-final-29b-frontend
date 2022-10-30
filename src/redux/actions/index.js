@@ -1,6 +1,8 @@
 import axios from "axios";
 import { allProfessional } from "../reducers/professionalSlice";
 import { allCategories } from "../reducers/categoriesSlice";
+import infoDb from "../../Hooks/infoDb";
+import { allCategoriesLocal } from "../reducers/categoriesSlice";
 
 // get de profesionales
 export const getPro = () => async (dispatch) => {
@@ -28,3 +30,9 @@ export const getCategories = () => async (dispatch) => {
     .then((res) => dispatch(allCategories(res.data)))
     .catch((e) => console.log(e));
 };
+
+export const getCategoriesLocal = () => (dispatch) => {
+  const infDb = infoDb();
+  dispatch(allCategoriesLocal(infDb));
+};
+//

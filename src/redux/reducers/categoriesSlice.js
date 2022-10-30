@@ -9,6 +9,9 @@ const categoriesSlice = createSlice({
     allCategories: (state, action) => {
       state.categories = action.payload;
     },
+    allCategoriesLocal: (state, action) => {
+      state.categories = action.payload;
+    },
     byCategories: (state, action) => {
       const byCateg = state.categories.filter((e) =>
         e.occupation.includes(action.payload)
@@ -40,3 +43,5 @@ export const {
   byPrice,
 } = categoriesSlice.actions;
 export default categoriesSlice.reducer;
+
+//

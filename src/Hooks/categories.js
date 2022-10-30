@@ -37,3 +37,4 @@ const categoriesDb = () => {
 };
 
 export default categoriesDb;
+//
