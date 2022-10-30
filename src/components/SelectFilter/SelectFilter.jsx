@@ -1,47 +1,46 @@
-import { Text, View } from 'react-native'
-import React from 'react'
-import tw from 'twrnc'
-import SelectList from 'react-native-select-dropdown'
+import { View } from "react-native";
+import React from "react";
+import tw from "twrnc";
+import { byRating, byPrice } from "../../redux/reducers/categoriesSlice";
+import { useDispatch, useSelector } from "react-redux";
+import SelectDropdown from "react-native-select-dropdown";
 
 export default function SelectFilter() {
-  const RangoPrecio = ["Mayor Precio", "Menor precio"]
-  const rating= [1,2,3,4,5]
+  const dispatch = useDispatch();
+  const { categories } = useSelector((state) => state.categories);
+
+  const handleRating = (e) => {
+    dispatch(byRating(e));
+  };
+  const handlePrice = (e) => {
+    dispatch(byPrice(e));
+  };
+
+  const rating = ["MaxRating", "MinRating"];
+  const price = ["MaxPrecio", "MinPrecio"];
 
   return (
-
-  <View style={tw`z-40  mt-3`}>
-    <View style={tw`ml-8 items-center flex-row`}>
-
-    <Text> Precio h/ </Text>
-    <SelectList
-    
-    data={RangoPrecio}
-    onSelect={(selectedItem, index) => {
-      console.log(selectedItem, index)
-    }}
-    buttonTextAfterSelection={(selectedItem, index) => {
-      return selectedItem
-    }}
-    rowTextForSelection={(item, index) => {
-      return item
-    }}
-    />
+    <View style={tw`z-40 flex-row mt-3`}>
+      <View>
+        <SelectDropdown
+          disabled={categories.length < 10 ? false : true}
+          data={rating}
+          onSelect={(selectedItem) => {
+            handleRating(selectedItem);
+          }}
+        />
+      </View>
+      <View>
+        <SelectDropdown
+          disabled={categories.length < 10 ? false : true}
+          data={price}
+          onSelect={(selectedItem) => {
+            handlePrice(selectedItem);
+          }}
+        />
+      </View>
     </View>
-    <View style={tw`ml-8 items-center flex-row`}>
-    <Text> Rating</Text>
-    <SelectList
-      data={rating}
-      onSelect={(selectedItem, index) => {
-        console.log(selectedItem, index)
-      }}
-      buttonTextAfterSelection={(selectedItem, index) => {
-        return selectedItem
-      }}
-      rowTextForSelection={(item, index) => {
-        return item
-      }}
-      />
-       </View>
-  </View>
-  )
+  );
 }
+
+

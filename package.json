@@ -33,6 +33,7 @@
     "react-native-svg-transformer": "^1.0.0",
     "react-native-web": "~0.18.7",
     "react-redux": "^8.0.4",
+    "react-select": "^5.5.7",
     "tailwind": "^4.0.0",
     "twrnc": "^3.4.0",
     "yup": "^0.32.11"
