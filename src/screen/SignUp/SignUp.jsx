@@ -1,12 +1,20 @@
 import React from "react"
-import { View, TextInput, Text, TouchableHighlight } from "react-native"
+import { ScrollView, Text, Button } from "react-native"
 import ProForm from "../../containers/ProForm/ProForm"
+import tw from "twrnc"
 
 
 const SignUp = () =>
 {
   return (
-    <ProForm />
+    <ScrollView style={tw`bg-gray-100 border`}>
+    <Text>EditProfession</Text>
+    <Button 
+      title="Vuelve al inicio"
+      onPress={()=> navigation.goBack()}
+      />
+    <ProForm/>
+  </ScrollView>
   )
 }
 
