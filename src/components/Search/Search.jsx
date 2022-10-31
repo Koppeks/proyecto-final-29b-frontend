@@ -1,0 +1,31 @@
+
+import { View } from 'react-native'
+import React from 'react'
+import { Button, Input } from 'react-native-elements'
+import tw from 'twrnc'
+import { getProName } from '../../redux/reducers/profetionalSlice'
+import { useDispatch } from 'react-redux'
+
+
+export default function () {
+
+  const dispatch = useDispatch()
+
+  function searchState(e){
+    console.log(e.nativeEvent.text)
+    dispatch(getProName(e))
+  }
+
+  return (
+    <View style={tw`flex-row items-baseline justify-between w-40 h-12`}>
+      <Input 
+      leftIcon={{name:"search"}}
+      placeholder='Search...'
+      onChange={(e) => searchState(e)}
+      style={tw``}
+      />
+      <Button
+      title="Search"/>
+    </View>
+  )
+}

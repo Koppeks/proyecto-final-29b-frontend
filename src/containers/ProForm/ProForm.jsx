@@ -22,6 +22,7 @@ const ProForm = () =>{
       occupation: '',
       description: '',
       address: '',
+      pricing: '',
       image: '',
   }
 
@@ -41,6 +42,7 @@ const ProForm = () =>{
             occupation: [values.occupation],
             description: values.description,
             address: values.address,
+            pricing: values.pricing,
             image: values.image
           }
 
@@ -54,7 +56,7 @@ const ProForm = () =>{
       >
         {({values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting}) =>{
           
-          const {fullName, phoneNumber, email, password, confirmPassword, description, occupation, address, image} = values
+          const {fullName, phoneNumber, email, password, confirmPassword, description, occupation, pricing, address, image} = values
 
           return(
             <>
@@ -121,6 +123,14 @@ const ProForm = () =>{
                 label="Dirección"
                 onChangeText={handleChange('address')}
                 onBlur={handleBlur("address")}
+              />
+              <FormInput 
+                value={pricing}
+                error={touched.pricing && errors.pricing}
+                placeholder="Escribe tu precio aquí"
+                label="Precio"
+                onChangeText={handleChange('pricing')}
+                onBlur={handleBlur("pricing")}
               />
               <FormInput 
                 value={image}

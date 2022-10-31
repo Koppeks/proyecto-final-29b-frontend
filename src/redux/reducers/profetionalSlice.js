@@ -4,18 +4,21 @@ const professionalSlice = createSlice({
   name: "allProfetional",
   initialState: {
     professional: [],
-    professionalId:[]
+    professionalId: [],
   },
   reducers: {
     getProfessional: (state, action) => {
       state.professional = action.payload;
       console.log(state.professional)
     },
-    getProfessionalId:(state,action)=>{
+    getProfessionalId: (state, action) => {
       state.professionalId = action.payload;
-    }
+    },
+    searchProfessionalName: (state, action) => {
+      state.professional = [...action.payload]
+    } 
   },
 });
 
-export const { getProfessional,getProfessionalId } = professionalSlice.actions;
+export const { getProfessional, getProfessionalId, searchProfessionalName } = professionalSlice.actions;
 export default professionalSlice.reducer;

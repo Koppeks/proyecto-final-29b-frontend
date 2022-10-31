@@ -6,7 +6,7 @@ import logo from '../images/logo.png'
 import { Image } from "react-native";
 import { View } from "react-native";
 import tw from 'twrnc'
-import Search from '../components/Serach/Search'
+import Search from '../components/Search/Search'
 import Filtros from '../screen/Filter/Filtros'
 import ButtonNav from '../components/button/ButtonNav'
 import {UserDetails} from '../screen/UserDetail/UserDetails'
@@ -18,17 +18,16 @@ const HomeNavigation = ({navigation}) =>
     return (
         <Stack.Navigator>
               <Stack.Screen 
-            name=" " 
-            component={Home} 
-            options={{
-                headerLeft:()=><Image source={logo} style={tw`w-10 h-10 ml-1`}/>,
-                headerRight:()=>
-                <View style={tw`flex-row`}>
-
-                 <Search/> 
-                  <ButtonNav navigation={navigation} />
-                </View>
-            }}
+                name=" " 
+                component={Home} 
+                options={{
+                    headerLeft:()=><Image source={logo} style={tw`w-12 h-10`}/>,
+                    headerRight:()=>
+                    <View style={tw`flex-row items-center justify-between w-70`}>
+                        <Search/> 
+                        <ButtonNav navigation={navigation} />
+                    </View>
+                }}
             />
               <Stack.Screen
                 name="Filtros"
