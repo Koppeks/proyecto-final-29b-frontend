@@ -43,5 +43,3 @@ export const {
   byPrice,
 } = categoriesSlice.actions;
 export default categoriesSlice.reducer;
-
-//
