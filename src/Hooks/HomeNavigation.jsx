@@ -17,17 +17,16 @@ const HomeNavigation = ({navigation}) =>
     return (
         <Stack.Navigator>
               <Stack.Screen 
-            name=" " 
-            component={Home} 
-            options={{
-                headerLeft:()=><Image source={logo} style={tw`w-12 h-10 ml-5`}/>,
-                headerRight:()=>
-                <View style={tw`flex-row`}>
-
-                 <Search/> 
-                  <ButtonNav navigation={navigation} />
-                </View>
-            }}
+                name=" " 
+                component={Home} 
+                options={{
+                    headerLeft:()=><Image source={logo} style={tw`w-12 h-10`}/>,
+                    headerRight:()=>
+                    <View style={tw`flex-row items-center justify-between w-70`}>
+                        <Search/> 
+                        <ButtonNav navigation={navigation} />
+                    </View>
+                }}
             />
               <Stack.Screen
                 name="Filtros"
