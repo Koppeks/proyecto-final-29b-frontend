@@ -1,3 +1,4 @@
+
 import { View } from 'react-native'
 import React from 'react'
 import { Button, Input } from 'react-native-elements'
@@ -6,7 +7,6 @@ import tw from 'twrnc'
 
 
 export default function () {
-
 
   function searchState(e){
     console.log(e.nativeEvent.text)
