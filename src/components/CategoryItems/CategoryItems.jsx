@@ -9,18 +9,21 @@ import category from "../../Hooks/categories";
 const categ = category();
 console.log(categ);
 
-export default function CategoryItems() {
+export default function CategoryItems()
+{
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.categories);
 
   const [filtCateg, setFiltCateg] = useState([]);
   console.log(filtCateg);
 
-  useEffect(() => {
+  useEffect(() =>
+  {
     dispatch(getCategories());
   }, [dispatch]);
 
-  const handleFilter = (e) => {
+  const handleFilter = (e) =>
+  {
     dispatch(byCategories(e));
     setFiltCateg(categories);
   };
@@ -67,17 +70,17 @@ export default function CategoryItems() {
                   <View>
                     <View style={tw`flex flex-row-reverse`}></View>
                     <View style={tw`mt-3 mr-2`}>
-                      <Text style={tw`font-sans text-gray-500 mb-1`}>
+                      <Text style={tw` text-gray-500 mb-1`}>
                         {item.fullName}
                       </Text>
-                      <Text style={tw`font-bold font-sans text-black mb-1`}>
+                      <Text style={tw`font-bold  text-black mb-1`}>
                         {item.occupation}
                       </Text>
-                      <Text style={tw`text-indigo-400 font-sans mb-1`}>
+                      <Text style={tw`text-indigo-400  mb-1`}>
                         {item.price}
                       </Text>
 
-                      <Text style={tw`font-sans text-black`}>
+                      <Text style={tw` text-black`}>
                         {item.rating}
                       </Text>
                     </View>
