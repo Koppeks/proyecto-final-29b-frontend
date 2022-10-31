@@ -8,14 +8,16 @@ const professionalSlice = createSlice({
   },
   reducers: {
     getProfessional: (state, action) => {
-      console.log(state.professional);
       state.professional = action.payload;
     },
     getProfessionalId: (state, action) => {
       state.professionalId = action.payload;
     },
+    searchProfessionalName: (state, action) => {
+      state.professional = [...action.payload]
+    } 
   },
 });
 
-export const { getProfessional, getProfessionalId } = professionalSlice.actions;
+export const { getProfessional, getProfessionalId, searchProfessionalName } = professionalSlice.actions;
 export default professionalSlice.reducer;

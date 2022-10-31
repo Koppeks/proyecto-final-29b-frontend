@@ -3,13 +3,17 @@ import { View } from 'react-native'
 import React from 'react'
 import { Button, Input } from 'react-native-elements'
 import tw from 'twrnc'
-
+import { getProName } from '../../redux/reducers/profetionalSlice'
+import { useDispatch } from 'react-redux'
 
 
 export default function () {
 
+  const dispatch = useDispatch()
+
   function searchState(e){
     console.log(e.nativeEvent.text)
+    dispatch(getProName(e))
   }
 
   return (
