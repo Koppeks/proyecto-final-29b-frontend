@@ -7,6 +7,7 @@ const categoriesSlice = createSlice({
   },
   reducers: {
     allCategories: (state, action) => {
+      console.log(action);
       state.categories = action.payload;
     },
     byCategories: (state, action) => {
@@ -32,6 +33,11 @@ const categoriesSlice = createSlice({
   },
 });
 
-export const { allCategories, byCategories, byRating, byPrice } =
-  categoriesSlice.actions;
+export const {
+  allCategories,
+  byCategories,
+  byRating,
+  allCategoriesLocal,
+  byPrice,
+} = categoriesSlice.actions;
 export default categoriesSlice.reducer;

@@ -1,14 +1,19 @@
 import { View } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import tw from "twrnc";
 import { byRating, byPrice } from "../../redux/reducers/categoriesSlice";
 import { useDispatch, useSelector } from "react-redux";
 import SelectDropdown from "react-native-select-dropdown";
+import { getCategories } from "../../redux/actions/index";
 
 export default function SelectFilter() {
   const dispatch = useDispatch();
-  const { categories } = useSelector((state) => state.categories);
 
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
+
+  const { categories } = useSelector((state) => state.categories);
   const handleRating = (e) => {
     dispatch(byRating(e));
   };
