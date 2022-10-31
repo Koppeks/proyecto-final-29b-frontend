@@ -1,17 +1,18 @@
 import axios from "axios";
+
 //import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getCharacters,getCharacterId } from "../reducers/characterSlice";
 import { getProfessional,getProfessionalId } from "../reducers/profetionalSlice";
 
-//https://rickandmortyapi.com/api/character
-//https://reqres.in/api/users?delay=1
 
-export const getChar = () => async (dispatch) => {
+// get de profesionales
+export const getPro = () => async (dispatch) => {
   axios
-    .get("https://rickandmortyapi.com/api/character")
-    .then((res) => dispatch(getCharacters(res.data.results)))
+    .get("http://localhost:3001/professional")
+    .then((res) => dispatch(allProfessional(res.data.results)))
     .catch((e) => console.log(e));
 };
+
 
 export const getCharid = (id) => async (dispatch) => {
   axios
@@ -35,29 +36,21 @@ export const getProId = (id) => async (dispatch) =>{
 
 
 
-//
-
 export const postPro = (data) => async () =>{
   console.log(data)
+
   await axios({
-    method: 'POST',
+    method: "POST",
     url: "http://localhost:3001/professional",
-    data: data
-  })
-}
+    data: data,
+  });
+};
 
-/* export const getCharacter = () => async (dispatch) => {
-  const getChar = await axios.get("https://rickandmortyapi.com/api/character");
-  dispatch(getCharacters(getChar.data.results));
-}; */
+//Hacer el filtrado de trabajos de expertos disponibles por categoria
 
-/* export const getCharacter = createAsyncThunk<unknown, void>(
-  "allCharacter/getCharacter",
-  async () => {
-    const getChar = await axios.get("https://reqres.in/api/users?delay=1");
-    return (await getChar.data) as UserData[];
-  }
-);
- */
-
-//pure
+export const getCategories = () => async (dispatch) => {
+  axios
+    .get("http://localhost:3001/professional")
+    .then((res) => dispatch(allCategories(res.data)))
+    .catch((e) => console.log(e));
+};
