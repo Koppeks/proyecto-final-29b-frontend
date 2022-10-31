@@ -3,38 +3,32 @@ import tw from 'twrnc'
 import React from "react";
 import  {useEffect}from "react";
 import {useDispatch,useSelector} from 'react-redux'
-import {getChar} from '../../redux/actions'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
+ 
 
 
  export const UserDetails = ({ navigation }) => {
 
+  
 
-  const dispatch = useDispatch()
 
-  useEffect(()=>{
-      dispatch(getChar())
-  },[])
 
-  const{characters}=useSelector(state=>state.characters)
+  const{professionalId}=useSelector(state=>state.professional)
 
+
+console.log(professionalId)
   return (
 
     
     <ScrollView style={tw`flex `} >
 
-    <Button
-      title="Go to Test Home"
-      onPress={() =>
-        navigation.navigate('Home', { name: 'lo que sea' })
-      }
-    />
       <View style={tw`flex-row  justify-between pt-5 pb-3  px-3 `}>
               
             
 
-                <Text  style={tw`pt-5 px-3 text-2xl  items-center`} >detalle</Text>
+                <Text  style={tw`pt-5 px-3 text-2xl  items-center`} >{professionalId.fullName}</Text>
 
               <TouchableOpacity style={tw`w-12  h-7 rounded-lg border-2 border-rose-500 justify-center pl-1`}>
             <Text>Share</Text>
@@ -43,11 +37,12 @@ import {getChar} from '../../redux/actions'
          </View>
 
            <View   style={tw` items-center`}>  
-           <Image  style={tw`h-44 w-90 rounded-b-15 `} source={ {uri: 'https://www.ilo.org/wcmsp5/groups/public/---dgreports/---dcomm/documents/image/wcms_842756.jpg'}}/>
+           <Image  style={tw`h-70 w-80
+            m-6 mt-7 md:h-80 md:h-80 rounded-md`} source={{ uri:professionalId.image}} />
            </View>
           <View  style={tw` items-center` }>
           <Text style={tw`pt-5 px-3 text-2xl`} >
-               Gasfiteria
+             {professionalId.occupation}
            </Text >
           </View>
         

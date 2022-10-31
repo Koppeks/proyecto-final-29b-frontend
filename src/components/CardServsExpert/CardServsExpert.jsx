@@ -3,7 +3,10 @@ import { View, Image, Text, TouchableOpacity } from 'react-native';
 // import Heart from '../../svg/heart.svg';
 import image from '../../images/limpiezaPersona.png';
 import tw from 'twrnc';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+import {getProId } from '../../redux/actions'
+import {useDispatch} from 'react-redux'
+
 
 
 
@@ -11,19 +14,16 @@ import {useState} from 'react'
 const CardServsExpert = ({ navigation, elem}) =>
 {
    
-    const [id , setId] = useState('')
+ const dispatch = useDispatch()
+  
+ 
+ const onPressId = (e) =>{
+     dispatch(getProId(e))
+   }
+  
 
-    const setLocalStorage= value =>{
-        try{
-            setId(value)
-            window.localStorage.setItem('text', value)
-    
-        }catch(error){
-          console.log(error)
-        }
-        console.log(value)
-      }
-   
+
+ 
     return (
 
         <>
@@ -31,9 +31,12 @@ const CardServsExpert = ({ navigation, elem}) =>
         <TouchableOpacity style={tw`bg-white rounded-md mr-7 mt-2 flex-row items-center w-80`}
         
         onPress={() =>   
-        { navigation.navigate("UserDetails", { name: "UserDetails"}) , 
-        setLocalStorage(elem.id)
-            console.log(elem.id)}    
+
+
+        { navigation.navigate("UserDetails", { name: "UserDetails"})   
+        onPressId(elem.id)
+
+         }    
         }
         >
             <View >
@@ -44,8 +47,8 @@ const CardServsExpert = ({ navigation, elem}) =>
                     {/* <Heart height={20} width={20} fill={'#9CA3AF'} /> */}
                 </View>
                 <View style={tw`mt-3`}>
-                    <Text style={tw`font-sans text-gray-500 mb-1`}>{elem.name}</Text>
-                    <Text style={tw`font-bold font-sans text-black mb-1`}>{elem.species}</Text>
+                    <Text style={tw`font-sans text-gray-500 mb-1`}>{elem.fullName}</Text>
+                    <Text style={tw`font-bold font-sans text-black mb-1`}>Ranting: {elem.rating}</Text>
                     <Text style={tw`text-indigo-400 font-sans mb-1`}>$8/hora</Text>
 
                     <Text style={tw`font-sans text-black`}>

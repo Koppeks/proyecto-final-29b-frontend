@@ -26,6 +26,7 @@ export default function CategoryItems() {
   };
 
   return (
+
     <View>
       <FlatList
         data={categ}
@@ -89,6 +90,7 @@ export default function CategoryItems() {
           <Text>{"No hay filtros"}</Text>
         )}
       </View>
+
     </View>
   );
 }
