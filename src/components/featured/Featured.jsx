@@ -4,18 +4,19 @@ import tw from "twrnc";
 import CardServsExpert from '../CardServsExpert/CardServsExpert';
 import  {useEffect,useState}from "react";
 import {useDispatch,useSelector} from 'react-redux'
-import {getChar } from '../../redux/actions'
+import { getPro } from '../../redux/actions'
+
 
 const Featured = ({ navigation }) =>
 {
   const dispatch = useDispatch()
 
-  useEffect(()=>{
-      dispatch(getChar())
-     
-  },[])
+  const{professional}=useSelector(state=>state.professional)
 
-  const{characters}=useSelector(state=>state.characters)
+  useEffect(()=>{
+    dispatch(getPro())
+   
+},[dispatch])
 
 
 
@@ -31,20 +32,13 @@ const Featured = ({ navigation }) =>
     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
 
 
-    { characters && characters.map((elem,i)=>{ 
+    { professional.length>0 ? professional.map((elem,i)=>{ 
   return(
     
       <CardServsExpert key={i} navigation={navigation} elem={elem} />
-
   )
-})
- 
-
+}): <Text>hola</Text>
 }
-  
-  
-      
-      
     </ScrollView>
   </View>
   

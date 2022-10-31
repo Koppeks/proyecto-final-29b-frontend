@@ -4,9 +4,9 @@ import { View, Image, Text, TouchableOpacity } from 'react-native';
 import image from '../../images/limpiezaPersona.png';
 import tw from 'twrnc';
 import {useState, useEffect} from 'react'
-import {getCharid } from '../../redux/actions'
+import {getProId } from '../../redux/actions'
 import {useDispatch} from 'react-redux'
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
 
@@ -14,12 +14,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const CardServsExpert = ({ navigation, elem}) =>
 {
    
-  const dispatch = useDispatch()
+ const dispatch = useDispatch()
   
  
-  const onPressId = (e) =>{
-    dispatch(getCharid(e))
-  }
+ const onPressId = (e) =>{
+     dispatch(getProId(e))
+   }
   
 
 
@@ -31,6 +31,8 @@ const CardServsExpert = ({ navigation, elem}) =>
         <TouchableOpacity style={tw`bg-white rounded-md mr-7 mt-2 flex-row items-center w-80`}
         
         onPress={() =>   
+
+
         { navigation.navigate("UserDetails", { name: "UserDetails"})   
         onPressId(elem.id)
 
@@ -45,8 +47,8 @@ const CardServsExpert = ({ navigation, elem}) =>
                     {/* <Heart height={20} width={20} fill={'#9CA3AF'} /> */}
                 </View>
                 <View style={tw`mt-3`}>
-                    <Text style={tw`font-sans text-gray-500 mb-1`}>{elem.name}</Text>
-                    <Text style={tw`font-bold font-sans text-black mb-1`}>{elem.species}</Text>
+                    <Text style={tw`font-sans text-gray-500 mb-1`}>{elem.fullName}</Text>
+                    <Text style={tw`font-bold font-sans text-black mb-1`}>Ranting: {elem.rating}</Text>
                     <Text style={tw`text-indigo-400 font-sans mb-1`}>$8/hora</Text>
 
                     <Text style={tw`font-sans text-black`}>

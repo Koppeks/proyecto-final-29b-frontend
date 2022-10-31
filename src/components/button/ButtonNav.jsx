@@ -9,10 +9,10 @@ export default function ButtonNav({ navigation })
   return (
    <TouchableOpacity
 
-    onPress={() =>
-      navigation.navigate("Filtros", {
-        name: "Filtros",
-      })
+    onPress={() =>{ navigation.navigate("Filtros" ,{
+      name: "Filtros"
+    })}
+     
     }
     style={tw`w-8 h-8 mr-5`}
   >
@@ -20,5 +20,5 @@ export default function ButtonNav({ navigation })
   </TouchableOpacity>
   )
 
-  )
+  
 }
