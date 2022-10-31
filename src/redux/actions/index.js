@@ -35,4 +35,3 @@ export const getCategoriesLocal = () => (dispatch) => {
   const infDb = infoDb();
   dispatch(allCategoriesLocal(infDb));
 };
-//
