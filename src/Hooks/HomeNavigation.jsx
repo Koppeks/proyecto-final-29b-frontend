@@ -6,7 +6,7 @@ import logo from '../images/logo.png'
 import { Image } from "react-native";
 import { View } from "react-native";
 import tw from 'twrnc'
-import Search from '../components/Serach/Search'
+import Search from '../components/Search/Search'
 import Filtros from '../screen/Filter/Filtros'
 import ButtonNav from '../components/button/ButtonNav'
 import {UserDetails} from '../screen/UserDetail/UserDetails'

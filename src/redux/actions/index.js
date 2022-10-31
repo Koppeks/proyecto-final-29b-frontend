@@ -20,6 +20,17 @@ export const getProId = (id) => async (dispatch) => {
     .catch((e) => console.log(e));
 };
 
+export const getProName = (name) => async (dispatch) => {
+  axios
+    .get("http://localhost:3001/professional/" + name)
+    .then((res) => {
+      console.log(res.data)
+      dispatch(searchProfessionalName(res.data))
+      }
+      )
+    .catch((e) => console.log(e));
+};
+
 //post de profesionales
 export const postPro = (data) => async () => {
   console.log(data);
@@ -38,3 +49,5 @@ export const getCategories = () => async (dispatch) => {
     .then((res) => dispatch(allCategories(res.data)))
     .catch((e) => console.log(e));
 };
+
+
