@@ -3,6 +3,7 @@ import { allCategories } from "../reducers/categoriesSlice";
 import {
   getProfessional,
   getProfessionalId,
+  searchProfessionalName
 } from "../reducers/profetionalSlice";
 
 // get de profesionales
