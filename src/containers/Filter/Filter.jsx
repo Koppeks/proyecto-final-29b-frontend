@@ -4,12 +4,12 @@ import CardServsExpert from '../../components/CardServsExpert/CardServsExpert'
 import CategoryItems from '../../components/CategoryItems/CategoryItems'
 import SelectFilter from '../../components/SelectFilter/SelectFilter'
 
-export default function Filter() {
+export default function Filter()
+{
   return (
     <View>
-        <CategoryItems/>
-        <SelectFilter/>
-        <CardServsExpert/>
+      <CategoryItems />
+      <SelectFilter />
     </View>
   )
 }

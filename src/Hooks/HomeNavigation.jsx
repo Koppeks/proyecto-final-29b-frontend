@@ -9,28 +9,28 @@ import tw from 'twrnc'
 import Search from '../components/Serach/Search'
 import Filtros from '../screen/Filter/Filtros'
 import ButtonNav from '../components/button/ButtonNav'
-import {UserDetails} from '../screen/UserDetail/UserDetails'
+import { UserDetails } from '../screen/UserDetail/UserDetails'
 
 const Stack = createNativeStackNavigator();
 
-const HomeNavigation = ({navigation}) =>
+const HomeNavigation = ({ navigation }) =>
 {
     return (
         <Stack.Navigator>
-              <Stack.Screen 
-            name=" " 
-            component={Home} 
-            options={{
-                headerLeft:()=><Image source={logo} style={tw`w-10 h-10 ml-1`}/>,
-                headerRight:()=>
-                <View style={tw`flex-row`}>
+            <Stack.Screen
+                name=" "
+                component={Home}
+                options={{
+                    headerLeft: () => <Image source={logo} style={tw`w-10 h-10 ml-1`} />,
+                    headerRight: () =>
+                        <View style={tw`flex-row`}>
 
-                 <Search/> 
-                  <ButtonNav navigation={navigation} />
-                </View>
-            }}
+                            <Search />
+                            <ButtonNav navigation={navigation} />
+                        </View>
+                }}
             />
-              <Stack.Screen
+            <Stack.Screen
                 name="Filtros"
                 component={Filtros}
             />
@@ -39,8 +39,8 @@ const HomeNavigation = ({navigation}) =>
                 name="Home Cards Professional"
                 component={HomeCardsProfessional}
             />
-               <Stack.Screen name="UserDetails"
-                      component={UserDetails} />
+            <Stack.Screen name="UserDetails"
+                component={UserDetails} />
             <Stack.Screen
                 name="Edit Professional Profile"
                 component={EditProfession}
