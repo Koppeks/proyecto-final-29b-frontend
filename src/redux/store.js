@@ -1,8 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import messageReducer from "./reducers/message";
-import characterReducer from "./reducers/characterSlice";
-import professionalReducer from "./reducers/profetionalSlice";
-
+import professional from "./reducers/profetionalSlice";
+import categories from "./reducers/categoriesSlice";
 
 /*
   Aca se ubican los estados globales, donde les damos acceso a todos los componentes que esten por debajo del store
@@ -11,12 +9,9 @@ import professionalReducer from "./reducers/profetionalSlice";
 
 const store = configureStore({
   reducer: {
-    message: messageReducer,
-    characters: characterReducer,
-    professional: professionalReducer
+    categories: categories,
+    professional: professional,
   },
 });
 
 export default store;
-
-//pure

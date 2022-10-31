@@ -7,29 +7,24 @@ import tw from "twrnc";
 import category from "../../Hooks/categories";
 
 const categ = category();
-console.log(categ);
 
-export default function CategoryItems()
-{
+export default function CategoryItems() {
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.categories);
 
   const [filtCateg, setFiltCateg] = useState([]);
   console.log(filtCateg);
 
-  useEffect(() =>
-  {
+  useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
 
-  const handleFilter = (e) =>
-  {
+  const handleFilter = (e) => {
     dispatch(byCategories(e));
     setFiltCateg(categories);
   };
 
   return (
-
     <View>
       <FlatList
         data={categ}
@@ -68,19 +63,22 @@ export default function CategoryItems()
                     />
                   </View>
                   <View>
-                    <View style={tw`flex flex-row-reverse`}></View>
+                    <View style={tw`flex flex-row-reverse`}>
+                      {/* <Heart height={20} width={20} fill={"#9CA3AF"} /> */}
+                    </View>
                     <View style={tw`mt-3 mr-2`}>
-                      <Text style={tw` text-gray-500 mb-1`}>
+                      <Text style={tw`font-sans text-gray-500 mb-1`}>
                         {item.fullName}
                       </Text>
-                      <Text style={tw`font-bold  text-black mb-1`}>
+                      <Text style={tw`font-bold font-sans text-black mb-1`}>
                         {item.occupation}
                       </Text>
-                      <Text style={tw`text-indigo-400  mb-1`}>
+                      <Text style={tw`text-indigo-400 font-sans mb-1`}>
                         {item.price}
                       </Text>
 
-                      <Text style={tw` text-black`}>
+                      <Text style={tw`font-sans text-black`}>
+                        {/* <Star height={17} width={17} fill={"#818CF8"} /> */}
                         {item.rating}
                       </Text>
                     </View>
@@ -93,7 +91,7 @@ export default function CategoryItems()
           <Text>{"No hay filtros"}</Text>
         )}
       </View>
-
     </View>
   );
 }
+//
