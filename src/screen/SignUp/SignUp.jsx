@@ -4,11 +4,10 @@ import ProForm from "../../containers/ProForm/ProForm"
 import tw from "twrnc"
 
 
-const SignUp = () =>
+const SignUp = ({navigation}) =>
 {
   return (
     <ScrollView style={tw`bg-gray-100 border`}>
-    <Text>EditProfession</Text>
     <Button 
       title="Vuelve al inicio"
       onPress={()=> navigation.goBack()}

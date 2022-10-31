@@ -1,4 +1,5 @@
-import {  View } from 'react-native'
+
+import { View } from 'react-native'
 import React from 'react'
 import { Button, Input } from 'react-native-elements'
 import tw from 'twrnc'
@@ -6,16 +7,21 @@ import tw from 'twrnc'
 
 
 export default function () {
-  return (
-    <View style={tw`flex-row items-center w-60 pl-2 pr-20`}>
-    <Input 
-    leftIcon={{type:"feather",name:"search"}}
-    placeholder='Search...'
-    />
-    <Button
-    style={tw`w-16 h-10`}
-    title="Search"/>
 
-  </View>
+  function searchState(e){
+    console.log(e.nativeEvent.text)
+  }
+
+  return (
+    <View style={tw`flex-row items-baseline justify-between w-40 h-12`}>
+      <Input 
+      leftIcon={{name:"search"}}
+      placeholder='Search...'
+      onChange={(e) => searchState(e)}
+      style={tw``}
+      />
+      <Button
+      title="Search"/>
+    </View>
   )
 }
