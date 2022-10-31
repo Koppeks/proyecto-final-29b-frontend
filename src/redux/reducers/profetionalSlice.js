@@ -1,16 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const profetionalSlice = createSlice({
+const professionalSlice = createSlice({
   name: "allProfetional",
   initialState: {
-    profetional: [],
+    professional: [],
+    professionalId:[]
   },
   reducers: {
-    getProfetionals: (state, action) => {
-      state.profetional = action.payload;
+    getProfessional: (state, action) => {
+      state.professional = action.payload;
     },
+    getProfessionalId:(state,action)=>{
+      state.professionalId = action.payload;
+    }
   },
 });
 
-export const { getProfetional } = profetionalSlice.actions;
-export default profetionalSlice.reducer;
+export const { getProfessional,getProfessionalId } = professionalSlice.actions;
+export default professionalSlice.reducer;

@@ -2,28 +2,27 @@ import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React from "react";
 import tw from "twrnc";
 import CardServsExpert from '../CardServsExpert/CardServsExpert';
-import  {useEffect}from "react";
+import  {useEffect,useState}from "react";
 import {useDispatch,useSelector} from 'react-redux'
-import {getChar } from '../../redux/actions'
+import { getPro } from '../../redux/actions'
+
 
 const Featured = ({ navigation }) =>
 {
   const dispatch = useDispatch()
 
+  const{professional}=useSelector(state=>state.professional)
+
   useEffect(()=>{
-      dispatch(getChar())
-  },[])
+    dispatch(getPro())
+   
+},[dispatch])
 
 
 
-
-
-  const{characters}=useSelector(state=>state.characters)
-
-  
+ 
   return (
 <>
-  
 
  
     <View>
@@ -32,20 +31,14 @@ const Featured = ({ navigation }) =>
 
     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
 
-    {characters && characters.map((elem,i)=>{
+
+    { professional.length>0 ? professional.map((elem,i)=>{ 
   return(
- 
-      <CardServsExpert key={i} navigation={navigation} elem={elem}/>
-
-  )//
-})
- 
-
+    
+      <CardServsExpert key={i} navigation={navigation} elem={elem} />
+  )
+}): <Text>hola</Text>
 }
-  
-  
-      
-      
     </ScrollView>
   </View>
   
