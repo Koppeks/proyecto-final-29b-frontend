@@ -9,6 +9,7 @@ const characterSlice = createSlice({
   reducers: {
     getCharacters: (state, action) => {
       state.characters = action.payload;
+    
 
     },
     getCharacterId:(state,action)=>{
@@ -20,4 +21,4 @@ const characterSlice = createSlice({
 export const { getCharacters,getCharacterId } = characterSlice.actions;
 export default characterSlice.reducer;
 
-//pure
+

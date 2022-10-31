@@ -4,11 +4,6 @@ import React from "react";
 import  {useEffect}from "react";
 import {useDispatch,useSelector} from 'react-redux'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-
- 
-
-
  export const UserDetails = ({ navigation }) => {
 
   

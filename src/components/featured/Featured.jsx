@@ -16,14 +16,10 @@ const Featured = ({ navigation }) =>
   useEffect(()=>{
     dispatch(getPro())
    
-},[dispatch])
+},[])
 
-
-
- 
   return (
 <>
-
  
     <View>
     <Text style={tw`mt-5 text-lg font-bold`}>Destacados</Text>

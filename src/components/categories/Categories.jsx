@@ -1,6 +1,8 @@
 import { View, Text, ScrollView, Image } from "react-native";
-import React from "react";
+import React ,  {useEffect} from "react";
 import tw from "twrnc";
+import {useDispatch,useSelector} from 'react-redux'
+import { getCat } from '../../redux/actions'
 // import Jarden from '../../svg/jarden.svg';
 // import Pets from '../../svg/pets.svg';
 // import Electrico from '../../svg/electric.svg';
@@ -13,6 +15,19 @@ import tw from "twrnc";
 
 const Categories = () =>
 {
+
+  const dispatch = useDispatch()
+
+  const{Ocupacion}=useSelector(state=>state.Ocupacion)
+  useEffect(()=>{
+    dispatch(getCat())
+   
+},[])
+
+console.log(Ocupacion)
+
+
+
   return (
     <View>
       <Text style={tw`p-1 mt-5 font-bold text-lg`}>Categorías</Text>

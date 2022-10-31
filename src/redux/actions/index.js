@@ -2,7 +2,7 @@ import axios from "axios";
 //import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getCharacters,getCharacterId } from "../reducers/characterSlice";
 import { getProfessional,getProfessionalId } from "../reducers/profetionalSlice";
-
+import { getOcupacion } from "../reducers/ocupacionSlice";
 //https://rickandmortyapi.com/api/character
 //https://reqres.in/api/users?delay=1
 
@@ -22,14 +22,21 @@ export const getCharid = (id) => async (dispatch) => {
 
 // get de profesionales
 export const getPro = () => async (dispatch) =>{
-  axios.get("http://localhost:3001/professional")
+await  axios.get("http://localhost:3001/professional")
   .then((res) =>  dispatch(getProfessional(res.data)))
-  .catch( e => console.log(e)) 
+  .catch( (e) => console.log(e)) 
 }
 
 export const getProId = (id) => async (dispatch) =>{
   axios.get("http://localhost:3001/professional/id/"+id)
   .then((res) =>  dispatch(getProfessionalId(res.data)))
+  .catch( e => console.log(e)) 
+}
+
+
+export const getCat = () => async (dispatch) =>{
+  axios.get("http://localhost:3001/occupation")
+  .then((res) =>  dispatch(getOcupacion(res.data)))
   .catch( e => console.log(e)) 
 }
 

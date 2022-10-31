@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import messageReducer from "./reducers/message";
 import characterReducer from "./reducers/characterSlice";
 import professionalReducer from "./reducers/profetionalSlice";
+import ocupacionReducer from "./reducers/ocupacionSlice"
 
 
 /*
@@ -13,7 +14,8 @@ const store = configureStore({
   reducer: {
     message: messageReducer,
     characters: characterReducer,
-    professional: professionalReducer
+    professional: professionalReducer,
+    Ocupacion:ocupacionReducer
   },
 });
 

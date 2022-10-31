@@ -9,6 +9,7 @@ const professionalSlice = createSlice({
   reducers: {
     getProfessional: (state, action) => {
       state.professional = action.payload;
+      console.log(state.professional)
     },
     getProfessionalId:(state,action)=>{
       state.professionalId = action.payload;
