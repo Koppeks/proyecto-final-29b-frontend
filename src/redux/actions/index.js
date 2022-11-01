@@ -3,6 +3,7 @@ import { allCategories } from "../reducers/categoriesSlice";
 import {
   getProfessional,
   getProfessionalId,
+  searchProfessionalName
 } from "../reducers/profetionalSlice";
 
 // get de profesionales
@@ -24,7 +25,6 @@ export const getProName = (name) => async (dispatch) => {
   axios
     .get("http://localhost:3001/professional/" + name)
     .then((res) => {
-      console.log(res.data)
       dispatch(searchProfessionalName(res.data))
       }
       )
