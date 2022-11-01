@@ -1,14 +1,16 @@
-import { Text, View, FlatList, Image, TouchableOpacity } from "react-native";
+import { Text, View, FlatList, Image, TouchableOpacity,ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../../redux/actions/index";
 import { byCategories } from "../../redux/reducers/categoriesSlice";
+import SelectFilter from '../SelectFilter/SelectFilter'
 import tw from "twrnc";
 import category from "../../Hooks/categories";
+import CardServsExpert from '../CardServsExpert/CardServsExpert'
 
 const categ = category();
 
-export default function CategoryItems() {
+export default function CategoryItems({navigation}) {
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.categories);
 
@@ -26,13 +28,14 @@ export default function CategoryItems() {
 
   return (
     <View>
+      <View>
       <FlatList
         data={categ}
         horizontal={"true"}
         renderItem={({ item }) => (
           <>
             <View
-              style={tw`flex justify-items-center items-center m-2 mt-4 mb-4 bg-gray-500`}
+              style={tw`flex justify-items-center m-2 mt-4 mb-4 bg-gray-500`}
             >
               <Image style={tw`w-5 h-5 p-7 mb-2 mt-2`} source={item.img} />
               <TouchableOpacity
@@ -46,8 +49,20 @@ export default function CategoryItems() {
           </>
         )}
       />
+      <SelectFilter/>
+      </View>
       <View>
-        {filtCateg.length > 0 ? (
+      <ScrollView >
+  
+      <CardServsExpert navigation={navigation}/>
+      <CardServsExpert navigation={navigation}/>
+      <CardServsExpert navigation={navigation}/>
+      <CardServsExpert navigation={navigation}/>
+      <CardServsExpert navigation={navigation}/>
+      <CardServsExpert navigation={navigation}/>
+      <CardServsExpert navigation={navigation}/>
+      <CardServsExpert navigation={navigation}/>
+        {/* {filtCateg.length > 0 ? (
           <FlatList
             data={categories}
             horizontal={"true"}
@@ -64,7 +79,7 @@ export default function CategoryItems() {
                   </View>
                   <View>
                     <View style={tw`flex flex-row-reverse`}>
-                      {/* <Heart height={20} width={20} fill={"#9CA3AF"} /> */}
+                      {<Heart height={20} width={20} fill={"#9CA3AF"} /> }
                     </View>
                     <View style={tw`mt-3 mr-2`}>
                       <Text style={tw`font-sans text-gray-500 mb-1`}>
@@ -78,7 +93,7 @@ export default function CategoryItems() {
                       </Text>
 
                       <Text style={tw`font-sans text-black`}>
-                        {/* <Star height={17} width={17} fill={"#818CF8"} /> */}
+                        { <Star height={17} width={17} fill={"#818CF8"} /> }
                         {item.rating}
                       </Text>
                     </View>
@@ -89,7 +104,10 @@ export default function CategoryItems() {
           />
         ) : (
           <Text>{"No hay filtros"}</Text>
-        )}
+        )} */}
+
+
+      </ScrollView>
       </View>
     </View>
   );

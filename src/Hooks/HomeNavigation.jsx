@@ -11,6 +11,7 @@ import Filtros from '../screen/Filter/Filtros'
 import ButtonNav from '../components/button/ButtonNav'
 import {UserDetails} from '../screen/UserDetail/UserDetails'
 
+
 const Stack = createNativeStackNavigator();
 
 const HomeNavigation = ({navigation}) =>
@@ -40,6 +41,9 @@ const HomeNavigation = ({navigation}) =>
             />
                <Stack.Screen name="UserDetails"
                       component={UserDetails} />
+
+             
+
             <Stack.Screen
                 name="Edit Professional Profile"
                 component={EditProfession}

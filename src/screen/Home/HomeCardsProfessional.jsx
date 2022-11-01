@@ -1,10 +1,13 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import React from "react";
 
-const HomeCardsProfessional = () => {
+import CategoryItems from '../../components/CategoryItems/CategoryItems'
+
+const HomeCardsProfessional = ({navigation}) => {
   return (
     <View>
-      <Text>HomeCardsProfessional</Text>
+        <CategoryItems navigation={navigation}/>
+      
     </View>
   );
 };

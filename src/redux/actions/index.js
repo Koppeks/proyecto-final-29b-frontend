@@ -23,7 +23,7 @@ export const getProId = (id) => async (dispatch) => {
 
 export const getProName = (name) => async (dispatch) => {
   axios
-    .get("http://localhost:3001/professional/" + name)
+    .get("http://localhost:3001/professional/"+name)
     .then((res) => {
       dispatch(searchProfessionalName(res.data))
       }
