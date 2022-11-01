@@ -12,8 +12,7 @@ export default function () {
   const dispatch = useDispatch()
 
   function searchState(e){
-    console.log(e.nativeEvent.text)
-    dispatch(getProName(e))
+    dispatch(getProName(e.nativeEvent.text))
   }
 
   return (
