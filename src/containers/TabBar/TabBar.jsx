@@ -9,7 +9,7 @@ import HomeNavigation from '../../Hooks/HomeNavigation';
 
 const Tab = createBottomTabNavigator();
 
-const NavigationBar = () =>
+const TabBar = () =>
 {
     return (
 
@@ -70,4 +70,4 @@ const NavigationBar = () =>
     )
 }
 
-export default NavigationBar;
+export default TabBar;
