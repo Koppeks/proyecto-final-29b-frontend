@@ -9,31 +9,22 @@ import {
 // get de profesionales
 export const getPro = () => async (dispatch) => {
   axios
-    .get(
-      "https://proyecto-final-29b-backend-production.up.railway.app/professional"
-    )
+    .get("https://proyecto-final-29b-backend-production.up.railway.app/professional")
     .then((res) => dispatch(getProfessional(res.data)))
     .catch((e) => console.log(e));
 };
 
 export const getProId = (id) => async (dispatch) => {
   axios
-    .get(
-      "https://proyecto-final-29b-backend-production.up.railway.app/professional/id/" +
-        id
-    )
+    .get("https://proyecto-final-29b-backend-production.up.railway.app/professional/id/" + id)
     .then((res) => dispatch(getProfessionalId(res.data)))
     .catch((e) => console.log(e));
 };
 
 export const getProName = (name) => async (dispatch) => {
   axios
-    .get(
-      "https://proyecto-final-29b-backend-production.up.railway.app/professional" +
-        name
-    )
+    .get("https://proyecto-final-29b-backend-production.up.railway.app/professional" + name)
     .then((res) => {
-      console.log(res.data);
       dispatch(searchProfessionalName(res.data));
     })
     .catch((e) => console.log(e));
@@ -41,7 +32,6 @@ export const getProName = (name) => async (dispatch) => {
 
 //post de profesionales
 export const postPro = (data) => async () => {
-  console.log(data);
   await axios({
     method: "POST",
     url: "https://proyecto-final-29b-backend-production.up.railway.app/professional",
@@ -53,9 +43,7 @@ export const postPro = (data) => async () => {
 
 export const getCategories = () => async (dispatch) => {
   axios
-    .get(
-      "https://proyecto-final-29b-backend-production.up.railway.app/professional"
-    )
+    .get("https://proyecto-final-29b-backend-production.up.railway.app/professional")
     .then((res) => dispatch(allCategories(res.data)))
     .catch((e) => console.log(e));
 };

@@ -1,5 +1,4 @@
 import Home from "../screen/Home/Home"
-import HomeCardsProfessional from "../screen/Home/HomeCardsProfessional";
 import EditProfession from "../screen/EditProfession/EditProfession";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import logo from '../images/logo.png'
@@ -32,11 +31,6 @@ const HomeNavigation = ({navigation}) =>
               <Stack.Screen
                 name="Filtros"
                 component={Filtros}
-            />
-
-            <Stack.Screen
-                name="Home Cards Professional"
-                component={HomeCardsProfessional}
             />
                <Stack.Screen name="UserDetails"
                       component={UserDetails} />
