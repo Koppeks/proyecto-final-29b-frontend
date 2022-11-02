@@ -1,7 +1,7 @@
 
 import { View } from "react-native";
 import React from "react";
-import ContainerHome from "../../containers/home/ContainerHome";
+import ContainerHome from "../../containers/ContainerHome/ContainerHome";
 
 const Home = ({ navigation }) => {
   return (
