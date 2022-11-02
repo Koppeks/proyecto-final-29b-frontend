@@ -10,9 +10,10 @@ const deletePostJob = () =>
         [
             {
                 text: 'Aceptar y eliminar publicación',
+                style: 'destructive',
                 onPress: () =>
                 {
-                    console.log(eliminado)
+                    console.log('eliminado')
                 }
             }
         ]

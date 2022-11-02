@@ -10,9 +10,10 @@ const alertPostJob = () =>
         [
             {
                 text: 'Aceptar y publicar',
+                style: 'cancel',
                 onPress: () =>
                 {
-                    console.log(aceptado)
+                    console.log('aceptado')
                 }
             }
         ]

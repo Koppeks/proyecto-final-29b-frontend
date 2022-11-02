@@ -10,9 +10,10 @@ const modifProfile = () =>
         [
             {
                 text: 'Aceptar y modificar perfil',
+                style: 'cancel',
                 onPress: () =>
                 {
-                    console.log(aceptado)
+                    console.log('aceptado')
                 }
             }
         ]

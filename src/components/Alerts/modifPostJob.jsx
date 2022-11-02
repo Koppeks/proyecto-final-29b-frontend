@@ -10,9 +10,10 @@ const modifPostJob = () =>
         [
             {
                 text: 'Aceptar y modificar publicación',
+                style: 'cancel',
                 onPress: () =>
                 {
-                    console.log(aceptado)
+                    console.log('aceptado')
                 }
             }
         ]

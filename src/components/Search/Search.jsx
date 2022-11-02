@@ -1,7 +1,7 @@
 
 import { View } from 'react-native'
 import React from 'react'
-import { Button, Input } from 'react-native-elements'
+import { Input } from 'react-native-elements'
 import tw from 'twrnc'
 import { getProName } from '../../redux/actions/index'
 import { useDispatch } from 'react-redux'
@@ -25,8 +25,6 @@ export default function ()
         onChange={(e) => searchState(e)}
         style={tw``}
       />
-      <Button
-        title="Search" />
     </View>
   )
 }
