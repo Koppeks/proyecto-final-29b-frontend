@@ -10,7 +10,6 @@ const Featured = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const { professional } = useSelector((state) => state.professional);
-  console.log(professional);
 
   useEffect(() => {
     dispatch(getPro());

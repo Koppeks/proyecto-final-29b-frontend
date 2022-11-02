@@ -23,8 +23,6 @@ export default function () {
       onChange={(e) => searchState(e)}
       style={tw``}
       />
-      <Button
-      title="Search"/>
     </View>
   )
 }
