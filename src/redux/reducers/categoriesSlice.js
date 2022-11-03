@@ -4,6 +4,7 @@ const categoriesSlice = createSlice({
   name: "getCategories",
   initialState: {
     categories: [],
+    categoriesfilter: []
   },
   reducers: {
     allCategories: (state, action) => {
@@ -11,10 +12,16 @@ const categoriesSlice = createSlice({
       state.categories = action.payload;
     },
     byCategories: (state, action) => {
+
       const byCateg = state.categories.filter((e) =>
         e.occupation.includes(action.payload)
       );
-      state.categories = [...byCateg];
+      console.log("Bycategori: ",byCateg)
+
+      state.categoriesfilter = [...byCateg];
+      
+      console.log("State copia ", state.categoriesfilter)
+     
     },
     byRating: (state, action) => {
       const orderRating =

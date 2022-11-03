@@ -9,12 +9,12 @@ import { getPro } from "../../redux/actions/index";
 const Featured = ({ navigation }) => {
   const dispatch = useDispatch();
 
-  //const { professional } = useSelector((state) => state.professional);
-  //console.log(professional);
+  const { professional } = useSelector((state) => state.professional);
 
-  // useEffect(() => {
-  //   dispatch(getPro());
-  // }, [dispatch]);
+
+   useEffect(() => {
+   dispatch(getPro());
+   }, [dispatch]);
 
   return (
     <>
@@ -24,16 +24,16 @@ const Featured = ({ navigation }) => {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
 
 
-        <CardServsExpert navigation={navigation}/>
-          {/* {professional.length > 0 ? (
-            professional.map((elem, i) => {
+     
+           {professional.length > 0 ? (
+           professional.map((elem, i) => {
               return (
                 <CardServsExpert key={i} navigation={navigation} elem={elem} />
               );
             })
           ) : (
             <Text>hola</Text>
-          )} */}
+          )} 
         </ScrollView>
       </View>
     </>

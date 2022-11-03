@@ -17,9 +17,6 @@ const Categories = () =>
 {
 
 
-  const{categories}=useSelector(state=>state.categories)
-
-console.log(categories)
 
 
 

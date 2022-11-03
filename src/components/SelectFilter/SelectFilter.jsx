@@ -30,7 +30,7 @@ export default function SelectFilter()
   const price = ["MaxPrecio", "MinPrecio"];
 
   return (
-    <View style={tw`flex-row mt-5 ml-2`}>
+    <View style={tw`flex-row mt-5 ml-2 z-50`}>
 
       <View style={tw`flex-row`}>
         <Text style={tw`font-bold text-base`}>Rating</Text>
@@ -38,8 +38,7 @@ export default function SelectFilter()
         <SelectDropdown
           defaultButtonText={'Elegir'}
           buttonStyle={tw`bg-white ml-2 w-28 h-8 border-2 border-indigo-300 rounded`}
-          dropdownStyle={tw` h-14 w-32 border-8 border-gray-200 rounded`}
-          disabled={categories.length < 10 ? false : true}
+          dropdownStyle={tw` h-14 w-32 border-8 border-gray-200 rounded`}  
           data={rating}
           onSelect={(selectedItem) =>
           {
@@ -54,7 +53,6 @@ export default function SelectFilter()
           defaultButtonText={'Elegir'}
           buttonStyle={tw`bg-white ml-2 w-28 h-8 border-2 border-indigo-300 rounded`}
           dropdownStyle={tw` h-14 w-32 border-8 border-gray-200 rounded`}
-          disabled={categories.length < 10 ? false : true}
           data={price}
           onSelect={(selectedItem) =>
           {
