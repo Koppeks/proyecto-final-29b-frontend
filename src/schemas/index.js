@@ -22,19 +22,12 @@ export const basicSchema = yup.object().shape({
     confirmPassword: yup.string()
       .equals([yup.ref("password")], "Las contraseñas no son iguales")
       .required("Campo requerido"),
-    occupation: yup.string()
-      .required("Campo requerido"),
     description: yup.string()
       .min(30, "La descripción es demaciado corto, mínimo de caracteres es 50")
       .max(255, "La descripción es demaciado larga, máximo de caracteres es 255")
       .required("Campo requerido"),
-    pricing: yup.number("Solo se permiten números")
-      .min(10, "El precio debe ser mayor a 10")
-      .max(60, "El precio debe ser menor a 60")
+    birthday: yup.date()
       .required("Campo requerido"),
     address: yup.string()
-      .required("Campo requerido"),
-    image: yup.string()
-      .matches(/(http(s?):\/\/.*\.(?:png|jpg))/i,'Esa no es una imagen correcta')
-      .required('Campo requerido, pega una URL/dirección')
+      .required("Campo requerido")
 })
