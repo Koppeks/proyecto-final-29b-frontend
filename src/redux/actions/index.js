@@ -1,4 +1,5 @@
 import axios from "axios";
+import { setAuth } from "../reducers/authSlice";
 import { allCategories } from "../reducers/categoriesSlice";
 import {
   getProfessional,
@@ -47,3 +48,22 @@ export const getCategories = () => async (dispatch) => {
     .then((res) => dispatch(allCategories(res.data)))
     .catch((e) => console.log(e));
 };
+
+
+
+export const logIn = (data) => async (dispatch) => {
+  console.log(data)
+
+  const result={
+    data:{
+      jwt:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+    }
+  }
+  // const result= await axios({
+  //   method: "POST",
+  //   url: "https://proyecto-final-29b-backend-production.up.railway.app/logIn",
+  //   data: data,
+  // });
+  dispatch(setAuth(result?.data))
+};
+
