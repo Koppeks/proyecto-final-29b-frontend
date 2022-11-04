@@ -1,14 +1,16 @@
 import React, { useEffect } from "react"
-import { ScrollView, Text } from "react-native"
-import { Formik } from "formik"
-import { basicSchema } from "../../schemas"
+import { ScrollView, Text, View } from "react-native"
+import { FieldArray, Formik } from "formik"
+import { jobFormSchema } from "../../schemas/jobFormSchema"
 import FormInput from "../../components/FormInput/FormInput"
 import FormSubmitButton from "../../components/button/FormSubmitButton"
 import SelectDropdown from "react-native-select-dropdown";
 import { useDispatch, useSelector } from "react-redux"
 import { postJob, getCategories } from "../../redux/actions/index"
+import SpecialitiesDynamicForm from './SpecialitiesDynamicForm'
+import tw from "twrnc";
 
-import tw from "twrnc"
+
 
 const JobForm = () =>
 {
@@ -26,14 +28,17 @@ const JobForm = () =>
         generalDescription: '',
         availableDays: [],
         images: [],
-        specialities: []
+        specialities: [
+            { title: '', description: '', cost: '' }
+        ]
     };
 
     return (
         <ScrollView style={tw`mx-3 mt-10 mb-10 p-3 bg-white shadow-md rounded-lg`}>
-            <Text style={tw`text-center w-full p-2 text-lg`}>Completa tu oferta de trabajo aqui </Text>
+            <Text style={tw`text-center font-bold mb-3 w-full p-2 text-lg`}>Completa tu oferta de trabajo aquí </Text>
             <Formik
                 initialValues={jobUserInfo}
+                validationSchema={jobFormSchema}
                 onSubmit={(values, formikActions) =>
                 {
                     console.log(values);
@@ -60,18 +65,21 @@ const JobForm = () =>
 
                     return (
                         <>
-                            <SelectDropdown
-                                name='occupation'
-                                defaultButtonText={'Elegir'}
-                                buttonStyle={tw`bg-white ml-2 w-28 h-8 border-2 border-indigo-300 rounded`}
-                                dropdownStyle={tw`rounded`}
-                                data={categories}
-                                buttonTextAfterSelection={selectedItem => selectedItem.name}
-                                rowTextForSelection={item => item.name}
-                                defaultValue={occupation}
-                                onSelect={selectedItem => setFieldValue('occupation', selectedItem.name)}
-                                onblur={() => setFieldTouched('occupation', true)}
-                            />
+                            <View style={tw`flex-row`}>
+                                <Text style={tw`text-base mr-1 ml-2`}>Ocupación:</Text>
+                                <SelectDropdown
+                                    name='occupation'
+                                    defaultButtonText={'Elegir'}
+                                    buttonStyle={tw`bg-white ml-2 w-28 h-7 border-2 border-indigo-300 rounded`}
+                                    dropdownStyle={tw`rounded w-34`}
+                                    data={categories}
+                                    buttonTextAfterSelection={selectedItem => selectedItem.name}
+                                    rowTextForSelection={item => item.name}
+                                    defaultValue={occupation}
+                                    onSelect={selectedItem => setFieldValue('occupation', selectedItem.name)}
+                                    onblur={() => setFieldTouched('occupation', true)}
+                                />
+                            </View>
                             <FormInput
                                 value={generalDescription}
                                 error={touched.generalDescription && errors.generalDescription}
@@ -94,13 +102,18 @@ const JobForm = () =>
                                 value={images}
                                 error={touched.images && errors.images}
                                 placeholder="png o jpg"
-                                label="images"
+                                label="imagen(es):"
                                 onChangeText={handleChange('images')}
                                 onBlur={handleBlur("images")}
                             />
 
+                            <FieldArray
+                                name="specialities"
+                                component={SpecialitiesDynamicForm}
+                            />
 
                             <FormSubmitButton error={errors} submitting={isSubmitting} onPress={handleSubmit} title="Enviar" />
+
                         </>
                     )
                 }}
