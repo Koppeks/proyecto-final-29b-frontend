@@ -6,9 +6,9 @@ import logo from "../../images/logo.png";
 const LandingPage = ({ navigation }) => {
   return (
     <View style={tw`flex h-full justify-center items-center bg-violet-300`}>
-      <View style={tw`flex-row items-center justify-items-stretch`}>
+      <View style={tw`flex-row items-center `}>
         <Text style={tw`m-5 text-4xl`}>Vinculan</Text>
-        <Image style={tw`h-8 w-8`} source={{ uri: logo }} />
+        <Image style={tw`h-8 w-8`} source={logo} />
       </View>
       <TouchableOpacity onPress={() => navigation.navigate("Login")}>
         <Text
