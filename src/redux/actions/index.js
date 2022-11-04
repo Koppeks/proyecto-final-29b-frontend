@@ -7,26 +7,24 @@ import {
   searchProfessionalName,
 } from "../reducers/profetionalSlice";
 
-const apikey = "1f5dbe34-3f44-4ec9-9d4b-078362fd7eb3"
-
 // get de profesionales
 export const getPro = () => async (dispatch) => {
   axios
-    .get("https://proyecto-final-29b-backend-production.up.railway.app/user?apikey=" + apikey)
+    .get("https://proyecto-final-29b-backend-production.up.railway.app/professional")
     .then((res) => dispatch(getProfessional(res.data)))
     .catch((e) => console.log(e));
 };
 
 export const getProId = (id) => async (dispatch) => {
   axios
-    .get("https://proyecto-final-29b-backend-production.up.railway.app/user/id/" + id + "?apikey=" + apikey)
+    .get("https://proyecto-final-29b-backend-production.up.railway.app/professional/id/" + id)
     .then((res) => dispatch(getProfessionalId(res.data)))
     .catch((e) => console.log(e));
 };
 
 export const getProName = (name) => async (dispatch) => {
   axios
-    .get("https://proyecto-final-29b-backend-production.up.railway.app/user" + name + "?apikey=" + apikey)
+    .get("https://proyecto-final-29b-backend-production.up.railway.app/professional" + name)
     .then((res) => {
       dispatch(searchProfessionalName(res.data));
     })
@@ -37,7 +35,7 @@ export const getProName = (name) => async (dispatch) => {
 export const postPro = (data) => async () => {
   await axios({
     method: "POST",
-    url: "https://proyecto-final-29b-backend-production.up.railway.app/user" + "?apikey=" + apikey,
+    url: "https://proyecto-final-29b-backend-production.up.railway.app/professional",
     data: data,
   });
 };
@@ -46,7 +44,7 @@ export const postPro = (data) => async () => {
 
 export const getCategories = () => async (dispatch) => {
   axios
-    .get("https://proyecto-final-29b-backend-production.up.railway.app/user" + "?apikey=" + apikey)
+    .get("https://proyecto-final-29b-backend-production.up.railway.app/professional")
     .then((res) => dispatch(allCategories(res.data)))
     .catch((e) => console.log(e));
 };
