@@ -1,10 +1,11 @@
 {
   "expo": {
-    "name": "vinculando",
+    "name": "Vinculando",
     "slug": "vinculando",
+    "description" : "Vinculando is a new way to bring people together. Search, hire, and enjoy the results",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/VinculandoLogo.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
