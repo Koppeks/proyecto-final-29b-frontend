@@ -1,12 +1,14 @@
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import TabBar from "./src/containers/TabBar/TabBar";
-import store from "./src/redux/store";
+import {store,persistor} from "./src/redux/store";
 import { Provider } from "react-redux";
 import LandingPage from "./src/screen/LandinPage/LandingPage";
 import Login from "./src/screen/Login/Login";
 import SignUp from "./src/screen/SignUp/SignUp";
 import { createStackNavigator } from "@react-navigation/stack";
+import MainContainer from "./src/containers/MainContainer/MainContainer";
+import { PersistGate } from "redux-persist/integration/react";
 
 const Stack = createStackNavigator();
 
@@ -14,36 +16,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <Provider store={store}>
-        <Stack.Navigator>
-          <Stack.Screen
-            options={{
-              headerShown: false,
-            }}
-            name="Landing"
-            component={LandingPage}
-          />
-          <Stack.Screen
-            options={{
-              headerShown: false,
-            }}
-            name="Login"
-            component={Login}
-          />
-          <Stack.Screen
-            options={{
-              headerShown: false,
-            }}
-            name="SignUp"
-            component={SignUp}
-          />
-          <Stack.Screen
-            name="Inicio"
-            component={TabBar}
-            options={{
-              headerShown: false,
-            }}
-          />
-        </Stack.Navigator>
+        <PersistGate persistor={persistor}>
+          <MainContainer/>
+        </PersistGate>
       </Provider>
     </NavigationContainer>
   );
