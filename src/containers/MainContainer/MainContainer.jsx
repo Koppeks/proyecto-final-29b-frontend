@@ -3,8 +3,8 @@ import TabBar from "../../containers/TabBar/TabBar";
 import { Provider, useSelector } from "react-redux";
 import LandingPage from "../../screen/LandinPage/LandingPage";
 import Login from "../../screen/Login/Login";
-import CheckIn from "../../screen/CheckIn/CheckIn";
 import { createStackNavigator } from "@react-navigation/stack";
+import SignUp from '../../screen/SignUp/SignUp';
 
 const Stack = createStackNavigator();
 const NoAuthStack= createStackNavigator();
@@ -32,7 +32,7 @@ function NoAutenticatedhNavigator() {
                     headerShown: false,
                 }}
                 name="Registro"
-                component={CheckIn}
+                component={SignUp}
             />
         </NoAuthStack.Navigator>
     )
