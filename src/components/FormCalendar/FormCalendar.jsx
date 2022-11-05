@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
-import { Calendar, CalendarList } from 'react-native-calendars';
+import { View, Text } from 'react-native';
+import { Calendar } from 'react-native-calendars';
 
-const FormCalendar = ({ minDate, maxDate }) =>
+const FormCalendar = ({ label, minDate, maxDate, value, onSelect }) =>
 {
-    const [selectedDates, setSelectedDates] = useState({});
-
     const onDaySelect = (day) =>
     {
         const selectedDay = day.dateString;
-        let selected = selectedDates[selectedDay]?.selected ? false : true;
-        setSelectedDates({ ...selectedDates, ...{ [selectedDay]: { selected, selectedColor: '#6C62FF' } } });
+        let selected = value[selectedDay]?.selected ? false : true;
+        onSelect({ ...value, ...{ [selectedDay]: { selected, selectedColor: '#6C62FF' } } });
     };
 
     return (
         <View>
+            <Text>{label}</Text>
             <Calendar
                 minDate={minDate}
                 maxDate={maxDate}
                 onDayPress={onDaySelect}
-                markedDates={selectedDates}
+                markedDates={value}
             />
         </View>
     );

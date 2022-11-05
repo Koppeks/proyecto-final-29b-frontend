@@ -28,7 +28,7 @@ const JobForm = () =>
     const jobUserInfo = {
         occupation: '',
         generalDescription: '',
-        availableDays: [],
+        availableDays: {},
         images: [],
         specialities: [
             { title: '', description: '', cost: '' }
@@ -43,14 +43,9 @@ const JobForm = () =>
                 validationSchema={jobFormSchema}
                 onSubmit={(values, formikActions) =>
                 {
-                    console.log(values);
-                    // const data = {
-                    //     occupation: values.occupation,
-                    //     generalDescription: values.generalDescription,
-                    //     availableDays: values.availableDays,
-                    //     images: values.images,
-                    //     specialities: values.specialities
-                    // }
+                    const availableDays = Object.keys(values.availableDays).filter(date => values.availableDays[date].selected === true);
+                    const data = { ...values, availableDays };
+                    console.log(data);
 
                     // dispatch(postJob(data));
 
@@ -92,8 +87,11 @@ const JobForm = () =>
 
                             />
                             <FormCalendar
+                                label="Dias disponibles"
+                                value={availableDays}
                                 minDate={moment().add(1, 'days').format(dateFormat)}
                                 maxDate={moment().add(30, 'days').format(dateFormat)}
+                                onSelect={selectedDates => setFieldValue('availableDays', selectedDates)}
                             />
                             {/* <FormInput
                                 value={availableDays}
