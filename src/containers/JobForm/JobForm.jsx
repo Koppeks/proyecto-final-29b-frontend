@@ -1,8 +1,10 @@
 import React, { useEffect } from "react"
+import moment from "moment"
 import { ScrollView, Text, View } from "react-native"
 import { FieldArray, Formik } from "formik"
 import { jobFormSchema } from "../../schemas/jobFormSchema"
 import FormInput from "../../components/FormInput/FormInput"
+import FormCalendar from "../../components/FormCalendar/FormCalendar"
 import FormSubmitButton from "../../components/button/FormSubmitButton"
 import SelectDropdown from "react-native-select-dropdown";
 import { useDispatch, useSelector } from "react-redux"
@@ -10,7 +12,7 @@ import { postJob, getCategories } from "../../redux/actions/index"
 import SpecialitiesDynamicForm from './SpecialitiesDynamicForm'
 import tw from "twrnc";
 
-
+const dateFormat = 'YYYY-MM-DD';
 
 const JobForm = () =>
 {
@@ -88,6 +90,10 @@ const JobForm = () =>
                                 onChangeText={handleChange('generalDescription')}
                                 onBlur={handleBlur("generalDescription")}
 
+                            />
+                            <FormCalendar
+                                minDate={moment().add(1, 'days').format(dateFormat)}
+                                maxDate={moment().add(30, 'days').format(dateFormat)}
                             />
                             {/* <FormInput
                                 value={availableDays}
