@@ -20,18 +20,28 @@ export const UserDetails = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-      <View style={tw` items-center`}>
+      <ScrollView  horizontal={true} showsHorizontalScrollIndicator={false} >
         <Image
           style={tw`h-70 w-80
             m-6 mt-7 md:h-80 md:h-80 rounded-md`}
           source={{ uri: professionalId.image }}
         />
-      </View>
+        <Image
+          style={tw`h-70 w-80
+            m-6 mt-7 md:h-80 md:h-80 rounded-md`}
+          source={{ uri: professionalId.image }}
+        />
+        <Image
+          style={tw`h-70 w-80
+            m-6 mt-7 md:h-80 md:h-80 rounded-md`}
+          source={{ uri: professionalId.image }}
+        />
+      </ScrollView>
       <View style={tw` items-center`}>
         <Text style={tw`pt-5 px-3 text-2xl`}>{professionalId.occupation}</Text>
       </View>
 
-      <View style={tw`flex-row justify-center`}>
+      {/* <View style={tw`flex-row justify-center`}>
         <View style={tw`pl-1 pr-1 `}>
           <Text style={tw`pl-2 pr-2 py-1 rounded bg-slate-200`}>Henry M</Text>
         </View>
@@ -43,7 +53,7 @@ export const UserDetails = ({ navigation }) => {
             $15 (consto min){" "}
           </Text>
         </View>
-      </View>
+      </View> */}
 
       <View style={tw`justify-center p-4`}>
         <Text style={tw`pl-30 pr-30  `}>About me</Text>
@@ -58,11 +68,10 @@ export const UserDetails = ({ navigation }) => {
           igual al original.
         </Text>
       </View>
+      <Text>Especialidades</Text>
+      <ScrollView style={tw`flex px-8 py-3 `}>
 
-      <View style={tw`flex px-8 py-3`}>
-        <Text>Review</Text>
-
-        <View style={tw`flex `}>
+      {/* <View>
           <View style={tw`flex-row`}>
             <View>
               <Image
@@ -72,17 +81,39 @@ export const UserDetails = ({ navigation }) => {
                 }}
               />
             </View>
-
             <View>
               <Text>Diana Diaco</Text>
               <Text>* * * *</Text>
               <Text>buen trabajo</Text>
             </View>
           </View>
-        </View>
-      </View>
+        </View> */}
+        <View style={tw` p-4`}>
+          <View style={tw`flex-row`}>
+            <View>
+              <Text>Especialidad 1 </Text>
+              
+              <Text style={tw` p-4 pl-3 pr-1`} > Lorem Ipsum es simplemente el texto de relleno de las imprentas y
+          archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de
+          las industrias desde el año 1500,</Text>
+            </View>
 
-      <View style={tw`flex-row justify-around  pt-5 pb-3  px-3 `}>
+          </View>
+          <View style={tw`justify-center   items-center`}>
+          <TouchableOpacity 
+          style={tw`w-20  h-7  rounded-lg border-2 border-rose-500`}
+        >
+          <Text style={tw`items-center`} >constatar </Text>
+        </TouchableOpacity>
+        </View>
+        </View>
+
+        
+
+        
+      </ScrollView>
+
+      {/* <View style={tw`flex-row justify-around  pt-5 pb-3  px-3 `}>
         <TouchableOpacity
           style={tw`w-20  h-7 rounded-lg border-2 border-rose-500 justify-center pl-1`}
         >
@@ -94,7 +125,7 @@ export const UserDetails = ({ navigation }) => {
         >
           <Text>Reservar</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </ScrollView>
   );
 };

@@ -8,12 +8,20 @@ const categoriesSlice = createSlice({
   },
   reducers: {
     allCategories: (state, action) => {
-      state.categories = action.payload;
+    
+     const data = action.payload.filter((e)=>e.isProfessional === true  )
+      console.log( " data ", data)
+      state.categories = data
+  
+      
+
+
     },
     byCategories: (state, action) => {
-
+      
       const byCateg = state.categories.filter((e) =>
-        e.occupation.includes(action.payload)
+       
+      e.occupation.includes(action.payload)
       );
       console.log("Bycategori: ",byCateg)
 

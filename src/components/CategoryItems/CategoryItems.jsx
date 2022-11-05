@@ -1,27 +1,34 @@
-import { Text, View, FlatList, Image, TouchableOpacity,ScrollView } from "react-native";
+import { Text, View, Image, TouchableOpacity,ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategories } from "../../redux/actions/index";
+
+import { getCat } from "../../redux/actions/index";
+import { getOcupacions } from "../../redux/actions/index";
+import { getPro } from "../../redux/actions/index";
 import { byCategories } from "../../redux/reducers/categoriesSlice";
 import SelectFilter from '../SelectFilter/SelectFilter'
-import tw from "twrnc";
-import category from "../../Hooks/categories";
-import CardServsExpert from '../CardServsExpert/CardServsExpert'
-import { getPro } from "../../redux/actions/index";
 
-const categ = category();
+import tw from "twrnc";
+import CardServsExpert from '../CardServsExpert/CardServsExpert'
+
+
+
 
 export default function CategoryItems({navigation}) {
 
   const dispatch = useDispatch();
-  const { categoriesfilter } = useSelector((state) => state.categories);
-  const { professional } = useSelector((state) => state.professional);
 
-  const [filtCateg, setFiltCateg] = useState(-5);
+  const { categoriesfilter  } = useSelector((state) => state.categories);
+  const {  categories  } = useSelector((state) => state.categories);
+  const { professional } = useSelector((state) => state.professional);
+  const { Ocupacion } = useSelector((state) => state.Ocupacion);
+
+  const [filtCateg, setFiltCateg] = useState(-1);
 
   useEffect(() => {
-    dispatch(getCategories());
+    dispatch(getCat());
     dispatch(getPro());
+    dispatch(getOcupacions())
   }, [dispatch]);
 
 
@@ -30,25 +37,27 @@ export default function CategoryItems({navigation}) {
   };
 
 
-   console.log("categoria elegida " ,filtCateg)
+  
    console.log("en CI ",categoriesfilter)
    console.log("filtCate", filtCateg)
+   //console.log("categorias P " ,professional )
 
   return (
     <View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
-      {categ.map( item => {return(
+      {Ocupacion.map( item => {return(
           <>
             <View key={item.id}
               style={tw`flex justify-items-center m-2 mt-4 mb-4 bg-gray-500`}
             >
-              <Image style={tw`w-5 h-5 p-7 mb-2 mt-2`} source={item.img} />
+              <Image style={tw`w-5 h-5 p-7 mb-2 mt-2`} source={{uri: item.image}} />
               <TouchableOpacity
               
               
                 style={tw`bg-cyan-300`}
                 onPress={() =>  {
-                  handleFilter(item.name)
+                 {console.log(item.name) 
+                  handleFilter(item.name)}
                   if(item.id===filtCateg){
                     setFiltCateg(0)
                   }else{
