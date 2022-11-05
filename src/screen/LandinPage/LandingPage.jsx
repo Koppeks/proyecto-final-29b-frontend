@@ -17,7 +17,7 @@ const LandingPage = ({ navigation }) => {
           Ingresa
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+      <TouchableOpacity onPress={() => navigation.navigate("Registro")}>
         <Text style={tw`text-center text-base `}>¿Aun no tienes cuenta?</Text>
       </TouchableOpacity>
       <View
