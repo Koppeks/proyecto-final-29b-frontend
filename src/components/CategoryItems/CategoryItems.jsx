@@ -2,8 +2,8 @@ import { Text, View, Image, TouchableOpacity,ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getCat } from "../../redux/actions/index";
-import { getOcupacions } from "../../redux/actions/index";
+import { getCategories } from "../../redux/actions/index";
+import { getoccupation } from "../../redux/actions/index";
 import { getPro } from "../../redux/actions/index";
 import { byCategories } from "../../redux/reducers/categoriesSlice";
 import SelectFilter from '../SelectFilter/SelectFilter'
@@ -19,16 +19,16 @@ export default function CategoryItems({navigation}) {
   const dispatch = useDispatch();
 
   const { categoriesfilter  } = useSelector((state) => state.categories);
-  const {  categories  } = useSelector((state) => state.categories);
+
   const { professional } = useSelector((state) => state.professional);
   const { Ocupacion } = useSelector((state) => state.Ocupacion);
 
   const [filtCateg, setFiltCateg] = useState(-1);
 
   useEffect(() => {
-    dispatch(getCat());
+    dispatch(getCategories());
     dispatch(getPro());
-    dispatch(getOcupacions())
+    dispatch(getoccupation())
   }, [dispatch]);
 
 
@@ -40,7 +40,7 @@ export default function CategoryItems({navigation}) {
   
    console.log("en CI ",categoriesfilter)
    console.log("filtCate", filtCateg)
-   //console.log("categorias P " ,professional )
+   console.log("ocupaciones P " ,Ocupacion )
 
   return (
     <View>

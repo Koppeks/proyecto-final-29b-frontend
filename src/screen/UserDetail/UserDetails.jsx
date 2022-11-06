@@ -56,7 +56,7 @@ export const UserDetails = ({ navigation }) => {
       </View> */}
 
       <View style={tw`justify-center p-4`}>
-        <Text style={tw`pl-30 pr-30  `}>About me</Text>
+      <Text style={tw`mt-5 text-lg font-bold`}>Descripcion</Text>
         <Text style={tw`pl-3 pr-1`}>
           Lorem Ipsum es simplemente el texto de relleno de las imprentas y
           archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de
@@ -68,8 +68,12 @@ export const UserDetails = ({ navigation }) => {
           igual al original.
         </Text>
       </View>
-      <Text>Especialidades</Text>
-      <ScrollView style={tw`flex px-8 py-3 `}>
+      <View style={tw`justify-center pl-30 pr-30`}> 
+      <Text style={tw`mt-5 text-lg font-bold`}>Especializaciones</Text>
+      </View>
+     
+
+      <ScrollView style={tw`h-40 `}>
 
       {/* <View>
           <View style={tw`flex-row`}>
@@ -89,23 +93,68 @@ export const UserDetails = ({ navigation }) => {
           </View>
         </View> */}
         <View style={tw` p-4`}>
-          <View style={tw`flex-row`}>
-            <View>
-              <Text>Especialidad 1 </Text>
-              
-              <Text style={tw` p-4 pl-3 pr-1`} > Lorem Ipsum es simplemente el texto de relleno de las imprentas y
+        <View style={tw`justify-center p-4`}>
+        <Text style={tw`pl-30 pr-30  `}>Especialidad 1</Text>
+        <Text style={tw`pl-3 pr-1`}>
+          Lorem Ipsum es simplemente el texto de relleno de las imprentas y
           archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de
-          las industrias desde el año 1500,</Text>
-            </View>
-
-          </View>
-          <View style={tw`justify-center   items-center`}>
-          <TouchableOpacity 
-          style={tw`w-20  h-7  rounded-lg border-2 border-rose-500`}
+          las industrias desde el año 1500, 
+        </Text>
+        <TouchableOpacity
+          style={tw`w-20  h-7 rounded-lg border-2 border-rose-500 justify-center pl-1`}
         >
-          <Text style={tw`items-center`} >constatar </Text>
+          <Text>Reservar</Text>
         </TouchableOpacity>
+      </View>
         </View>
+
+        <View style={tw` p-4`}>
+        <View style={tw`justify-center p-4`}>
+        <Text style={tw`pl-30 pr-30  `}>Especialidad 2</Text>
+        <Text style={tw`pl-3 pr-1`}>
+          Lorem Ipsum es simplemente el texto de relleno de las imprentas y
+          archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de
+          las industrias desde el año 1500, 
+        </Text>
+        <TouchableOpacity
+          style={tw`w-20  h-7 rounded-lg border-2 border-rose-500 justify-center pl-1`}
+        >
+          <Text>Reservar</Text>
+        </TouchableOpacity>
+      </View>
+        </View>
+
+        <View style={tw` p-4`}>
+        <View style={tw`justify-center p-4`}>
+        <Text style={tw`pl-30 pr-30  `}>Especialidad 3</Text>
+        <Text style={tw`pl-3 pr-1`}>
+          Lorem Ipsum es simplemente el texto de relleno de las imprentas y
+          archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de
+          las industrias desde el año 1500, 
+        </Text>
+        <TouchableOpacity
+          style={tw`w-20  h-7 rounded-lg border-2 border-rose-500 justify-center pl-1`}
+        >
+          <Text>Reservar</Text>
+        </TouchableOpacity>
+      </View>
+        </View>
+
+        <View style={tw` p-4`}>
+        <View style={tw`justify-center p-4`}>
+        <Text style={tw`pl-30 pr-30  `}>Especialidad 4</Text>
+        <Text style={tw`pl-3 pr-1`}>
+          Lorem Ipsum es simplemente el texto de relleno de las imprentas y
+          archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de
+          las industrias desde el año 1500, 
+        </Text>
+
+        <TouchableOpacity
+          style={tw`w-20  h-7 rounded-lg border-2 border-rose-500 justify-center pl-1`}
+        >
+          <Text>Reservar</Text>
+        </TouchableOpacity>
+      </View>
         </View>
 
         

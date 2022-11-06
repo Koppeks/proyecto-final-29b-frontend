@@ -13,9 +13,6 @@ const categoriesSlice = createSlice({
       console.log( " data ", data)
       state.categories = data
   
-      
-
-
     },
     byCategories: (state, action) => {
       

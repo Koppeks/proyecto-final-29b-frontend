@@ -4,7 +4,7 @@ import tw from "twrnc";
 import { byRating, byPrice } from "../../redux/reducers/categoriesSlice";
 import { useDispatch, useSelector } from "react-redux";
 import SelectDropdown from "react-native-select-dropdown";
-import { getCat} from "../../redux/actions/index";
+import { getCategories} from "../../redux/actions/index";
 import image from '../../images/stars.png';
 
 export default function SelectFilter()
@@ -13,7 +13,7 @@ export default function SelectFilter()
 
   useEffect(() =>
   {
-    dispatch(getCat());
+    dispatch(getCategories());
   }, [dispatch]);
 
   const { categories } = useSelector((state) => state.categories);

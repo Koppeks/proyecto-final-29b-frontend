@@ -10,6 +10,7 @@ import Search from '../components/Search/Search'
 import Filtros from '../screen/Filter/Filtros'
 import ButtonNav from '../components/button/ButtonNav'
 import {UserDetails} from '../screen/UserDetail/UserDetails'
+import Profile from '../screen/Profile/Profile'
 
 
 const Stack = createNativeStackNavigator();
@@ -42,7 +43,10 @@ const HomeNavigation = ({navigation}) =>
                 component={CategoryItems}
             />
 
-             
+                     <Stack.Screen
+                name="Profile"
+                component={Profile}
+            />
 
             <Stack.Screen
                 name="Edit Professional Profile"
