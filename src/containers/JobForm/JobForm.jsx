@@ -45,6 +45,7 @@ const JobForm = () =>
     const { categories } = useSelector((state) => state.categories);
 
     const jobUserInfo = {
+        email: '',
         occupation: '',
         generalDescription: '',
         availableDays: {},
@@ -65,7 +66,6 @@ const JobForm = () =>
                     const imageRemoteUri = await uploadImage(values.image);
                     const availableDays = Object.keys(values.availableDays).filter(date => values.availableDays[date].selected === true);
                     const data = { ...values, availableDays, image: imageRemoteUri };
-                    console.log(data);
 
                     // dispatch(postJob(data));
 
@@ -78,11 +78,21 @@ const JobForm = () =>
             >
                 {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue, isSubmitting }) =>
                 {
-                    const { occupation, generalDescription, availableDays, image } = values
+                    const { email, occupation, generalDescription, availableDays, image } = values
 
                     return (
                         <>
+                            <FormInput
+                                value={email}
+                                error={touched.email && errors.email}
+                                placeholder="introduce tu correo electronico"
+                                label="E-mail:"
+                                onChangeText={handleChange('email')}
+                                onBlur={handleBlur("email")}
+
+                            />
                             <View style={tw`flex-row`}>
+
                                 <Text style={tw`text-base mr-1 ml-2`}>Ocupación:</Text>
                                 <SelectDropdown
                                     name='occupation'

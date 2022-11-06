@@ -20,7 +20,6 @@ const JobImageUpload = ({ label, value, onSelect }) =>
                 switch (selectedIndex)
                 {
                     case 0: // Escoger imagen
-                        console.log('Abrir libreria');
                         let result = await ImagePicker.launchImageLibraryAsync({
                             mediaTypes: ImagePicker.MediaTypeOptions.All,
                             allowsEditing: true,

@@ -6,7 +6,7 @@ export const jobFormSchema = yup.object().shape({
         .min(10, "La descripción es demasiado corta")
         .max(70, "La descripción es demasiado larga")
         .required("Campo requerido"),
-    // availableDays: yup.date("Los días disponibles necesitan ser fechas")
+    // availableDays: yup.object("Los días disponibles necesitan ser fechas")
     //     .required("Campo requerido"),
     // images: yup.string()
     //     .matches(/(https?:\/\/.+\.(?:png|jpg))/i, 'Esa no es una imagen correcta')
