@@ -1,5 +1,7 @@
 import React, { useEffect } from "react"
 import moment from "moment"
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
 import { ScrollView, Text, View } from "react-native"
 import { FieldArray, Formik } from "formik"
 import { jobFormSchema } from "../../schemas/jobFormSchema"
@@ -7,8 +9,9 @@ import FormInput from "../../components/FormInput/FormInput"
 import FormCalendar from "../../components/FormCalendar/FormCalendar"
 import FormSubmitButton from "../../components/button/FormSubmitButton"
 import SelectDropdown from "react-native-select-dropdown";
+import { firebase } from "../../../config";
 import { useDispatch, useSelector } from "react-redux"
-import { postJob, getCategories } from "../../redux/actions/index"
+import { getCategories } from "../../redux/actions/index"
 import SpecialitiesDynamicForm from './SpecialitiesDynamicForm'
 import tw from "twrnc";
 import JobImageUpload from "./JobImageUpload"
@@ -17,6 +20,21 @@ const dateFormat = 'YYYY-MM-DD';
 
 const JobForm = () =>
 {
+    const uploadImage = async (image) =>
+    {
+        const response = await fetch(image);
+        const blob = await response.blob();
+        try
+        {
+            var ref = firebase.storage().ref().child("job/" + uuidv4());
+            return await ref.put(blob).then(snapshot => snapshot.ref.getDownloadURL());
+        } catch (error)
+        {
+            console.log(error);
+            return null;
+        }
+    };
+
     const dispatch = useDispatch();
 
     useEffect(() =>
@@ -30,7 +48,7 @@ const JobForm = () =>
         occupation: '',
         generalDescription: '',
         availableDays: {},
-        images: [],
+        image: null,
         specialities: [
             { title: '', description: '', cost: '' }
         ]
@@ -42,10 +60,11 @@ const JobForm = () =>
             <Formik
                 initialValues={jobUserInfo}
                 validationSchema={jobFormSchema}
-                onSubmit={(values, formikActions) =>
+                onSubmit={async (values, formikActions) =>
                 {
+                    const imageRemoteUri = await uploadImage(values.image);
                     const availableDays = Object.keys(values.availableDays).filter(date => values.availableDays[date].selected === true);
-                    const data = { ...values, availableDays };
+                    const data = { ...values, availableDays, image: imageRemoteUri };
                     console.log(data);
 
                     // dispatch(postJob(data));
@@ -59,7 +78,7 @@ const JobForm = () =>
             >
                 {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue, isSubmitting }) =>
                 {
-                    const { occupation, generalDescription, availableDays, images, specialities } = values
+                    const { occupation, generalDescription, availableDays, image } = values
 
                     return (
                         <>
@@ -95,7 +114,11 @@ const JobForm = () =>
                                 onSelect={selectedDates => setFieldValue('availableDays', selectedDates)}
                             />
 
-                            <JobImageUpload label='Imagen:' title='Seleccionar Imagen' />
+                            <JobImageUpload
+                                label='Imagen:'
+                                value={image}
+                                onSelect={selectedImage => setFieldValue('image', selectedImage)}
+                            />
 
                             <FieldArray
                                 name="specialities"

@@ -1,29 +1,35 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, Image } from 'react-native';
+import * as ImagePicker from "expo-image-picker";
 import { useActionSheet } from '@expo/react-native-action-sheet';
+import tw from "twrnc";
 
-const JobImageUpload = ({ label, title }) =>
+const JobImageUpload = ({ label, value, onSelect }) =>
 {
     const { showActionSheetWithOptions } = useActionSheet();
 
     const displayMenu = () =>
     {
-        const options = ['Escoger imagen', 'Tomar foto', 'Cancelar'];
-        const cancelButtonIndex = 2;
+        const options = ['Escoger imagen', 'Cancelar'];
+        const cancelButtonIndex = options.length - 1;
         const cancelButtonTintColor = 'red';
 
         showActionSheetWithOptions({ options, cancelButtonIndex, cancelButtonTintColor },
-            selectedIndex =>
+            async selectedIndex =>
             {
                 switch (selectedIndex)
                 {
                     case 0: // Escoger imagen
                         console.log('Abrir libreria');
+                        let result = await ImagePicker.launchImageLibraryAsync({
+                            mediaTypes: ImagePicker.MediaTypeOptions.All,
+                            allowsEditing: true,
+                            aspect: [4, 3],
+                            quality: 1,
+                        });
+                        onSelect(result.uri);
                         break;
-                    case 1: // Tomar foto
-                        console.log('Abrir camara');
-                        break;
-                    case 2: // Cancelar
+                    case 1: // Cancelar
                         console.log('Salir');
                         break;
                 }
@@ -34,7 +40,13 @@ const JobImageUpload = ({ label, title }) =>
     return (
         <View>
             <Text>{label}</Text>
-            <Button title={title} onPress={displayMenu} />
+            {
+                value &&
+                (
+                    <Image source={{ uri: value }} style={tw`w-20 h-20 m-3`} />
+                )
+            }
+            <Button title={value ? 'Cambiar Imagen' : 'Seleccionar Imagen'} onPress={displayMenu} />
         </View>
     )
 }

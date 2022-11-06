@@ -8,9 +8,9 @@ export const jobFormSchema = yup.object().shape({
         .required("Campo requerido"),
     // availableDays: yup.date("Los días disponibles necesitan ser fechas")
     //     .required("Campo requerido"),
-    images: yup.string()
-        .matches(/(https?:\/\/.+\.(?:png|jpg))/i, 'Esa no es una imagen correcta')
-        .required('Campo requerido, pega una URL/dirección'),
+    // images: yup.string()
+    //     .matches(/(https?:\/\/.+\.(?:png|jpg))/i, 'Esa no es una imagen correcta')
+    //     .required('Campo requerido, pega una URL/dirección'),
     specialities: yup.array()
         .of(
             yup.object().shape({
