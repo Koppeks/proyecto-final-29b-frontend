@@ -10,7 +10,7 @@ import tw from "twrnc"
 import DatePicker from "../../components/DatePicker/DatePicker"
 
 
-const registerForm = () =>{
+const RegisterForm = () =>{
 
   const dispatch = useDispatch()
 
@@ -22,6 +22,7 @@ const registerForm = () =>{
       confirmPassword: '',
       description: '',
       birthday: '',
+      image:'',
       address: '',
   }
 
@@ -40,20 +41,30 @@ const registerForm = () =>{
             password: values.password,
             description: values.description,
             birthday: values.birthday,
+            image: values.image,
             address: values.address,
           }
 
           dispatch(postPro(data))
-          
+          console.log(data)
           setTimeout(() => {
             formikActions.resetForm()
             formikActions.setSubmitting(false)
           }, 3000);
         }}
       >
-        {({values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue, isSubmitting}) =>{
+        {({values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting}) =>{
           
-          const {fullName, phoneNumber, email, password, confirmPassword, description, birthday, address} = values
+          const {
+            fullName, 
+            phoneNumber, 
+            email, 
+            password, 
+            confirmPassword, 
+            birthday, 
+            description,
+            image, 
+            address} = values
 
           return(
             <>
@@ -113,13 +124,16 @@ const registerForm = () =>{
                 onChangeText={handleChange('address')}
                 onBlur={handleBlur("address")}
               />
+              <FormInput 
+                value={image}
+                error={touched.image && errors.image}
+                placeholder="Pega el URL de tu imagen aquí"
+                label="Imagen"
+                onChangeText={handleChange('image')}
+                onBlur={handleBlur("image")}
+              />
               <DatePicker 
-                value={birthday}
-                error={touched.birthday && errors.birthday}
-                label="Ingresa tu fecha de nacimiento"
-                name='birthday'
-                dateFormat='dd/MM/yyyy'
-                setFieldValue={setFieldValue}
+                handleDate={(date) =>{ values.birthday = date}}
               />
               <FormSubmitButton error={errors} submitting={isSubmitting} onPress={handleSubmit} title="Enviar"/>
             </>
@@ -131,4 +145,31 @@ const registerForm = () =>{
   )
 }
 
-export default registerForm
+export default RegisterForm
+
+
+
+/* 
+
+{
+\"fullName\":\"abedul\",
+\"phoneNumber\":\"123456\",
+\"email\":\"abedules@hotmail.com\",
+\"password\":\"qwert\",
+\"description\":\"El abedul es un bello árbol caducifolio originario del norte de Europa y Asia, donde crece en las riberas de ríos, arroyos y laderas húmedas.\",
+\"birthdate\":\"1-11-2022\",
+\"address\":\"El bosque :v\"
+}
+
+        !fullName ||
+        !phoneNumber ||
+        !email ||
+        !address ||
+        !password ||
+        !description ||
+        !birthday
+
+
+
+
+*/

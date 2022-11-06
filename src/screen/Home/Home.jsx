@@ -10,8 +10,6 @@ const Home = ({ navigation }) => {
 
   const dispatch= useDispatch()
 
-
-
   return (
     <View>
       <Button 

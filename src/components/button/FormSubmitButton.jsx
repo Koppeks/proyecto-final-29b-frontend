@@ -4,7 +4,6 @@ import tw from "twrnc"
 
 const FormSubmitButton = props =>{
   const { title, onPress, submitting, error } = props
-
   return (
     <>
       {
