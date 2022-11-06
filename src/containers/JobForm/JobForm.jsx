@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { postJob, getCategories } from "../../redux/actions/index"
 import SpecialitiesDynamicForm from './SpecialitiesDynamicForm'
 import tw from "twrnc";
+import JobImageUpload from "./JobImageUpload"
 
 const dateFormat = 'YYYY-MM-DD';
 
@@ -93,23 +94,8 @@ const JobForm = () =>
                                 maxDate={moment().add(30, 'days').format(dateFormat)}
                                 onSelect={selectedDates => setFieldValue('availableDays', selectedDates)}
                             />
-                            {/* <FormInput
-                                value={availableDays}
-                                error={touched.availableDays && errors.availableDays}
-                                placeholder="DD/MM"
-                                label="Dias disponibles (calendario)"
-                                onChangeText={handleChange('availableDays')}
-                                onBlur={handleBlur("availableDays")}
-                            /> */}
 
-                            <FormInput
-                                value={images}
-                                error={touched.images && errors.images}
-                                placeholder="png o jpg"
-                                label="imagen(es):"
-                                onChangeText={handleChange('images')}
-                                onBlur={handleBlur("images")}
-                            />
+                            <JobImageUpload label='Imagen:' title='Seleccionar Imagen' />
 
                             <FieldArray
                                 name="specialities"
