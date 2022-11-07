@@ -16,6 +16,7 @@ import SpecialitiesDynamicForm from './SpecialitiesDynamicForm'
 import tw from "twrnc";
 import JobImageUpload from "./JobImageUpload"
 import { postJob } from "../../redux/actions/index"
+import alertPostJob from "../../components/Alerts/alertPostJob";
 
 const calendarDateFormat = 'YYYY-MM-DD';
 const dateFormat = 'DD-MM-YYYY';
@@ -42,7 +43,7 @@ const JobForm = () =>
     useEffect(() =>
     {
         dispatch(getoccupation());
-    }, [dispatch]);
+    }, []);
 
     const { Ocupacion } = useSelector((state) => state.Ocupacion);
 
@@ -57,7 +58,19 @@ const JobForm = () =>
         ]
     };
 
+    const confirmSubmit = async (values, { resetForm }) =>
+    {
+        const imageRemoteUri = await uploadImage(values.images);
+        const availableDays = Object.keys(values.availableDays)
+            .filter(date => values.availableDays[date].selected === true)
+            .map(date => moment(date, calendarDateFormat).format(dateFormat));
 
+        const data = { ...values, availableDays, images: [imageRemoteUri] };
+        console.log(data);
+
+        dispatch(postJob(data));
+        resetForm();
+    }
 
     return (
         <ScrollView style={tw`mx-3 mt-10 mb-10 p-3 bg-white shadow-md rounded-lg`}>
@@ -65,17 +78,10 @@ const JobForm = () =>
             <Formik
                 initialValues={jobUserInfo}
                 validationSchema={jobFormSchema}
-                onSubmit={async (values, { resetForm }) =>
+                onSubmit={(values, formikActions) =>
                 {
-                    const imageRemoteUri = await uploadImage(values.images);
-                    const availableDays = Object.keys(values.availableDays)
-                        .filter(date => values.availableDays[date].selected === true)
-                        .map(date => moment(date, calendarDateFormat).format(dateFormat));
-
-                    const data = { ...values, availableDays, images: [imageRemoteUri] };
-                    console.log(data);
-
-                    dispatch(postJob(data));
+                    formikActions.setSubmitting(true);
+                    alertPostJob(confirmSubmit, values, formikActions);
                 }}
             >
                 {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue, isSubmitting }) =>
