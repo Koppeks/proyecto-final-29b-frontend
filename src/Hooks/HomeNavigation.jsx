@@ -1,5 +1,6 @@
 import Home from "../screen/Home/Home";
 import EditProfession from "../screen/EditProfession/EditProfession";
+import CategoryItems from '../components/CategoryItems/CategoryItems'
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import logo from "../images/logo.png";
 import { Image } from "react-native";
@@ -11,6 +12,7 @@ import ButtonNav from "../components/button/ButtonNav";
 import CameraHook from "./CameraHook";
 import { UserDetails } from "../screen/UserDetail/UserDetails";
 import Favs from "../screen/Favs/Favs";
+import Profile from '../screen/Profile/Profile'
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +35,16 @@ const HomeNavigation = ({ navigation }) => {
       <Stack.Screen name="Filtros" component={Filtros} />
       <Stack.Screen name="UserDetails" component={UserDetails} />
       <Stack.Screen name="Favs" component={Favs} />
+      <Stack.Screen
+                name="Home Cards Professional"
+                component={CategoryItems}
+            />
+
+                     <Stack.Screen
+                name="Profile"
+                component={Profile}
+            />
+
       <Stack.Screen
         name="Edit Professional Profile"
         component={EditProfession}

@@ -1,12 +1,21 @@
-import { View, Text } from "react-native";
+import { View, Text,TouchableOpacity } from "react-native";
 import React from "react";
 import tw from "twrnc";
 
-const username = () =>
+const username = ({ navigation }) =>
 {
   return (
     <View style={tw`m-5  items-center`}>
-      <Text style={tw`text-2xl font-bold`}>Hola userName!</Text>
+      <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("Profile", {
+              name: "Profile",
+            })
+          }
+        >
+          <Text style={tw`text-2xl font-bold`}>Hola userName!</Text>
+        </TouchableOpacity>
+     
     </View>
   );
 };
