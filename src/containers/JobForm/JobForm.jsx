@@ -17,7 +17,8 @@ import tw from "twrnc";
 import JobImageUpload from "./JobImageUpload"
 import { postJob } from "../../redux/actions/index"
 
-const dateFormat = 'YYYY-MM-DD';
+const calendarDateFormat = 'YYYY-MM-DD';
+const dateFormat = 'DD-MM-YYYY';
 
 const JobForm = () =>
 {
@@ -67,7 +68,9 @@ const JobForm = () =>
                 onSubmit={async (values, { resetForm }) =>
                 {
                     const imageRemoteUri = await uploadImage(values.image);
-                    const availableDays = Object.keys(values.availableDays).filter(date => values.availableDays[date].selected === true);
+                    const availableDays = Object.keys(values.availableDays)
+                        .filter(date => values.availableDays[date].selected === true)
+                        .map(date => moment(date, calendarDateFormat).format(dateFormat));
 
                     const data = { ...values, availableDays, image: imageRemoteUri };
                     console.log(data);
@@ -119,8 +122,8 @@ const JobForm = () =>
                             <FormCalendar
                                 label="Dias disponibles"
                                 value={availableDays}
-                                minDate={moment().add(1, 'days').format(dateFormat)}
-                                maxDate={moment().add(30, 'days').format(dateFormat)}
+                                minDate={moment().add(1, 'days').format(calendarDateFormat)}
+                                maxDate={moment().add(30, 'days').format(calendarDateFormat)}
                                 onSelect={selectedDates => setFieldValue('availableDays', selectedDates)}
                             />
 
