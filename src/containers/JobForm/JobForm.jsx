@@ -11,7 +11,7 @@ import FormSubmitButton from "../../components/button/FormSubmitButton"
 import SelectDropdown from "react-native-select-dropdown";
 import { firebase } from "../../../config";
 import { useDispatch, useSelector } from "react-redux"
-import { getCategories } from "../../redux/actions/index"
+import { getoccupation } from "../../redux/actions/index"
 import SpecialitiesDynamicForm from './SpecialitiesDynamicForm'
 import tw from "twrnc";
 import JobImageUpload from "./JobImageUpload"
@@ -41,10 +41,10 @@ const JobForm = () =>
 
     useEffect(() =>
     {
-        dispatch(getCategories());
+        dispatch(getoccupation());
     }, [dispatch]);
 
-    const { categories } = useSelector((state) => state.categories);
+    const { Ocupacion } = useSelector((state) => state.Ocupacion);
 
     const jobUserInfo = {
         email: '',
@@ -101,7 +101,7 @@ const JobForm = () =>
                                     defaultButtonText={'Elegir'}
                                     buttonStyle={tw`bg-white ml-2 w-28 h-7 border-2 border-indigo-300 rounded`}
                                     dropdownStyle={tw`rounded w-34`}
-                                    data={categories}
+                                    data={Ocupacion}
                                     buttonTextAfterSelection={selectedItem => selectedItem.name}
                                     rowTextForSelection={item => item.name}
                                     defaultValue={occupation}
