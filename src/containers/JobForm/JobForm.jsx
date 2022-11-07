@@ -51,7 +51,7 @@ const JobForm = () =>
         occupation: '',
         generalDescription: '',
         availableDays: {},
-        image: null,
+        images: null,
         specialities: [
             { title: '', description: '', cost: '' }
         ]
@@ -67,21 +67,20 @@ const JobForm = () =>
                 validationSchema={jobFormSchema}
                 onSubmit={async (values, { resetForm }) =>
                 {
-                    const imageRemoteUri = await uploadImage(values.image);
+                    const imageRemoteUri = await uploadImage(values.images);
                     const availableDays = Object.keys(values.availableDays)
                         .filter(date => values.availableDays[date].selected === true)
                         .map(date => moment(date, calendarDateFormat).format(dateFormat));
 
-                    const data = { ...values, availableDays, image: imageRemoteUri };
+                    const data = { ...values, availableDays, images: [imageRemoteUri] };
                     console.log(data);
 
                     dispatch(postJob(data));
-                    resetForm();
                 }}
             >
                 {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue, isSubmitting }) =>
                 {
-                    const { email, occupation, generalDescription, availableDays, image } = values
+                    const { email, occupation, generalDescription, availableDays, images } = values
 
                     return (
                         <>
@@ -129,8 +128,8 @@ const JobForm = () =>
 
                             <JobImageUpload
                                 label='Imagen:'
-                                value={image}
-                                onSelect={selectedImage => setFieldValue('image', selectedImage)}
+                                value={images}
+                                onSelect={selectedImage => setFieldValue('images', selectedImage)}
                             />
 
                             <FieldArray

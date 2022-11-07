@@ -15,7 +15,7 @@ const SpecialitiesDynamicForm = ({
             {specialities.length > 0 &&
                 specialities.map((_, index) => (
                     <View key={`speciality${index}`}>
-                        <Text>Especialidad {index}</Text>
+                        <Text>Especialidad {index + 1}</Text>
                         <FormInput
                             value={specialities[index].title}
                             error={touched.specialities && touched.specialities[index]?.title && errors.specialities && errors.specialities[index]?.title}

@@ -64,7 +64,8 @@ export const postJob = (data) => async () =>
     method: "POST",
     url: `https://proyecto-final-29b-backend-production.up.railway.app/specialization?apikey=${apikey}`,
     data: data,
-  });
+  })
+    .catch(e => console.log(e));
 };
 
 export const logIn = (data) => async (dispatch) =>
