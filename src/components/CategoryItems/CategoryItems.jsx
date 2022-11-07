@@ -36,12 +36,6 @@ export default function CategoryItems({navigation}) {
     dispatch(byCategories(e));
   };
 
-
-  
-   console.log("en CI ",categoriesfilter)
-   console.log("filtCate", filtCateg)
-   console.log("ocupaciones P " ,Ocupacion )
-
   return (
     <View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
@@ -56,7 +50,7 @@ export default function CategoryItems({navigation}) {
               
                 style={tw`bg-cyan-300`}
                 onPress={() =>  {
-                 {console.log(item.name) 
+                 {
                   handleFilter(item.name)}
                   if(item.id===filtCateg){
                     setFiltCateg(0)
