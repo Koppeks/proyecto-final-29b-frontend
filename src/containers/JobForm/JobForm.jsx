@@ -15,6 +15,7 @@ import { getCategories } from "../../redux/actions/index"
 import SpecialitiesDynamicForm from './SpecialitiesDynamicForm'
 import tw from "twrnc";
 import JobImageUpload from "./JobImageUpload"
+import { postJob } from "../../redux/actions/index"
 
 const dateFormat = 'YYYY-MM-DD';
 
@@ -55,25 +56,24 @@ const JobForm = () =>
         ]
     };
 
+
+
     return (
         <ScrollView style={tw`mx-3 mt-10 mb-10 p-3 bg-white shadow-md rounded-lg`}>
-            <Text style={tw`text-center font-bold mb-3 w-full p-2 text-lg`}>Completa tu oferta de trabajo aquí </Text>
+            <Text style={tw`text-center font-bold mb-3 w-full p-2 text-lg`}>Postea una profesión aquí </Text>
             <Formik
                 initialValues={jobUserInfo}
                 validationSchema={jobFormSchema}
-                onSubmit={async (values, formikActions) =>
+                onSubmit={async (values, { resetForm }) =>
                 {
                     const imageRemoteUri = await uploadImage(values.image);
                     const availableDays = Object.keys(values.availableDays).filter(date => values.availableDays[date].selected === true);
+
                     const data = { ...values, availableDays, image: imageRemoteUri };
+                    console.log(data);
 
-                    // dispatch(postJob(data));
-
-                    // setTimeout(() =>
-                    // {
-                    //     formikActions.resetForm()
-                    //     formikActions.setSubmitting(false)
-                    // }, 3000);
+                    dispatch(postJob(data));
+                    resetForm();
                 }}
             >
                 {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue, isSubmitting }) =>

@@ -2,8 +2,7 @@ import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import CartShop from '../../screen/CartShop/CartShop';
 import Favs from '../../screen/Favs/Favs';
-// import Message from '../../screen/Message/Message';
-import JobForm from '../JobForm/JobForm'
+import Message from '../../screen/Message/Message';
 import SignUp from '../../screen/SignUp/SignUp';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import HomeNavigation from '../../Hooks/HomeNavigation';
@@ -41,8 +40,8 @@ const TabBar = () =>
                 }}
             />
             <Tab.Screen
-                name="jobpost"
-                component={JobForm}
+                name="Chat"
+                component={Message}
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <Ionicons name="chatbubbles" size={size} color={color} />
