@@ -1,7 +1,7 @@
 import React from "react";
 import { Alert } from 'react-native';
 
-const alertPostJob = () =>
+const alertPostJob = (onPress, values, formikActions) =>
 {
     Alert.alert(
         'Recuerda cumplir con las siguientes condiciones para continuar: no publicar ningún número telefónico, no usar palabras ofensivas, elegir la categoría adecuada',
@@ -10,11 +10,13 @@ const alertPostJob = () =>
         [
             {
                 text: 'Aceptar y publicar',
+                style: 'default',
+                onPress: () => onPress(values, formikActions)
+            },
+            {
+                text: 'Cancelar',
                 style: 'cancel',
-                onPress: () =>
-                {
-                    console.log('aceptado')
-                }
+                onPress: () => formikActions.setSubmitting(false)
             }
         ]
     )
