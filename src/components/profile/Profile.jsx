@@ -11,8 +11,8 @@ const Profile = ({ navigation }) =>
         <Text style={tw` font-bold text-xl text-center`}>Contrata a un experto</Text>
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate("Home Cards Professional", {
-              name: "Prueba de navegacion",
+            navigation.navigate("SeeSpecialties", {
+              name: "Especialidades"
             })
           }
           style={tw`bg-cyan-300 rounded-full p-2 mb-4 mt-2`}

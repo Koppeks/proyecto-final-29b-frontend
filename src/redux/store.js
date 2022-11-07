@@ -4,6 +4,7 @@ import categories from "./reducers/categoriesSlice";
 import Ocupacion from "./reducers/ocupacionSlice";
 import Special from './reducers/specialSlice'
 import auth from "./reducers/authSlice"
+import shopList from "./reducers/shopList"
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // import storage from 'redux-persist/lib/storage'
@@ -28,7 +29,8 @@ const rootReducer= combineReducers({
   categories:categories,
   professional:professional,
   Ocupacion: Ocupacion,
-  Special:Special
+  Special:Special,
+  shopList:shopList
 })
 
 const persistReducers=persistReducer(persistConfig, rootReducer )

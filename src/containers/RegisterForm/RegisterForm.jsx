@@ -133,6 +133,7 @@ const RegisterForm = () =>{
                 onBlur={handleBlur("image")}
               />
               <DatePicker 
+                label="Fecha de nacimiento"
                 handleDate={(date) =>{ values.birthday = date}}
               />
               <FormSubmitButton error={errors} submitting={isSubmitting} onPress={handleSubmit} title="Enviar"/>

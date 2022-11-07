@@ -15,7 +15,6 @@ export const UserDetails = ({ navigation }) => {
     dispatch(getspecial());
   
   }, [dispatch]);
-  console.log(Special)
 
   return (
     <ScrollView style={tw`flex `}>

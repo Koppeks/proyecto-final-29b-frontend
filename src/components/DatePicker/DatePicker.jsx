@@ -24,12 +24,13 @@ LocaleConfig.locales['es'] = {
 }
 LocaleConfig.defaultLocale = 'es';
 
-const DatePicker = ({handleDate}) =>{
+const DatePicker = ({handleDate, label}) =>{
 
   const [dateValue, setDate] = useState("")
 
   return(
     <View>
+      <Text>{label}</Text>
       <Calendar 
         initialDate={dateValue}
         minDate={'1960-01-01'}

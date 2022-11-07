@@ -1,5 +1,5 @@
 
-import { View } from "react-native";
+import { ScrollView } from "react-native";
 import React from "react";
 import ContainerHome from "../../containers/ContainerHome/ContainerHome";
 import { Button } from "react-native-elements";
@@ -11,12 +11,12 @@ const Home = ({ navigation }) => {
   const dispatch= useDispatch()
 
   return (
-    <View>
+    <ScrollView>
       <Button 
       onPress={()=>dispatch(logout())}
       title="Cerrar sesion" />
       <ContainerHome navigation={navigation} />
-    </View>
+    </ScrollView>
   );
 };
 

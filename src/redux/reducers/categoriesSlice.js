@@ -10,7 +10,6 @@ const categoriesSlice = createSlice({
     allCategories: (state, action) => {
     
      const data = action.payload.filter((e)=>e.isProfessional === true  )
-      console.log( " data ", data)
       state.categories = data
   
     },
@@ -20,12 +19,8 @@ const categoriesSlice = createSlice({
        
       e.occupation.includes(action.payload)
       );
-      console.log("Bycategori: ",byCateg)
 
       state.categoriesfilter = [...byCateg];
-      
-      console.log("State copia ", state.categoriesfilter)
-     
     },
     byRating: (state, action) => {
       const orderRating =
