@@ -8,6 +8,7 @@ const ocupacionSlice = createSlice({
   reducers: {
     getOcupacion: (state, action) => {
       state.Ocupacion = action.payload;
+      console.log(state.Ocupacion)
     }
   },
 });
