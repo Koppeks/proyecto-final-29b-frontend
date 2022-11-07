@@ -8,6 +8,7 @@ import
   searchProfessionalName,
 } from "../reducers/profetionalSlice";
 import {getOcupacion} from '../reducers/ocupacionSlice'
+import {getSpecials} from '../reducers/specialSlice'
 
 const apikey = "1f5dbe34-3f44-4ec9-9d4b-078362fd7eb3";
 
@@ -65,6 +66,14 @@ export const getoccupation = () => async (dispatch) =>
     .then((res) => dispatch(getOcupacion(res.data)))
     .catch((e) => console.log(e));
 };
+export const getspecial = () => async (dispatch) =>
+{
+  axios
+    .get(`https://proyecto-final-29b-backend-production.up.railway.app/specialization?apikey=${apikey} `)
+    .then((res) => dispatch(getSpecials(res.data)))
+    .catch((e) => console.log(e));
+};
+
 
 
 export const postJob = (data) => async () =>

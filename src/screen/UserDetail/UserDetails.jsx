@@ -1,10 +1,21 @@
 import { Text, View, Image, ScrollView, TouchableOpacity } from "react-native";
 import tw from "twrnc";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector,useDispatch} from "react-redux";
+import { getspecial } from "../../redux/actions/index";
 
 export const UserDetails = ({ navigation }) => {
+
+  const dispatch = useDispatch();
+
   const { professionalId } = useSelector((state) => state.professional);
+  const { Special } = useSelector((state) => state.Special);
+  
+  useEffect(() => {
+    dispatch(getspecial());
+  
+  }, [dispatch]);
+  console.log(Special)
 
   return (
     <ScrollView style={tw`flex `}>
@@ -68,94 +79,27 @@ export const UserDetails = ({ navigation }) => {
           igual al original.
         </Text>
       </View>
-      <View style={tw`justify-center pl-30 pr-30`}> 
+      <View style={tw`justify-center pl-24 pr-24`}> 
       <Text style={tw`mt-5 text-lg font-bold`}>Especializaciones</Text>
       </View>
      
 
-      <ScrollView style={tw`h-40 `}>
+      <ScrollView style={tw`h-screen `}>
 
-      {/* <View>
-          <View style={tw`flex-row`}>
-            <View>
-              <Image
-                style={tw`h-12 w-12 rounded-full mx-1`}
-                source={{
-                  uri: "https://dreamingbytes.com/wp-content/uploads/2014/09/dott.jpg",
-                }}
-              />
+            
+      {Special.map( item => {return(
+          <>
+            <View key={item.id}
+              style={tw`flex justify-items-center m-2 mt-4 mb-4 bg-gray-500`}
+            >
+        
+             <TouchableOpacity >
+
+                <Text style={tw`text-black font-bold mx-1 `}>{item.occupation}</Text>
+              </TouchableOpacity>
             </View>
-            <View>
-              <Text>Diana Diaco</Text>
-              <Text>* * * *</Text>
-              <Text>buen trabajo</Text>
-            </View>
-          </View>
-        </View> */}
-        <View style={tw` p-4`}>
-        <View style={tw`justify-center p-4`}>
-        <Text style={tw`pl-30 pr-30  `}>Especialidad 1</Text>
-        <Text style={tw`pl-3 pr-1`}>
-          Lorem Ipsum es simplemente el texto de relleno de las imprentas y
-          archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de
-          las industrias desde el año 1500, 
-        </Text>
-        <TouchableOpacity
-          style={tw`w-20  h-7 rounded-lg border-2 border-rose-500 justify-center pl-1`}
-        >
-          <Text>Reservar</Text>
-        </TouchableOpacity>
-      </View>
-        </View>
+          </> )})}
 
-        <View style={tw` p-4`}>
-        <View style={tw`justify-center p-4`}>
-        <Text style={tw`pl-30 pr-30  `}>Especialidad 2</Text>
-        <Text style={tw`pl-3 pr-1`}>
-          Lorem Ipsum es simplemente el texto de relleno de las imprentas y
-          archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de
-          las industrias desde el año 1500, 
-        </Text>
-        <TouchableOpacity
-          style={tw`w-20  h-7 rounded-lg border-2 border-rose-500 justify-center pl-1`}
-        >
-          <Text>Reservar</Text>
-        </TouchableOpacity>
-      </View>
-        </View>
-
-        <View style={tw` p-4`}>
-        <View style={tw`justify-center p-4`}>
-        <Text style={tw`pl-30 pr-30  `}>Especialidad 3</Text>
-        <Text style={tw`pl-3 pr-1`}>
-          Lorem Ipsum es simplemente el texto de relleno de las imprentas y
-          archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de
-          las industrias desde el año 1500, 
-        </Text>
-        <TouchableOpacity
-          style={tw`w-20  h-7 rounded-lg border-2 border-rose-500 justify-center pl-1`}
-        >
-          <Text>Reservar</Text>
-        </TouchableOpacity>
-      </View>
-        </View>
-
-        <View style={tw` p-4`}>
-        <View style={tw`justify-center p-4`}>
-        <Text style={tw`pl-30 pr-30  `}>Especialidad 4</Text>
-        <Text style={tw`pl-3 pr-1`}>
-          Lorem Ipsum es simplemente el texto de relleno de las imprentas y
-          archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de
-          las industrias desde el año 1500, 
-        </Text>
-
-        <TouchableOpacity
-          style={tw`w-20  h-7 rounded-lg border-2 border-rose-500 justify-center pl-1`}
-        >
-          <Text>Reservar</Text>
-        </TouchableOpacity>
-      </View>
-        </View>
 
         
 
