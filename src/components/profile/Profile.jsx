@@ -25,7 +25,7 @@ const Profile = ({ navigation }) =>
         <Text style={tw`font-bold text-xl text-center`}>Postea una profesion</Text>
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate("Edit Professional Profile", {
+            navigation.navigate("Perfil profesional", {
               name: "Prueba de navegacion",
             })
           }

@@ -16,7 +16,8 @@ import Profile from '../screen/Profile/Profile'
 
 const Stack = createNativeStackNavigator();
 
-const HomeNavigation = ({ navigation }) => {
+const HomeNavigation = ({ navigation }) =>
+{
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -36,17 +37,17 @@ const HomeNavigation = ({ navigation }) => {
       <Stack.Screen name="UserDetails" component={UserDetails} />
       <Stack.Screen name="Favs" component={Favs} />
       <Stack.Screen
-                name="Home Cards Professional"
-                component={CategoryItems}
-            />
-
-                     <Stack.Screen
-                name="Profile"
-                component={Profile}
-            />
+        name="Home Cards Professional"
+        component={CategoryItems}
+      />
 
       <Stack.Screen
-        name="Edit Professional Profile"
+        name="Profile"
+        component={Profile}
+      />
+
+      <Stack.Screen
+        name="Perfil profesional"
         component={EditProfession}
       />
       <Stack.Screen

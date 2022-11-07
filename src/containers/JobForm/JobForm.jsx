@@ -15,8 +15,10 @@ import { getCategories } from "../../redux/actions/index"
 import SpecialitiesDynamicForm from './SpecialitiesDynamicForm'
 import tw from "twrnc";
 import JobImageUpload from "./JobImageUpload"
+import { postJob } from "../../redux/actions/index"
 
-const dateFormat = 'YYYY-MM-DD';
+const calendarDateFormat = 'YYYY-MM-DD';
+const dateFormat = 'DD-MM-YYYY';
 
 const JobForm = () =>
 {
@@ -49,36 +51,36 @@ const JobForm = () =>
         occupation: '',
         generalDescription: '',
         availableDays: {},
-        image: null,
+        images: null,
         specialities: [
             { title: '', description: '', cost: '' }
         ]
     };
 
+
+
     return (
         <ScrollView style={tw`mx-3 mt-10 mb-10 p-3 bg-white shadow-md rounded-lg`}>
-            <Text style={tw`text-center font-bold mb-3 w-full p-2 text-lg`}>Completa tu oferta de trabajo aquí </Text>
+            <Text style={tw`text-center font-bold mb-3 w-full p-2 text-lg`}>Postea una profesión aquí </Text>
             <Formik
                 initialValues={jobUserInfo}
                 validationSchema={jobFormSchema}
-                onSubmit={async (values, formikActions) =>
+                onSubmit={async (values, { resetForm }) =>
                 {
-                    const imageRemoteUri = await uploadImage(values.image);
-                    const availableDays = Object.keys(values.availableDays).filter(date => values.availableDays[date].selected === true);
-                    const data = { ...values, availableDays, image: imageRemoteUri };
+                    const imageRemoteUri = await uploadImage(values.images);
+                    const availableDays = Object.keys(values.availableDays)
+                        .filter(date => values.availableDays[date].selected === true)
+                        .map(date => moment(date, calendarDateFormat).format(dateFormat));
 
-                    // dispatch(postJob(data));
+                    const data = { ...values, availableDays, images: [imageRemoteUri] };
+                    console.log(data);
 
-                    // setTimeout(() =>
-                    // {
-                    //     formikActions.resetForm()
-                    //     formikActions.setSubmitting(false)
-                    // }, 3000);
+                    dispatch(postJob(data));
                 }}
             >
                 {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue, isSubmitting }) =>
                 {
-                    const { email, occupation, generalDescription, availableDays, image } = values
+                    const { email, occupation, generalDescription, availableDays, images } = values
 
                     return (
                         <>
@@ -119,15 +121,15 @@ const JobForm = () =>
                             <FormCalendar
                                 label="Dias disponibles"
                                 value={availableDays}
-                                minDate={moment().add(1, 'days').format(dateFormat)}
-                                maxDate={moment().add(30, 'days').format(dateFormat)}
+                                minDate={moment().add(1, 'days').format(calendarDateFormat)}
+                                maxDate={moment().add(30, 'days').format(calendarDateFormat)}
                                 onSelect={selectedDates => setFieldValue('availableDays', selectedDates)}
                             />
 
                             <JobImageUpload
                                 label='Imagen:'
-                                value={image}
-                                onSelect={selectedImage => setFieldValue('image', selectedImage)}
+                                value={images}
+                                onSelect={selectedImage => setFieldValue('images', selectedImage)}
                             />
 
                             <FieldArray

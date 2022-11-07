@@ -67,6 +67,16 @@ export const getoccupation = () => async (dispatch) =>
 };
 
 
+export const postJob = (data) => async () =>
+{
+  await axios({
+    method: "POST",
+    url: `https://proyecto-final-29b-backend-production.up.railway.app/specialization?apikey=${apikey}`,
+    data: data,
+  })
+    .catch(e => console.log(e));
+};
+
 export const logIn = (data) => async (dispatch) =>
 {
   console.log(data)

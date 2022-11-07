@@ -1,15 +1,12 @@
-import { ScrollView, Text, Button } from "react-native";
+import { ScrollView } from "react-native";
 import React from "react";
-import ProForm from "../../containers/ProForm/ProForm"
+import JobForm from "../../containers/JobForm/JobForm";
 
-const EditProfession = ({navigation}) => {
+const EditProfession = ({ navigation }) =>
+{
   return (
     <ScrollView>
-      <Button 
-        title="Vuelve al inicio"
-        onPress={()=> navigation.goBack()}
-        />
-      <ProForm/>
+      <JobForm />
     </ScrollView>
   );
 };
