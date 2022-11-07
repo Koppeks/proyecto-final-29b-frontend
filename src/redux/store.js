@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import professional from "./reducers/profetionalSlice";
 import categories from "./reducers/categoriesSlice";
+import Ocupacion from "./reducers/ocupacionSlice";
 import auth from "./reducers/authSlice"
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -25,6 +26,7 @@ const rootReducer= combineReducers({
   auth:auth,
   categories:categories,
   professional:professional,
+  Ocupacion: Ocupacion
 
 })
 

@@ -10,7 +10,7 @@ const ContainerHome = ({ navigation }) =>
 {
   return (
     <ScrollView style={tw`flex m-2 p-4`}>
-      <UserName />
+      <UserName  navigation={navigation}  />
       <Profile navigation={navigation} />
       <Categories  navigation={navigation} />
       <Featured  navigation={navigation} />

@@ -1,15 +1,8 @@
 import { View, Text, ScrollView, Image } from "react-native";
-import React from "react";
+import React ,  {useEffect} from "react";
 import tw from "twrnc";
-// import Jarden from '../../svg/jarden.svg';
-// import Pets from '../../svg/pets.svg';
-// import Electrico from '../../svg/electric.svg';
-// import Clean from '../../svg/clean.svg';
-// import Plumber from '../../svg/plumber.svg';
-// import Trainer from '../../svg/trainer.svg';
-// import Law from '../../svg/law.svg';
-// import Baby from '../../svg/babySister.svg';
-// import Beauty from '../../svg/beauty.svg';
+import {useDispatch,useSelector} from 'react-redux'
+import { getCat } from '../../redux/actions'
 import Jarden from '../../images/jarden.png';
 import Pets from '../../images/pet.png';
 import Electrico from '../../images/electric.png';
@@ -22,6 +15,11 @@ import Beauty from '../../images/beauty.png';
 
 const Categories = () =>
 {
+
+
+
+
+
   return (
     <View>
       <Text style={tw`p-1 mt-5 font-bold text-lg`}>Categorías</Text>
