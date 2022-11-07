@@ -15,7 +15,13 @@ const Profile = () =>
           <Image style={tw` rounded w-50 h-50`} source={Usuario} />
       
           <Text style={tw`font-bold mt-2`}>UserName</Text>
+          <Text> Correo Electronico CorreoGenerico@gmail.com</Text>
+          <Text> Telefono: 4444444444</Text>
+          <Text> </Text>
         </View>
+
+
+        
             </View>
            
 
