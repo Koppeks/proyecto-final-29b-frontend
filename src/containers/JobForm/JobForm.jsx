@@ -53,9 +53,8 @@ const JobForm = () =>
         generalDescription: '',
         availableDays: {},
         images: null,
-        specialities: [
-            { title: '', description: '', cost: '' }
-        ]
+        title: '',
+        pricing: ''
     };
 
     const confirmSubmit = async (values, { resetForm }) =>
@@ -86,19 +85,11 @@ const JobForm = () =>
             >
                 {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue, isSubmitting }) =>
                 {
-                    const { email, occupation, generalDescription, availableDays, images } = values
+                    const { occupation, generalDescription, availableDays, images, title, pricing } = values
 
                     return (
                         <>
-                            <FormInput
-                                value={email}
-                                error={touched.email && errors.email}
-                                placeholder="introduce tu correo electronico"
-                                label="E-mail:"
-                                onChangeText={handleChange('email')}
-                                onBlur={handleBlur("email")}
 
-                            />
                             <View style={tw`flex-row`}>
 
                                 <Text style={tw`text-base mr-1 ml-2`}>Ocupación:</Text>
@@ -116,6 +107,14 @@ const JobForm = () =>
                                 />
                             </View>
                             <FormInput
+                                value={title}
+                                error={touched.title && errors.title}
+                                placeholder="Resumen de especialidad"
+                                label="Título:"
+                                onChangeText={handleChange('title')}
+                                onBlur={handleBlur('title')}
+                            />
+                            <FormInput
                                 value={generalDescription}
                                 error={touched.generalDescription && errors.generalDescription}
                                 placeholder="Comenta tu experiencia en el rubro"
@@ -132,16 +131,22 @@ const JobForm = () =>
                                 onSelect={selectedDates => setFieldValue('availableDays', selectedDates)}
                             />
 
+                            <FormInput
+
+                                value={pricing}
+                                error={touched.pricing && errors.pricing}
+                                placeholder="precio"
+                                label="costo/h:"
+                                onChangeText={handleChange('pricing')}
+                                onBlur={handleBlur('pricing')}
+                            />
+
                             <JobImageUpload
                                 label='Imagen:'
                                 value={images}
                                 onSelect={selectedImage => setFieldValue('images', selectedImage)}
                             />
 
-                            <FieldArray
-                                name="specialities"
-                                component={SpecialitiesDynamicForm}
-                            />
 
                             <FormSubmitButton error={errors} submitting={isSubmitting} onPress={handleSubmit} title="Enviar" />
 
