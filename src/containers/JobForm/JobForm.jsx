@@ -3,7 +3,7 @@ import moment from "moment"
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import { ScrollView, Text, View } from "react-native"
-import { FieldArray, Formik } from "formik"
+import { Formik } from "formik"
 import { jobFormSchema } from "../../schemas/jobFormSchema"
 import FormInput from "../../components/FormInput/FormInput"
 import FormCalendar from "../../components/FormCalendar/FormCalendar"
@@ -127,7 +127,7 @@ const JobForm = () =>
                                 label="Dias disponibles"
                                 value={availableDays}
                                 minDate={moment().add(1, 'days').format(calendarDateFormat)}
-                                maxDate={moment().add(30, 'days').format(calendarDateFormat)}
+                                maxDate={moment().add(7, 'days').format(calendarDateFormat)}
                                 onSelect={selectedDates => setFieldValue('availableDays', selectedDates)}
                             />
 
