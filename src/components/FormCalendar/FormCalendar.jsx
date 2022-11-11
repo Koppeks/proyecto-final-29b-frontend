@@ -4,11 +4,14 @@ import { Calendar } from 'react-native-calendars';
 
 const FormCalendar = ({ label, minDate, maxDate, value, onSelect }) =>
 {
+    const [selectedDates, setSelectedDates] = useState(value);
     const onDaySelect = (day) =>
     {
         const selectedDay = day.dateString;
         let selected = value[selectedDay]?.selected ? false : true;
-        onSelect({ ...value, ...{ [selectedDay]: { selected, selectedColor: '#6C62FF' } } });
+        const updatedDates = { ...selectedDates, ...{ [selectedDay]: { selected, selectedColor: '#6C62FF' } } };
+        setSelectedDates(updatedDates);
+        onSelect(updatedDates);
     };
 
     return (
@@ -18,7 +21,7 @@ const FormCalendar = ({ label, minDate, maxDate, value, onSelect }) =>
                 minDate={minDate}
                 maxDate={maxDate}
                 onDayPress={onDaySelect}
-                markedDates={value}
+                markedDates={selectedDates}
             />
         </View>
     );

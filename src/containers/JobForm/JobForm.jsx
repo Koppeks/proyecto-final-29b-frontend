@@ -3,7 +3,7 @@ import moment from "moment"
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import { ScrollView, Text, View } from "react-native"
-import { FieldArray, Formik } from "formik"
+import { Formik } from "formik"
 import { jobFormSchema } from "../../schemas/jobFormSchema"
 import FormInput from "../../components/FormInput/FormInput"
 import FormCalendar from "../../components/FormCalendar/FormCalendar"
@@ -12,7 +12,6 @@ import SelectDropdown from "react-native-select-dropdown";
 import { firebase } from "../../../config";
 import { useDispatch, useSelector } from "react-redux"
 import { getoccupation } from "../../redux/actions/index"
-import SpecialitiesDynamicForm from './SpecialitiesDynamicForm'
 import tw from "twrnc";
 import JobImageUpload from "./JobImageUpload"
 import { postJob } from "../../redux/actions/index"
@@ -33,8 +32,7 @@ const JobForm = () =>
             return await ref.put(blob).then(snapshot => snapshot.ref.getDownloadURL());
         } catch (error)
         {
-            console.log(error);
-            return null;
+            throw error;
         }
     };
 
@@ -52,20 +50,22 @@ const JobForm = () =>
         occupation: '',
         generalDescription: '',
         availableDays: {},
-        images: null,
-        specialities: [
-            { title: '', description: '', cost: '' }
-        ]
+        images: [],
+        title: '',
+        pricing: ''
     };
 
     const confirmSubmit = async (values, { resetForm }) =>
     {
-        const imageRemoteUri = await uploadImage(values.images);
+        const images = await Promise
+            .all(values.images.map(async image => await uploadImage(image)))
+            .catch(err => console.log(err));
+
         const availableDays = Object.keys(values.availableDays)
             .filter(date => values.availableDays[date].selected === true)
             .map(date => moment(date, calendarDateFormat).format(dateFormat));
 
-        const data = { ...values, availableDays, images: [imageRemoteUri] };
+        const data = { ...values, availableDays, images };
         console.log(data);
 
         dispatch(postJob(data));
@@ -86,19 +86,11 @@ const JobForm = () =>
             >
                 {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue, isSubmitting }) =>
                 {
-                    const { email, occupation, generalDescription, availableDays, images } = values
+                    const { occupation, generalDescription, availableDays, images, title, pricing } = values
 
                     return (
                         <>
-                            <FormInput
-                                value={email}
-                                error={touched.email && errors.email}
-                                placeholder="introduce tu correo electronico"
-                                label="E-mail:"
-                                onChangeText={handleChange('email')}
-                                onBlur={handleBlur("email")}
 
-                            />
                             <View style={tw`flex-row`}>
 
                                 <Text style={tw`text-base mr-1 ml-2`}>Ocupación:</Text>
@@ -116,6 +108,14 @@ const JobForm = () =>
                                 />
                             </View>
                             <FormInput
+                                value={title}
+                                error={touched.title && errors.title}
+                                placeholder="Resumen de especialidad"
+                                label="Título:"
+                                onChangeText={handleChange('title')}
+                                onBlur={handleBlur('title')}
+                            />
+                            <FormInput
                                 value={generalDescription}
                                 error={touched.generalDescription && errors.generalDescription}
                                 placeholder="Comenta tu experiencia en el rubro"
@@ -128,20 +128,26 @@ const JobForm = () =>
                                 label="Dias disponibles"
                                 value={availableDays}
                                 minDate={moment().add(1, 'days').format(calendarDateFormat)}
-                                maxDate={moment().add(30, 'days').format(calendarDateFormat)}
+                                maxDate={moment().add(7, 'days').format(calendarDateFormat)}
                                 onSelect={selectedDates => setFieldValue('availableDays', selectedDates)}
+                            />
+
+                            <FormInput
+
+                                value={pricing}
+                                error={touched.pricing && errors.pricing}
+                                placeholder="precio"
+                                label="costo/h:"
+                                onChangeText={handleChange('pricing')}
+                                onBlur={handleBlur('pricing')}
                             />
 
                             <JobImageUpload
                                 label='Imagen:'
                                 value={images}
-                                onSelect={selectedImage => setFieldValue('images', selectedImage)}
+                                onSelect={images => setFieldValue('images', images)}
                             />
 
-                            <FieldArray
-                                name="specialities"
-                                component={SpecialitiesDynamicForm}
-                            />
 
                             <FormSubmitButton error={errors} submitting={isSubmitting} onPress={handleSubmit} title="Enviar" />
 

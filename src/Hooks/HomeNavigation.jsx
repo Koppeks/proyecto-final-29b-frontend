@@ -14,6 +14,7 @@ import SeeSpecialties from "../screen/SeeSpecialties/SeeSpecialties"
 import { UserDetails } from "../screen/UserDetail/UserDetails";
 import Favs from "../screen/Favs/Favs";
 import Profile from '../screen/Profile/Profile'
+import SpecialDetail from "../screen/SpecialDetail/specialDetail"
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +38,7 @@ const HomeNavigation = ({ navigation }) =>
       <Stack.Screen name="Filtros" component={Filtros} />
       <Stack.Screen name="UserDetails" component={UserDetails} />
       <Stack.Screen name="SeeSpecialties" component={SeeSpecialties} options={{ title: 'Propuestas' }}/>
+      <Stack.Screen name="SpecialDetail" component={SpecialDetail} />
       <Stack.Screen name="Favs" component={Favs} />
       <Stack.Screen
         name="Home Cards Professional"
