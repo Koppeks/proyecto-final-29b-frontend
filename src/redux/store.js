@@ -18,6 +18,7 @@ import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
   Aca se ubican los estados globales, donde les damos acceso a todos los componentes que esten por debajo del store
   por ejemplo: dentro del reducer se ubicarian los estados de "workers", "works", "popularWorkers", etc ...
 */
+
 const persistConfig={
   key:'root',
   storage:AsyncStorage,
@@ -33,7 +34,7 @@ const rootReducer= combineReducers({
   shopList:shopList
 })
 
-const persistReducers=persistReducer(persistConfig, rootReducer )
+const persistReducers=persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
   reducer: persistReducers,
