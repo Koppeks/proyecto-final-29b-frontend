@@ -12,7 +12,6 @@ import SelectDropdown from "react-native-select-dropdown";
 import { firebase } from "../../../config";
 import { useDispatch, useSelector } from "react-redux"
 import { getoccupation } from "../../redux/actions/index"
-import SpecialitiesDynamicForm from './SpecialitiesDynamicForm'
 import tw from "twrnc";
 import JobImageUpload from "./JobImageUpload"
 import { postJob } from "../../redux/actions/index"
@@ -33,8 +32,7 @@ const JobForm = () =>
             return await ref.put(blob).then(snapshot => snapshot.ref.getDownloadURL());
         } catch (error)
         {
-            console.log(error);
-            return null;
+            throw error;
         }
     };
 
@@ -52,19 +50,22 @@ const JobForm = () =>
         occupation: '',
         generalDescription: '',
         availableDays: {},
-        images: null,
+        images: [],
         title: '',
         pricing: ''
     };
 
     const confirmSubmit = async (values, { resetForm }) =>
     {
-        const imageRemoteUri = await uploadImage(values.images);
+        const images = await Promise
+            .all(values.images.map(async image => await uploadImage(image)))
+            .catch(err => console.log(err));
+
         const availableDays = Object.keys(values.availableDays)
             .filter(date => values.availableDays[date].selected === true)
             .map(date => moment(date, calendarDateFormat).format(dateFormat));
 
-        const data = { ...values, availableDays, images: [imageRemoteUri] };
+        const data = { ...values, availableDays, images };
         console.log(data);
 
         dispatch(postJob(data));
@@ -144,7 +145,7 @@ const JobForm = () =>
                             <JobImageUpload
                                 label='Imagen:'
                                 value={images}
-                                onSelect={selectedImage => setFieldValue('images', selectedImage)}
+                                onSelect={images => setFieldValue('images', images)}
                             />
 
 

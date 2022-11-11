@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, Button, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import * as ImagePicker from "expo-image-picker";
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import tw from "twrnc";
@@ -7,9 +7,11 @@ import tw from "twrnc";
 const JobImageUpload = ({ label, value, onSelect }) =>
 {
     const { showActionSheetWithOptions } = useActionSheet();
+    const [images, setImages] = useState(value);
 
-    const displayMenu = () =>
+    const displayMenu = (index = -1) =>
     {
+        console.log('Menu for index: ' + index);
         const options = ['Escoger imagen', 'Cancelar'];
         const cancelButtonIndex = options.length - 1;
         const cancelButtonTintColor = 'red';
@@ -26,7 +28,20 @@ const JobImageUpload = ({ label, value, onSelect }) =>
                             aspect: [4, 3],
                             quality: 1,
                         });
-                        onSelect(result.uri);
+
+                        if (index === -1) // Agregando una nueva imagen
+                        {
+                            const newImages = [...images, result.uri];
+                            setImages(newImages);
+                            onSelect(newImages);
+                        }
+                        else // Reemplazando una imagen existente
+                        {
+                            const newImages = [...images];
+                            newImages[index] = result.uri;
+                            setImages(newImages);
+                            onSelect(newImages);
+                        }
                         break;
                     case 1: // Cancelar
                         console.log('Salir');
@@ -39,13 +54,23 @@ const JobImageUpload = ({ label, value, onSelect }) =>
     return (
         <View>
             <Text>{label}</Text>
-            {
-                value &&
-                (
-                    <Image source={{ uri: value }} style={tw`w-20 h-20 m-3`} />
-                )
-            }
-            <Button title={value ? 'Cambiar Imagen' : 'Seleccionar Imagen'} onPress={displayMenu} />
+            <View style={tw`flex flex-row`}>
+                {
+                    images.map((image, index) =>
+                        <TouchableOpacity onPress={() => displayMenu(index)} key={index}>
+                            <Image source={{ uri: image }} style={tw`w-20 h-20 m-3`} />
+                        </TouchableOpacity>
+                    )
+                }
+                {
+                    images.length < 3 &&
+                    <TouchableOpacity style={tw`flex flex-row justify-center`} onPress={() => displayMenu(-1)} key={images.length}>
+                        <View style={tw`flex flex-col justify-center`}>
+                            <Text style={tw` border-2 border-sky-600 text-sky-600  text-center font-bold text-2xl w-20 h-20 `}>+</Text>
+                        </View>
+                    </TouchableOpacity>
+                }
+            </View>
         </View>
     )
 }
