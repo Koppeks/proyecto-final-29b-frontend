@@ -22,9 +22,9 @@ const dateFormat = 'DD-MM-YYYY';
 
 const JobForm = () =>
 {
-    const uploadImage = async (image) =>
+    const uploadImage = async (picture) =>
     {
-        const response = await fetch(image);
+        const response = await fetch(picture);
         const blob = await response.blob();
         try
         {
@@ -46,26 +46,26 @@ const JobForm = () =>
     const { Ocupacion } = useSelector((state) => state.Ocupacion);
 
     const jobUserInfo = {
-        email: '',
-        occupation: '',
-        generalDescription: '',
+        categoryId: '',
+        description: '',
         availableDays: {},
-        images: [],
-        title: '',
+        pictures: [],
+        name: '',
         pricing: ''
     };
 
     const confirmSubmit = async (values, { resetForm }) =>
     {
-        const images = await Promise
-            .all(values.images.map(async image => await uploadImage(image)))
+        const pictures = await Promise
+            .all(values.pictures.map(async picture => await uploadImage(picture)))
             .catch(err => console.log(err));
 
         const availableDays = Object.keys(values.availableDays)
             .filter(date => values.availableDays[date].selected === true)
             .map(date => moment(date, calendarDateFormat).format(dateFormat));
 
-        const data = { ...values, availableDays, images };
+        // El userId debe venir del usuario logueado, ahora esta hardcodeado
+        const data = { ...values, pricing: Number(values.pricing), availableDays, pictures, userId: 3 };
         console.log(data);
 
         dispatch(postJob(data));
@@ -86,7 +86,7 @@ const JobForm = () =>
             >
                 {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue, isSubmitting }) =>
                 {
-                    const { occupation, generalDescription, availableDays, images, title, pricing } = values
+                    const { description, availableDays, pictures, name, pricing } = values
 
                     return (
                         <>
@@ -95,33 +95,32 @@ const JobForm = () =>
 
                                 <Text style={tw`text-base mr-1 ml-2`}>Ocupación:</Text>
                                 <SelectDropdown
-                                    name='occupation'
+                                    name='categoryId'
                                     defaultButtonText={'Elegir'}
                                     buttonStyle={tw`bg-white ml-2 w-28 h-7 border-2 border-indigo-300 rounded`}
                                     dropdownStyle={tw`rounded w-34`}
                                     data={Ocupacion}
                                     buttonTextAfterSelection={selectedItem => selectedItem.name}
                                     rowTextForSelection={item => item.name}
-                                    defaultValue={occupation}
-                                    onSelect={selectedItem => setFieldValue('occupation', selectedItem.name)}
-                                    onblur={() => setFieldTouched('occupation', true)}
+                                    onSelect={selectedItem => setFieldValue('categoryId', selectedItem.id)}
+                                    onblur={() => setFieldTouched('categoryId', true)}
                                 />
                             </View>
                             <FormInput
-                                value={title}
-                                error={touched.title && errors.title}
+                                value={name}
+                                error={touched.name && errors.name}
                                 placeholder="Resumen de especialidad"
                                 label="Título:"
-                                onChangeText={handleChange('title')}
-                                onBlur={handleBlur('title')}
+                                onChangeText={handleChange('name')}
+                                onBlur={handleBlur('name')}
                             />
                             <FormInput
-                                value={generalDescription}
-                                error={touched.generalDescription && errors.generalDescription}
+                                value={description}
+                                error={touched.description && errors.description}
                                 placeholder="Comenta tu experiencia en el rubro"
                                 label="Descripcion general:"
-                                onChangeText={handleChange('generalDescription')}
-                                onBlur={handleBlur("generalDescription")}
+                                onChangeText={handleChange('description')}
+                                onBlur={handleBlur("description")}
 
                             />
                             <FormCalendar
@@ -144,8 +143,8 @@ const JobForm = () =>
 
                             <JobImageUpload
                                 label='Imagen:'
-                                value={images}
-                                onSelect={images => setFieldValue('images', images)}
+                                value={pictures}
+                                onSelect={pictures => setFieldValue('pictures', pictures)}
                             />
 
 
