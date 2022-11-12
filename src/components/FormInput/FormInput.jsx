@@ -7,7 +7,7 @@ const FormInput = props =>{
 
 
   return(
-      <View style={tw`mt-3 rounded-t-lg`}>
+      <View style={tw`mt-3 rounded-t-lg w-full`}>
         <View style={tw`flex-row w-full items-center justify-between`}>
             <Text style={tw`ml-2 mb-1 mt-1 text-sm font-medium text-gray-900`}>{label}</Text>
             {error ? (

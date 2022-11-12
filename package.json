@@ -29,6 +29,7 @@
     "expo-image-picker": "^13.3.1",
     "expo-media-library": "^14.2.0",
     "expo-status-bar": "~1.4.0",
+    "expo-updates": "~0.14.7",
     "firebase": "^9.13.0",
     "formik": "^2.2.9",
     "moment": "^2.29.4",
@@ -36,6 +37,7 @@
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-native": "0.69.6",
+    "react-native-awesome-alerts": "^2.0.0",
     "react-native-calendars": "^1.1291.0",
     "react-native-dotenv": "^3.3.1",
     "react-native-elements": "^3.4.2",
@@ -56,8 +58,7 @@
     "thunk": "^0.0.1",
     "twrnc": "^3.4.0",
     "uuid": "^9.0.0",
-    "yup": "^0.32.11",
-    "expo-updates": "~0.14.6"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6"
