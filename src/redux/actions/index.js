@@ -41,8 +41,9 @@ export const getProName = (name) => async (dispatch) =>
 };
 
 //post de profesionales
-export const postPro = (data) => async () =>
+export const registerUser = (data) => async () =>
 {
+  console.log(data)
   await axios({
     method: "POST",
     url: `https://proyecto-final-29b-backend-production.up.railway.app/user?apikey=${apikey}`,
