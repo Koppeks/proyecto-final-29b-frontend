@@ -5,7 +5,7 @@ import Favs from '../../screen/Favs/Favs';
 import Message from '../../screen/Message/Message';
 import SignUp from '../../screen/SignUp/SignUp';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
-import HomeNavigation from '../../Hooks/HomeNavigation';
+import DrawerAdminNavigator from '../../Hooks/DrawerAdminNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,7 +23,7 @@ const TabBar = () =>
 
             <Tab.Screen
                 name="Inicio"
-                component={HomeNavigation}
+                component={DrawerAdminNavigator}
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <Ionicons name="home-sharp" size={size} color={color} />
