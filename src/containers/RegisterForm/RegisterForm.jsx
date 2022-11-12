@@ -5,9 +5,10 @@ import { basicSchema } from "../../schemas";
 import FormInput from "../../components/FormInput/FormInput";
 import FormSubmitButton from "../../components/button/FormSubmitButton";
 import { useDispatch } from "react-redux";
-import { postPro } from "../../redux/actions/index";
+import { registerUser } from "../../redux/actions/index";
 import tw from "twrnc";
 import DatePicker from "../../components/DatePicker/DatePicker";
+import alertSendForm from "../../components/Alerts/alertSendForm";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,17 @@ const RegisterForm = () => {
     image: "",
     address: "",
   };
+
+  const resolveAlert = (data, formikActions) => {
+    if(typeof data !== Boolean){
+      dispatch(registerUser(data));
+      formikActions.setSubmitting(false);
+      formikActions.resetForm();
+      console.log("Enviado")
+    }else{
+      console.log("cancelado")
+    }
+  }
 
   return (
     <ScrollView style={tw`mx-3 mt-10 mb-10 p-3 bg-white shadow-md rounded-lg`}>
@@ -43,13 +55,13 @@ const RegisterForm = () => {
             image: values.image,
             address: values.address,
           };
+          const titleInfo = "Envio de registro"
+          const infoText = "Esta seguro de que escribiste tus datos correctamente?"
+          const btnTextAccept = "Si, quiero registrame"
+          const btnTextDecline = "No"
 
-          dispatch(postPro(data));
-          console.log(data);
-          setTimeout(() => {
-            formikActions.resetForm();
-            formikActions.setSubmitting(false);
-          }, 3000);
+          alertSendForm({titleInfo, infoText, btnTextAccept, btnTextDecline, data, resolveAlert, formikActions})
+
         }}
       >
         {({
