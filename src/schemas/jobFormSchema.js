@@ -1,11 +1,11 @@
 import * as yup from 'yup';
 
 export const jobFormSchema = yup.object().shape({
-    title: yup.string("El campo solo debe contener letras")
+    name: yup.string("El campo solo debe contener letras")
         .min(5, "el título es demasiado corto")
         .max(25, "el título es demasiado largo")
         .required("Campo requerido"),
-    generalDescription: yup.string("El campo solo debe contener letras")
+    description: yup.string("El campo solo debe contener letras")
         .min(10, "La descripción es demasiado corta")
         .max(70, "La descripción es demasiado larga")
         .required("Campo requerido"),
