@@ -1,5 +1,5 @@
 import { Text, View,Image, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from '../../images/logo.png'
 import tw from 'twrnc'
 import correo from '../../images/correo.png'
@@ -10,12 +10,29 @@ import useViewModel from './ViewModel'
 import { ScrollView } from 'react-native-gesture-handler'
 import { logIn } from '../../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
+import { errorRemove } from '../../redux/reducers/authSlice'
+import { Alert } from 'react-native'
 
 export default function Login({navigation}) {
     const dispatch= useDispatch()
 
     const { email,password,onChange }=useViewModel();
-    const {auth}= useSelector
+
+    const auth =useSelector((state)=>state.auth)
+
+function remove (){
+   return dispatch(errorRemove())
+}
+
+    useEffect(() => {
+      if( auth.errorAuth?.length === 0 ) return;
+
+      Alert.alert( 'Login incorrecto', auth.errorAuth,[
+         { text: 'Ok',
+          onPress: remove}
+      ]);
+
+  }, [ auth.errorAuth])
 
   return (
     <ScrollView >
@@ -57,7 +74,7 @@ export default function Login({navigation}) {
              text="Entrar"
              onPress={ () =>{
                  
-                 console.log("first", {email,password}) 
+                //  console.log("first", {email,password}) 
                 dispatch( logIn({email,password})) 
              }
             }
