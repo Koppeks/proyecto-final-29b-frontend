@@ -62,7 +62,7 @@ export const getCategories = () => async (dispatch) =>
 export const getoccupation = () => async (dispatch) =>
 {
   axios
-    .get(`https://proyecto-final-29b-backend-production.up.railway.app/occupation?apikey=${apikey}`)
+    .get(`https://proyecto-final-29b-backend-production.up.railway.app/category?apikey=${apikey}`)
     .then((res) => dispatch(getOcupacion(res.data)))
     .catch((e) => console.log(e));
 };

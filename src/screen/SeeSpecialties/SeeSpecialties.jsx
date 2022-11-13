@@ -32,13 +32,13 @@ const SeeSpecialties = ({navigation}) => {
 
     dispatch(bySpecials(e));
   };
-  console.log(SpecialFilt)
+  console.log(Special)
 
   return (
     <ScrollView>
 
 <ScrollView  horizontal={true} showsHorizontalScrollIndicator={false} >
-      {Ocupacion.map( item => {return(
+      {Ocupacion && Ocupacion.map( item => {return(
         
             <View key={item.id}
               style={tw`flex justify-items-center m-2 mt-4 mb-4 bg-gray-500`}>
@@ -62,7 +62,7 @@ const SeeSpecialties = ({navigation}) => {
       </ScrollView>
         
     <ScrollView style={tw`h-screen`}>
-      { filt < 0 ? (Special.map( e => 
+      { filt < 0 && typeof  Special !== "string"  ? (Special.map( e => 
         <View style={tw`bg-gray-200 m-2`} key={e.id}>
 
           <TouchableOpacity onPress={() => navigation.navigate("SpecialDetail")}> 
