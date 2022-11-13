@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, Text } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { Formik } from "formik";
 import { basicSchema } from "../../schemas";
 import FormInput from "../../components/FormInput/FormInput";
@@ -8,10 +8,13 @@ import { useDispatch } from "react-redux";
 import { registerUser } from "../../redux/actions/index";
 import tw from "twrnc";
 import DatePicker from "../../components/DatePicker/DatePicker";
-import alertSendForm from "../../components/Alerts/alertSendForm";
+import AwesomeAlert from 'react-native-awesome-alerts';
+import { useState } from "react";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+
+  const [showAlert, setShowAlert] = useState(false)
 
   const userInfo = {
     fullName: "",
@@ -25,15 +28,11 @@ const RegisterForm = () => {
     address: "",
   };
 
-  const resolveAlert = (data, formikActions) => {
-    if(typeof data !== Boolean){
-      dispatch(registerUser(data));
-      formikActions.setSubmitting(false);
-      formikActions.resetForm();
-      console.log("Enviado")
-    }else{
-      console.log("cancelado")
-    }
+  const handleConfirm = (handleSubmit) => {
+    setShowAlert(false)
+    setTimeout(()=> {
+      handleSubmit()
+    }, 600)
   }
 
   return (
@@ -55,23 +54,15 @@ const RegisterForm = () => {
             image: values.image,
             address: values.address,
           };
-          const titleInfo = "Envio de registro"
-          const infoText = "Esta seguro de que escribiste tus datos correctamente?"
-          const btnTextAccept = "Si, quiero registrame"
-          const btnTextDecline = "No"
 
-          alertSendForm({titleInfo, infoText, btnTextAccept, btnTextDecline, data, resolveAlert, formikActions})
+          dispatch(registerUser(data));
+          formikActions.setSubmitting(false);
+          formikActions.resetForm();
 
         }}
       >
         {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
+          values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting,
         }) => {
           const {
             fullName,
@@ -86,7 +77,7 @@ const RegisterForm = () => {
           } = values;
 
           return (
-            <>
+            <View style={tw`flex justify-center items-center w-screen`}>
               <FormInput
                 value={fullName}
                 error={touched.fullName && errors.fullName}
@@ -160,10 +151,27 @@ const RegisterForm = () => {
               <FormSubmitButton
                 error={errors}
                 submitting={isSubmitting}
-                onPress={handleSubmit}
-                title="Enviar"
+                onPress={() => setShowAlert(true)}
+                title="Registrarme"
               />
-            </>
+              <AwesomeAlert
+                show={showAlert}
+                showProgress={false}
+                animatedValue= {0}
+                titleStyle={tw`font-bold`}
+                title="Confirma tus datos"
+                message="¿Estás seguro de que tus datos están correctos?"
+                cancelText="No"
+                confirmText="Si, quiero registrarme"
+                confirmButtonColor="#6C77F6"
+                closeOnTouchOutside={true}
+                closeOnHardwareBackPress={false}
+                showCancelButton={true}
+                showConfirmButton={true}
+                onCancelPressed={() => setShowAlert(false)}
+                onConfirmPressed={() => handleConfirm(handleSubmit)}
+              />
+            </View>
           );
         }}
       </Formik>
