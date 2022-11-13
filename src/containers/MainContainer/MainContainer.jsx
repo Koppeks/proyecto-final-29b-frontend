@@ -54,16 +54,15 @@ function AuthenticatedNavigator() {
 }
 
 export default function MainContainer() {
-
-    const { auth } = useSelector((state) => state.auth);
-
-    console.log(auth)
+    const {auth}  = useSelector((state) => state.auth);
+    
+    // console.log(auth)
     
   return (
 
     <Stack.Navigator>
         {
-        auth.jwt? (
+        auth.length? (
             <Stack.Screen
             name={"Authenticated"}
             component={AuthenticatedNavigator}
@@ -81,11 +80,7 @@ export default function MainContainer() {
         />
       
   )
-        } 
-
-
-
-       
+        }     
          </Stack.Navigator>
   )
 }

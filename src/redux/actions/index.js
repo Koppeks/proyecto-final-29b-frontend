@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setAuth } from "../reducers/authSlice";
+import { setAuth, setErrorAuth } from "../reducers/authSlice";
 import { allCategories } from "../reducers/categoriesSlice";
 import
 {
@@ -8,7 +8,9 @@ import
   searchProfessionalName,
 } from "../reducers/profetionalSlice";
 import {getOcupacion} from '../reducers/ocupacionSlice'
-import {getSpecials} from '../reducers/specialSlice'
+import {getSpecials} from '../reducers/specialSlice';
+import {informationProfile} from '../reducers/informationProfileSlice'
+
 
 const apikey = "1f5dbe34-3f44-4ec9-9d4b-078362fd7eb3";
 
@@ -41,8 +43,9 @@ export const getProName = (name) => async (dispatch) =>
 };
 
 //post de profesionales
-export const postPro = (data) => async () =>
+export const registerUser = (data) => async () =>
 {
+  console.log(data)
   await axios({
     method: "POST",
     url: `https://proyecto-final-29b-backend-production.up.railway.app/user?apikey=${apikey}`,
@@ -88,18 +91,55 @@ export const postJob = (data) => async () =>
 
 export const logIn = (data) => async (dispatch) =>
 {
-  console.log(data)
+  // console.log(data)
+  try {
+    
+    const result= await axios({
+      method: "POST",
+      url: `https://proyecto-final-29b-backend-production.up.railway.app/user/token?apikey=${apikey}`,
+      data: data,
+    });
+    dispatch(setAuth(result?.data))
 
-  const result = {
-    data: {
-      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-    }
+  } catch (error) {
+    
+    const errorAuth= error.response.data.message
+// console.log("error12",error2)
+    dispatch(setErrorAuth(errorAuth))
   }
-  // const result= await axios({
-  //   method: "POST",
-  //   url: "https://proyecto-final-29b-backend-production.up.railway.app/logIn",
-  //   data: data,
-  // });
-  dispatch(setAuth(result?.data))
+
 };
+
+
+export const information = (token) => async (dispatch) =>
+{
+  try {
+    
+    const result = {
+      data: {
+        id: 102,
+        fullName: "andres",
+        phoneNumber: "3185455522",
+        email: "andresfelipemelo18@gmail.com",
+        occupation: null,
+        address: "calle",
+        image: "https://i0.wp.com/eltallerdehector.com/wp-content/uploads/2022/08/antonio-encanto-png-background.png?fit=800%2C800&ssl=1"
+      }
+    }
+    // axios
+    //   .get(`https://proyecto-final-29b-backend-production.up.railway.app/specialization?apikey=${apikey} `,
+    //   {
+    //     headers:{
+    //       authorization: {"Authorization" : `Bearer ${token}`}
+    //     }
+    //   }
+    //   )
+        dispatch(informationProfile(result.data))
+  } catch (error) { 
+     console.log(error);
+  }
+
+
+};
+
 

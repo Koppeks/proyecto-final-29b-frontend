@@ -10,17 +10,17 @@ const FormSubmitButton = props =>
       {
         Object.keys(error).length > 0
           ?
-          <TouchableOpacity disabled={true} onPress={submitting ? null : onPress} style={tw`flex items-center w-full pt-7`}>
-            <Text style={tw`text-center text-base text-white bg-gray-400 rounded-lg w-40 p-4`}>{title}</Text>
+          <TouchableOpacity disabled={true} onPress={submitting ? null : onPress} style={tw`flex items-center justify-center bg-gray-400 rounded-lg w-60 m-3`}>
+            <Text style={tw`text-center text-base text-white p-4`}>{title}</Text>
           </TouchableOpacity>
           :
           submitting ?
-            <TouchableOpacity disabled={true} style={tw`flex items-center w-full pt-7`}>
-              <Text style={tw`text-center text-base text-white bg-gray-400 rounded-lg w-40 p-4`}>{title} ...</Text>
+            <TouchableOpacity disabled={true} style={tw`flex items-center justify-center bg-gray-400 rounded-lg w-60 m-3`}>
+              <Text style={tw`text-center text-base text-white p-4`}>{title} ...</Text>
             </TouchableOpacity>
             :
-            <TouchableOpacity onPress={onPress} style={tw`flex items-center w-full pt-7`}>
-              <Text style={tw`text-center text-base text-white bg-blue-500 rounded-lg w-40 p-4`}>{title}</Text>
+            <TouchableOpacity onPress={onPress} style={tw`flex items-center justify-center bg-blue-500 rounded-lg w-60 m-3`}>
+              <Text style={tw`text-center text-base text-white p-4`}>{title}</Text>
             </TouchableOpacity>
       }
     </>

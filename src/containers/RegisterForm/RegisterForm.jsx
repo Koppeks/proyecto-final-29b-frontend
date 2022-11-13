@@ -1,16 +1,20 @@
 import React from "react";
-import { ScrollView, Text } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { Formik } from "formik";
 import { basicSchema } from "../../schemas";
 import FormInput from "../../components/FormInput/FormInput";
 import FormSubmitButton from "../../components/button/FormSubmitButton";
 import { useDispatch } from "react-redux";
-import { postPro } from "../../redux/actions/index";
+import { registerUser } from "../../redux/actions/index";
 import tw from "twrnc";
 import DatePicker from "../../components/DatePicker/DatePicker";
+import AwesomeAlert from 'react-native-awesome-alerts';
+import { useState } from "react";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+
+  const [showAlert, setShowAlert] = useState(false)
 
   const userInfo = {
     fullName: "",
@@ -23,6 +27,13 @@ const RegisterForm = () => {
     image: "",
     address: "",
   };
+
+  const handleConfirm = (handleSubmit) => {
+    setShowAlert(false)
+    setTimeout(()=> {
+      handleSubmit()
+    }, 600)
+  }
 
   return (
     <ScrollView style={tw`mx-3 mt-10 mb-10 p-3 bg-white shadow-md rounded-lg`}>
@@ -44,22 +55,14 @@ const RegisterForm = () => {
             address: values.address,
           };
 
-          dispatch(postPro(data));
-          console.log(data);
-          setTimeout(() => {
-            formikActions.resetForm();
-            formikActions.setSubmitting(false);
-          }, 3000);
+          dispatch(registerUser(data));
+          formikActions.setSubmitting(false);
+          formikActions.resetForm();
+
         }}
       >
         {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
+          values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting,
         }) => {
           const {
             fullName,
@@ -74,7 +77,7 @@ const RegisterForm = () => {
           } = values;
 
           return (
-            <>
+            <View style={tw`flex justify-center items-center w-screen`}>
               <FormInput
                 value={fullName}
                 error={touched.fullName && errors.fullName}
@@ -148,10 +151,27 @@ const RegisterForm = () => {
               <FormSubmitButton
                 error={errors}
                 submitting={isSubmitting}
-                onPress={handleSubmit}
-                title="Enviar"
+                onPress={() => setShowAlert(true)}
+                title="Registrarme"
               />
-            </>
+              <AwesomeAlert
+                show={showAlert}
+                showProgress={false}
+                animatedValue= {0}
+                titleStyle={tw`font-bold`}
+                title="Confirma tus datos"
+                message="¿Estás seguro de que tus datos están correctos?"
+                cancelText="No"
+                confirmText="Si, quiero registrarme"
+                confirmButtonColor="#6C77F6"
+                closeOnTouchOutside={true}
+                closeOnHardwareBackPress={false}
+                showCancelButton={true}
+                showConfirmButton={true}
+                onCancelPressed={() => setShowAlert(false)}
+                onConfirmPressed={() => handleConfirm(handleSubmit)}
+              />
+            </View>
           );
         }}
       </Formik>
