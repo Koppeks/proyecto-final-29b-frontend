@@ -57,7 +57,7 @@
     "twrnc": "^3.4.0",
     "uuid": "^9.0.0",
     "yup": "^0.32.11",
-    "expo-updates": "~0.14.6"
+    "expo-updates": "~0.14.7"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6"
