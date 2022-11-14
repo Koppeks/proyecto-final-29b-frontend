@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector,useDispatch} from "react-redux";
 import Usuario from '../../images/usuario.png';
 import { getProId } from "../../redux/actions";
+import JobList from '../../components/JobsList/JobList';
+import RequestList from '../../components/RequestList/RequestList';
 
 
 const Profile = () =>
@@ -12,7 +14,7 @@ const Profile = () =>
     const { professionalId } = useSelector((state) => state.professional);
 
     useEffect(() => {
-        dispatch(getProId(3));
+        dispatch(getProId(5));
       
       }, [dispatch]);
 
@@ -20,33 +22,31 @@ const Profile = () =>
 
     return (
 
+       <ScrollView >
+         
+            <View style={tw`flex items-center mx-2 my-1 p-0`}>
+                 <Image style={tw` rounded-full w-50 h-50 border-2 border-indigo-500/100`} source={ professionalId.image} />
+                 <Text style={tw`font-bold `}>{professionalId.fullName}</Text>
+                 <View style={tw `flex-row `} >
+                 <Text style={tw `font-bold `} > Correo Electronico: </Text>
+                 <Text style={tw ` `}>{professionalId.email}</Text>
+                </View>
+                <View style={tw `flex-row `} >
+                 <Text style={tw `font-bold `} > Telefono: </Text>
+                 <Text style={tw ``}>{professionalId.phoneNumber}</Text>
+                </View>
+               <View style={tw `flex-row `} >
+                 <Text style={tw `font-bold `} > Direccion: </Text>
+                 <Text style={tw ` `}>{professionalId.address}</Text>
+                </View> 
+             </View>  
+ 
 
-        <ScrollView >
-
-
-
-            <View>   
-            <View style={tw`flex items-center mx-2 my-1`}>
-          <Image style={tw` rounded-full w-50 h-50`} source={ professionalId.image} />
-      
-          <Text style={tw`font-bold mt-2`}>{professionalId.fullName}</Text>
-          <Text> Correo Electronico: {professionalId.email}</Text>
-          <Text> Telefono: {professionalId.phoneNumber}</Text>
-          <Text> </Text>
-        </View>
-
-        <View>
-
-            
-        </View>
-
-
+        <JobList/>
+          
+        <RequestList/>
         
-            </View>
-           
-
-            
-
+         
         </ScrollView>
 
 
