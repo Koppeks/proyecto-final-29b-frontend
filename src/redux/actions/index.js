@@ -100,21 +100,19 @@ export const postJob = (data) => async () =>
 export const logIn = (data) => async (dispatch) =>
 {
   // console.log(data)
-  try
-  {
-
-    const result = await axios({
+  try {
+    
+    const result= await axios({
       method: "POST",
       url: `https://proyecto-final-29b-backend-production.up.railway.app/user/token?apikey=${apikey}`,
       data: data,
     });
     dispatch(setAuth(result?.data))
 
-  } catch (error)
-  {
-
-    const errorAuth = error.response.data.message
-    // console.log("error12",error2)
+  } catch (error) {
+    
+    const errorAuth= error.response.data.message
+// console.log("error12",error2)
     dispatch(setErrorAuth(errorAuth))
   }
 
@@ -123,9 +121,8 @@ export const logIn = (data) => async (dispatch) =>
 
 export const information = (token) => async (dispatch) =>
 {
-  try
-  {
-
+  try {
+    
     const result = {
       data: {
         id: 102,
@@ -137,18 +134,9 @@ export const information = (token) => async (dispatch) =>
         image: "https://i0.wp.com/eltallerdehector.com/wp-content/uploads/2022/08/antonio-encanto-png-background.png?fit=800%2C800&ssl=1"
       }
     }
-    // axios
-    //   .get(`https://proyecto-final-29b-backend-production.up.railway.app/specialization?apikey=${apikey} `,
-    //   {
-    //     headers:{
-    //       authorization: {"Authorization" : `Bearer ${token}`}
-    //     }
-    //   }
-    //   )
-    dispatch(informationProfile(result.data))
-  } catch (error)
-  {
-    console.log(error);
+        dispatch(informationProfile(result.data))
+  } catch (error) { 
+     console.log(error);
   }
 
 
