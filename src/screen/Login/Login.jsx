@@ -12,27 +12,38 @@ import { logIn } from '../../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { errorRemove } from '../../redux/reducers/authSlice'
 import { Alert } from 'react-native'
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 export default function Login({navigation}) {
     const dispatch= useDispatch()
 
     const { email,password,onChange }=useViewModel();
 
-    const auth =useSelector((state)=>state.auth)
+    const {errorAuth} =useSelector((state)=>state.errorAuth)
 
-function remove (){
-   return dispatch(errorRemove())
-}
+console.log('errorAuthState',errorAuth)
 
     useEffect(() => {
-      if( auth.errorAuth?.length === 0 ) return;
+      if( errorAuth?.length === 0 ) return;
+else{
+  // <AwesomeAlert 
+  // show= {true}
+  // title='Login incorrecto'
+  // message= {errorAuth}
+  // onConfirmPressed={() => {
+  //   dispatch(errorRemove());
+  // }}
+  // />
+  Alert.alert( 'Login incorrecto', errorAuth,[
+     { text: 'Ok',
+      onPress: ()=> dispatch(errorRemove())
+    }
+  ]);
 
-      Alert.alert( 'Login incorrecto', auth.errorAuth,[
-         { text: 'Ok',
-          onPress: remove}
-      ]);
+}
 
-  }, [ auth.errorAuth])
+
+  }, [ errorAuth])
 
   return (
     <ScrollView >

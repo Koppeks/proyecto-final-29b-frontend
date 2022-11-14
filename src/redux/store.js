@@ -4,15 +4,16 @@ import categories from "./reducers/categoriesSlice";
 import Ocupacion from "./reducers/ocupacionSlice";
 import Special from './reducers/specialSlice'
 import auth from "./reducers/authSlice"
+import errorAuth from "./reducers/authSlice"
 import shopList from "./reducers/shopList"
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-// import storage from 'redux-persist/lib/storage'
 import { combineReducers} from "@reduxjs/toolkit";
 import {persistReducer} from 'redux-persist'
 import thunk from 'redux-thunk'
 import {persistStore} from 'redux-persist'
 import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
+import informationToken from "./reducers/informationTokenSlice";
 
 /*
   Aca se ubican los estados globales, donde les damos acceso a todos los componentes que esten por debajo del store
@@ -23,15 +24,19 @@ const persistConfig={
   key:'root',
   storage:AsyncStorage,
   stateReconciler:autoMergeLevel2,
-  whitelist:['auth']
+  whitelist:['auth','informationToken']
 };
 const rootReducer= combineReducers({
   auth:auth,
+  errorAuth:errorAuth,
   categories:categories,
   professional:professional,
   Ocupacion: Ocupacion,
   Special:Special,
-  shopList:shopList
+  shopList:shopList,
+  informationToken:informationToken,
+
+
 })
 
 const persistReducers=persistReducer(persistConfig, rootReducer)

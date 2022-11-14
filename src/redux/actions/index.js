@@ -7,9 +7,9 @@ import
   getProfessionalId,
   searchProfessionalName,
 } from "../reducers/profetionalSlice";
-import {getOcupacion} from '../reducers/ocupacionSlice'
-import {getSpecials} from '../reducers/specialSlice';
-import {informationProfile} from '../reducers/informationProfileSlice'
+import { getOcupacion } from '../reducers/ocupacionSlice'
+import { getSpecials } from '../reducers/specialSlice';
+import { informationProfile } from '../reducers/informationProfileSlice'
 
 
 const apikey = "1f5dbe34-3f44-4ec9-9d4b-078362fd7eb3";
@@ -77,7 +77,15 @@ export const getspecial = () => async (dispatch) =>
     .catch((e) => console.log(e));
 };
 
-
+export const postDispute = (data) => async () =>
+{
+  await axios({
+    method: "POST",
+    url: `https://proyecto-final-29b-backend-production.up.railway.app/dispute?apikey=${apikey}`,
+    data: data,
+  })
+    .catch(e => console.log(e));
+};
 
 export const postJob = (data) => async () =>
 {
@@ -126,14 +134,6 @@ export const information = (token) => async (dispatch) =>
         image: "https://i0.wp.com/eltallerdehector.com/wp-content/uploads/2022/08/antonio-encanto-png-background.png?fit=800%2C800&ssl=1"
       }
     }
-    // axios
-    //   .get(`https://proyecto-final-29b-backend-production.up.railway.app/specialization?apikey=${apikey} `,
-    //   {
-    //     headers:{
-    //       authorization: {"Authorization" : `Bearer ${token}`}
-    //     }
-    //   }
-    //   )
         dispatch(informationProfile(result.data))
   } catch (error) { 
      console.log(error);
