@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import jwt_decode from "jwt-decode"
+import jwt_decode from "jwt-decode";
 
 const informationTokenSlice = createSlice({
   name: "session",
@@ -8,15 +8,12 @@ const informationTokenSlice = createSlice({
   },
   reducers: {
     setAuth: (state, action) => {
-      
-      const informationDecoded= jwt_decode(action.payload) 
-      
- console.log("informacionReducer",informationDecoded)
+      const informationDecoded = jwt_decode(action.payload);
 
-      state.informationToken =informationDecoded;
+      console.log("informacionReducer", informationDecoded);
+
+      state.informationToken = informationDecoded;
     },
-
-
   },
 });
 

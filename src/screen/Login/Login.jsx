@@ -11,7 +11,6 @@ import { ScrollView } from 'react-native-gesture-handler'
 import { logIn } from '../../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { errorRemove } from '../../redux/reducers/authSlice'
-import { Alert } from 'react-native'
 import AwesomeAlert from 'react-native-awesome-alerts';
 
 export default function Login({navigation}) {
@@ -21,28 +20,17 @@ export default function Login({navigation}) {
 
     const {errorAuth} =useSelector((state)=>state.errorAuth)
 
-console.log('errorAuthState',errorAuth)
+    const alert = () => {
+      if(errorAuth?.length>0){
+       return (true) 
+      }else{
+
+        return (false)
+      }
+    };
 
     useEffect(() => {
-      if( errorAuth?.length === 0 ) return;
-else{
-  // <AwesomeAlert 
-  // show= {true}
-  // title='Login incorrecto'
-  // message= {errorAuth}
-  // onConfirmPressed={() => {
-  //   dispatch(errorRemove());
-  // }}
-  // />
-  Alert.alert( 'Login incorrecto', errorAuth,[
-     { text: 'Ok',
-      onPress: ()=> dispatch(errorRemove())
-    }
-  ]);
-
-}
-
-
+      if( errorAuth?.length === 0 ) return
   }, [ errorAuth])
 
   return (
@@ -84,8 +72,7 @@ else{
              <ButtonLogIn 
              text="Entrar"
              onPress={ () =>{
-                 
-                //  console.log("first", {email,password}) 
+                
                 dispatch( logIn({email,password})) 
              }
             }
@@ -100,6 +87,17 @@ else{
                 <TouchableOpacity onPress={ () => navigation.navigate('Registro') }>
                     <Text style={tw`text-lg text-blue-600`}>Registrate</Text>
                 </TouchableOpacity>
+
+           <AwesomeAlert
+     
+        show= {alert()}
+        title='Login incorrecto'
+        message= {errorAuth}
+        showConfirmButton={true}
+        onConfirmPressed={() => {dispatch(errorRemove());}}
+      />
+    
+
 
             </View>
 

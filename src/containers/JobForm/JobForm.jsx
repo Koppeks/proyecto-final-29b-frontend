@@ -23,8 +23,13 @@ const dateFormat = 'DD-MM-YYYY';
 
 const JobForm = () =>
 {
+<<<<<<< HEAD
     const  {informationToken}  = useSelector((state) => state.informationToken);
     const  id= informationToken?.id
+=======
+    const { informationToken } = useSelector((state) => state.informationToken);
+
+>>>>>>> 8d396b3c953c18e98e711eea7efabba123dd95aa
     const uploadImage = async (picture) =>
     {
         const response = await fetch(picture);
@@ -68,7 +73,11 @@ const JobForm = () =>
             .map(date => moment(date, calendarDateFormat).format(dateFormat));
 
         // El userId debe venir del usuario logueado, ahora esta hardcodeado
+<<<<<<< HEAD
         const data = { ...values, pricing: Number(values.pricing), availableDays, pictures, userId: id };
+=======
+        const data = { ...values, pricing: Number(values.pricing), availableDays, pictures, userId: informationToken?.id };
+>>>>>>> 8d396b3c953c18e98e711eea7efabba123dd95aa
         console.log(data);
 
         dispatch(postJob(data));
