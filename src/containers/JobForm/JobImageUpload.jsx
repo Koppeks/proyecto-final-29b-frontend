@@ -11,7 +11,6 @@ const JobImageUpload = ({ label, value, onSelect }) =>
 
     const displayMenu = (index = -1) =>
     {
-        console.log('Menu for index: ' + index);
         const options = ['Escoger imagen', 'Cancelar'];
         const cancelButtonIndex = options.length - 1;
         const cancelButtonTintColor = 'red';
