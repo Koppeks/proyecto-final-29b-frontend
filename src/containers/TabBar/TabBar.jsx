@@ -6,11 +6,15 @@ import DisputForm from '../DisputForm/DisputForm';
 import SignUp from '../../screen/SignUp/SignUp';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import DrawerAdminNavigator from '../../Hooks/DrawerAdminNavigator';
+import { useSelector } from 'react-redux';
+import HomeNavigation from '../../Hooks/HomeNavigation';
 
 const Tab = createBottomTabNavigator();
 
 const TabBar = () =>
 {
+    const { informationToken } = useSelector(state => state.informationToken);
+    const ADMIN = 9;
     return (
 
         <Tab.Navigator
@@ -20,16 +24,27 @@ const TabBar = () =>
                 headerShown: false
             }}
         >
-
-            <Tab.Screen
-                name="Inicio"
-                component={DrawerAdminNavigator}
-                options={{
-                    tabBarIcon: ({ color, size }) => (
-                        <Ionicons name="home-sharp" size={size} color={color} />
-                    )
-                }}
-            />
+            {
+                informationToken?.role === ADMIN ?
+                    <Tab.Screen
+                        name="Inicio"
+                        component={DrawerAdminNavigator}
+                        options={{
+                            tabBarIcon: ({ color, size }) => (
+                                <Ionicons name="home-sharp" size={size} color={color} />
+                            )
+                        }}
+                    /> :
+                    <Tab.Screen
+                        name="Inicio"
+                        component={HomeNavigation}
+                        options={{
+                            tabBarIcon: ({ color, size }) => (
+                                <Ionicons name="home-sharp" size={size} color={color} />
+                            )
+                        }}
+                    />
+            }
             <Tab.Screen
                 name="SignUp"
                 component={SignUp}
