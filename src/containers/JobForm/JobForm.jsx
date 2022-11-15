@@ -20,8 +20,11 @@ import alertPostJob from "../../components/Alerts/alertPostJob";
 const calendarDateFormat = 'YYYY-MM-DD';
 const dateFormat = 'DD-MM-YYYY';
 
+
 const JobForm = () =>
 {
+    const  {informationToken}  = useSelector((state) => state.informationToken);
+    const  id= informationToken?.id
     const uploadImage = async (picture) =>
     {
         const response = await fetch(picture);
@@ -65,7 +68,7 @@ const JobForm = () =>
             .map(date => moment(date, calendarDateFormat).format(dateFormat));
 
         // El userId debe venir del usuario logueado, ahora esta hardcodeado
-        const data = { ...values, pricing: Number(values.pricing), availableDays, pictures, userId: 3 };
+        const data = { ...values, pricing: Number(values.pricing), availableDays, pictures, userId: id };
         console.log(data);
 
         dispatch(postJob(data));

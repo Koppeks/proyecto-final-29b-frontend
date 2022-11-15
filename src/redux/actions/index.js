@@ -8,7 +8,7 @@ import
   searchProfessionalName,
 } from "../reducers/profetionalSlice";
 import { getOcupacion } from '../reducers/ocupacionSlice'
-import { getSpecials } from '../reducers/specialSlice';
+import { getSpecials , SpecialsById } from '../reducers/specialSlice';
 import { informationProfile } from '../reducers/informationProfileSlice'
 
 
@@ -77,6 +77,14 @@ export const getspecial = () => async (dispatch) =>
     .catch((e) => console.log(e));
 };
 
+export const getspecialByID = (id) => async (dispatch) =>
+{
+  axios
+    .get(`https://proyecto-final-29b-backend-production.up.railway.app/specialization/id/${id}?apikey=${apikey} `)
+    .then((res) => dispatch(SpecialsById(res.data)))
+    .catch((e) => console.log(e));
+};
+
 export const postDispute = (data) => async () =>
 {
   await axios({
@@ -112,11 +120,12 @@ export const logIn = (data) => async (dispatch) =>
   } catch (error) {
     
     const errorAuth= error.response.data.message
-// console.log("error12",error2)
+// console.log("error12",error2) /id/:id
     dispatch(setErrorAuth(errorAuth))
   }
 
 };
+
 
 
 export const information = (token) => async (dispatch) =>

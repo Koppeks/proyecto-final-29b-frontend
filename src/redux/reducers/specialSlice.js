@@ -4,7 +4,8 @@ const specialSlice = createSlice({
   name: "allSpecial",
   initialState: {
     Special: [],
-    SpecialFilt:[]
+    SpecialFilt:[],
+    SpecialId:[]
   
   },
   reducers: {
@@ -12,17 +13,21 @@ const specialSlice = createSlice({
       state.Special = action.payload;
     },
     bySpecials: (state, action) => {
- 
+      
       const bySpecial = state.Special.filter((e) =>
-       
       e.occupation.includes(action.payload)
       );
-   
       state.SpecialFilt = [...bySpecial];
     },
+
+    SpecialsById: ( state, action)=>{
+      state.SpecialId = action.payload;
+      console.log(state.SpecialId)
+      
+    }
   
   },
 });
 
-export const {getSpecials, bySpecials} = specialSlice.actions;
+export const {getSpecials, bySpecials,SpecialsById} = specialSlice.actions;
 export default specialSlice.reducer;

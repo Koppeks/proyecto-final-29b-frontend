@@ -9,12 +9,8 @@ export const UserDetails = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const { professionalId } = useSelector((state) => state.professional);
-  const { Special } = useSelector((state) => state.Special);
+
   
-  useEffect(() => {
-    dispatch(getspecial());
-  
-  }, [dispatch]);
 
   return (
     <ScrollView style={tw`flex `}>

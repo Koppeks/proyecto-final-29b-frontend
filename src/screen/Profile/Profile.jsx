@@ -12,13 +12,15 @@ const Profile = () =>
 {   
     const dispatch = useDispatch();
     const { professionalId } = useSelector((state) => state.professional);
-
+    const  {informationToken}  = useSelector((state) => state.informationToken);
+    const  name= informationToken?.fullName
     useEffect(() => {
         dispatch(getProId(5));
       
       }, [dispatch]);
 
     console.log(professionalId)
+    console.log(informationToken.id)
 
     return (
 
@@ -26,7 +28,7 @@ const Profile = () =>
          
             <View style={tw`flex items-center mx-2 my-1 p-0`}>
                  <Image style={tw` rounded-full w-50 h-50 border-2 border-indigo-500/100`} source={ professionalId.image} />
-                 <Text style={tw`font-bold `}>{professionalId.fullName}</Text>
+                 <Text style={tw`font-bold `}>{name}</Text>
                  <View style={tw `flex-row `} >
                  <Text style={tw `font-bold `} > Correo Electronico: </Text>
                  <Text style={tw ` `}>{professionalId.email}</Text>

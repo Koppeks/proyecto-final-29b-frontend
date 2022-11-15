@@ -8,6 +8,9 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { addToList } from "../../redux/reducers/shopList";
 import { bySpecials } from "../../redux/reducers/specialSlice";
 import Usuario from '../../images/usuario.png';
+import { getProId } from "../../redux/actions";
+import { getspecialByID } from "../../redux/actions";
+
 
 
 const SeeSpecialties = ({navigation}) => {
@@ -16,6 +19,7 @@ const SeeSpecialties = ({navigation}) => {
   const { Special } = useSelector((state) => state.Special);
   const { Ocupacion } = useSelector((state) => state.Ocupacion);
   const { SpecialFilt } = useSelector((state) => state.Special);
+
 
   
   useEffect(() => {
@@ -28,11 +32,19 @@ const SeeSpecialties = ({navigation}) => {
   const handleBuy = (e) =>{
     dispatch(addToList(e))
   }
+  const onPressId = (e) => {
+    dispatch(getProId(e));
+   
+   };
+
+   const onPressIdSpecial = (e) => {
+    dispatch(getspecialByID(e));
+   };
   const handleFilter = (e) => {
 
     dispatch(bySpecials(e));
   };
-  console.log(Special)
+  
 
   return (
     <ScrollView>
@@ -65,20 +77,22 @@ const SeeSpecialties = ({navigation}) => {
       { filt < 0 && typeof  Special !== "string"  ? (Special.map( e => 
         <View style={tw`bg-gray-200 m-2`} key={e.id}>
 
-          <TouchableOpacity onPress={() => navigation.navigate("SpecialDetail")}> 
+          <TouchableOpacity onPress={() =>{ navigation.navigate("SpecialDetail")
+                                            onPressId(e.userId);
+                                            onPressIdSpecial(e.id)  }}> 
           <View  style={tw`flex flex-row `}>
             {
-                e.images?.length > 0 ? e.images.map((image, i) =>
+                e.pictures?.length > 0 ? e.pictures.map((image, i) =>
                   <Image key={i}
                   style={tw` bottom-0  p-1 m-1 left-0 h-16 w-16 rounded-full`} source={{ uri: image}}
                   />
                 ) : <View ><Image style={tw`bottom-0  p-1 m-1  rounded w-16 h-16`} source={Usuario} /></View>
               }
-              <Text style={tw`pt-5 m-2 font-bold text-center`}>{e.occupation}</Text>
+              <Text style={tw`pt-5 m-2 font-bold text-center`}>{e.name}</Text>
               
             </View>
             </TouchableOpacity>
-              <Text style={tw`text-center p-1 m-1`}>{e.generalDescription}</Text>
+              <Text style={tw`text-center p-1 m-1`}>{e.description}</Text>
               
              
             <TouchableOpacity onPress={() => handleBuy(e)} style={tw`flex flex-row align-center justify-center bg-blue-300 w-25 p-2`}>
@@ -95,16 +109,16 @@ const SeeSpecialties = ({navigation}) => {
 
                 <View  style={tw`flex flex-row `}>
                   {
-                      e.images?.length > 0 ? e.images.map((image, i) =>
+                      e.pictures?.length > 0 ? e.pictures.map((image, i) =>
                         <Image key={i}
                         style={tw` bottom-0  p-1 m-1 left-0 h-16 w-16 rounded-full`} source={{ uri: image}}
                         />
                       ) : <View ><Image style={tw`bottom-0  p-1 m-1  rounded w-16 h-16`} source={Usuario} /></View>
                     }
-                    <Text style={tw`pt-5 m-2 font-bold text-center`}>{e.occupation}</Text>
+                    <Text style={tw`pt-5 m-2 font-bold text-center`}>{e.name}</Text>
                     
                   </View>
-                    <Text style={tw`text-center p-1 m-1`}>{e.generalDescription}</Text>
+                    <Text style={tw`text-center p-1 m-1`}>{e.description}</Text>
                     
                    
                   <TouchableOpacity onPress={() => handleBuy(e)} style={tw`flex flex-row align-center justify-center bg-blue-300 w-25 p-2`}>
