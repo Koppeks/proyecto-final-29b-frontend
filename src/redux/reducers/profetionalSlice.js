@@ -9,17 +9,30 @@ const professionalSlice = createSlice({
   reducers: {
     getProfessional: (state, action) => {
       state.professional = action.payload;
-     
-      
     },
     getProfessionalId: (state, action) => {
       state.professionalId = action.payload;
     },
     searchProfessionalName: (state, action) => {
-      state.professional = [...action.payload]
-    } 
+      state.professional = [...action.payload];
+    },
+    clear: (state, action) => {
+      state.professionalId = [];
+    },
+    deleteProf: (state, action) => {
+      const delProf = state.professional.filter(
+        (e) => e.email !== action.payload
+      );
+      state.professional = [...delProf];
+    },
   },
 });
 
-export const { getProfessional, getProfessionalId, searchProfessionalName } = professionalSlice.actions;
+export const {
+  getProfessional,
+  getProfessionalId,
+  searchProfessionalName,
+  clear,
+  deleteProf,
+} = professionalSlice.actions;
 export default professionalSlice.reducer;
