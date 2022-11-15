@@ -2,27 +2,31 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import tw from "twrnc";
 import logo from "../../images/logo.png";
+import google from "../../images/google-logo.png";
 
-const LandingPage = ({ navigation }) => {
+const LandingPage = ({ navigation }) =>
+{
   return (
-    <View style={tw`flex h-full justify-center items-center bg-violet-300`}>
-      <View style={tw`flex-row items-center `}>
-        <Text style={tw`m-5 text-4xl`}>Vinculan</Text>
-        <Image style={tw`h-8 w-8`} source={logo} />
+    <View style={tw`flex h-full justify-center items-center bg-white`}>
+      <View style={tw`flex-row items-center mb-12`}>
+        <Image style={tw`h-12 w-12`} source={logo} />
+        <Text style={tw`m-5 font-bold text-4xl`}>Vinculando</Text>
       </View>
       <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-        <Text
-          style={tw`text-center text-2xl text-white bg-blue-500 rounded-lg w-30 p-2`}
-        >
-          Ingresa
-        </Text>
+        <View style={tw`rounded mb-2 bg-blue-500 `}>
+          <Text style={tw`text-center text-lg text-white  w-48 p-2`}>Ingresar con correo</Text>
+        </View>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate("Registro")}>
-        <Text style={tw`text-center text-base `}>¿Aun no tienes cuenta?</Text>
+        <Text style={tw`text-center text-base mb-6`}>¿Aun no tienes cuenta?</Text>
       </TouchableOpacity>
-      <View
-        style={tw`border-solid border-2 border-indigo-600 w-150 mt-5`}
-      ></View>
+      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+        <View style={tw` flex-row bg-white rounded w-72 p-2 mt-4 border-2 border-black`}>
+          <Image style={tw`h-8 w-8 ml-2 mr-2`} source={google} />
+          <Text style={tw`text-center text-lg text-black `}>Iniciar sesión con Google</Text>
+        </View>
+      </TouchableOpacity>
+
     </View>
   );
 };
