@@ -1,5 +1,4 @@
-import
-{
+import {
   View,
   Text,
   Image,
@@ -7,39 +6,46 @@ import
   TouchableOpacity,
   Alert,
 } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProId, deleteProEmail } from "../../redux/actions/index";
+import { getProId, deleteProEmail, getPro } from "../../redux/actions/index";
 import { clear, deleteProf } from "../../redux/reducers/profetionalSlice";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, AntDesign } from "@expo/vector-icons";
 import tw from "twrnc";
 import { useNavigation } from "@react-navigation/native";
 
-const DetailAdm = (id) =>
-{
-  //console.log(id.route.params.id);
+const DetailAdm = (id) => {
   const dispatch = useDispatch();
   const { professionalId } = useSelector((state) => state.professionalId);
+  const [loading, setLoading] = useState(false);
+
+  const gifLoading =
+    "https://gifs.eco.br/wp-content/uploads/2022/07/gifs-de-barra-de-progresso-24.gif";
 
   const navigation = useNavigation();
 
-  useEffect(() =>
-  {
+  useEffect(() => {
     dispatch(getProId(id.route.params.id));
     dispatch(deleteProf());
-    return () =>
-    {
+    return () => {
       dispatch(clear());
     };
   }, [dispatch]);
 
-  const handleDelete = async (email) =>
-  {
+  const handleLoadDel = (email) => {
+    setLoading(true);
+    setTimeout(() => {
+      handleDelete(email);
+    }, 6000);
+  };
+
+  const handleDelete = async (email) => {
     navigation.navigate("HomeAdm");
     dispatch(deleteProEmail(email))
       .then((res) => res)
       .cath((e) => console.log(e));
-    console.log(email);
+    setLoading(false);
+    dispatch(getPro());
   };
 
   const createTwoButtonAlert = (email) =>
@@ -51,9 +57,19 @@ const DetailAdm = (id) =>
       },
       {
         text: "Eliminar",
-        onPress: () => handleDelete(email),
+        onPress: () => handleLoadDel(email),
       },
     ]);
+
+  const handleLoad = () => {
+    setLoading(true);
+    setTimeout(() => {
+      navigation.navigate("EditUser", {
+        email: professionalId.email,
+      });
+      setLoading(false);
+    }, 6000);
+  };
 
   const alertEdit = () =>
     Alert.alert("Editar Usuario", "Desea editar el usuario?", [
@@ -64,33 +80,47 @@ const DetailAdm = (id) =>
       },
       {
         text: "Editar",
-        onPress: () =>
-          navigation.navigate("Editar Usuario", { email: professionalId.email }),
+        onPress: () => handleLoad(),
       },
     ]);
 
   return (
     <View>
-      <View style={tw`flex items-center `}>
-        <Text style={tw`pl-1 text-lg mt-3`}>Detalles de Usario</Text>
+      <View style={tw`flex items-center`}>
+        <View style={tw`flex-row m-3 items-center`}>
+          <TouchableOpacity onPress={() => navigation.navigate("HomeAdm")}>
+            <AntDesign name="caretleft" size={24} color="black" />
+          </TouchableOpacity>
+          <Text style={tw`pl-5 text-lg`}>Detalles de Usario</Text>
+        </View>
         <View style={tw`flex-row`}>
-          <TouchableOpacity
-            onPress={
-              () => alertEdit()
-            }
-            style={tw`flex-row m-3 items-center`}
-          >
-            <Text style={tw`p-1 text-lg`}>Editar</Text>
-            <Ionicons style={tw`pl-2`} name="create" />
-          </TouchableOpacity>
+          {loading === false ? (
+            <TouchableOpacity
+              onPress={() => alertEdit()}
+              style={tw`flex-row m-3 items-center`}
+            >
+              <Text style={tw`p-1 text-lg`}>Editar</Text>
+              <Ionicons style={tw`pl-2`} size={24} name="create" />
+            </TouchableOpacity>
+          ) : (
+            <View style={tw`flex items-center mt-10`}>
+              <Image source={{ uri: gifLoading }} style={tw`w-25 h-15 m-3`} />
+            </View>
+          )}
 
-          <TouchableOpacity
-            onPress={() => createTwoButtonAlert(professionalId.email)}
-            style={tw`flex-row m-3 items-center`}
-          >
-            <Text style={tw`p-1 text-lg`}>Eliminar</Text>
-            <Ionicons style={tw`pl-2`} name="trash" />
-          </TouchableOpacity>
+          {loading === false ? (
+            <TouchableOpacity
+              onPress={() => createTwoButtonAlert(professionalId.email)}
+              style={tw`flex-row m-3 items-center`}
+            >
+              <Text style={tw`p-1 text-lg`}>Eliminar</Text>
+              <Ionicons style={tw`pl-2`} size={24} name="trash" />
+            </TouchableOpacity>
+          ) : (
+            <View style={tw`flex items-center mt-10`}>
+              <Image source={{ uri: gifLoading }} style={tw`w-25 h-15 m-3`} />
+            </View>
+          )}
         </View>
       </View>
       <View style={tw`flex-row m-2 border-4 border-indigo-500/50 rounded-lg`}>
@@ -137,6 +167,9 @@ const DetailAdm = (id) =>
           </Text>
         </View>
       </ScrollView>
+      <View style={tw`flex items-center`}>
+        <AntDesign name="downcircleo" size={24} color="black" />
+      </View>
     </View>
   );
 };
