@@ -1,4 +1,5 @@
-import {
+import
+{
   View,
   Text,
   ScrollView,
@@ -9,22 +10,24 @@ import {
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteProEmail, getPro } from "../../redux/actions/index";
-import { deleteProf } from "../../redux/reducers/profetionalSlice";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
 import tw from "twrnc";
+import { useIsFocused } from "@react-navigation/native";
 
-const CardsUserAdmin = () => {
+const CardsUserAdmin = ({ navigation }) =>
+{
   const dispatch = useDispatch();
   const { professional } = useSelector((state) => state.professional);
-  const navigation = useNavigation();
+  const isFocused = useIsFocused();
 
-  useEffect(() => {
-    dispatch(getPro());
-    dispatch(deleteProf());
-  }, [dispatch]);
+  useEffect(() =>
+  {
+    if (isFocused)
+      dispatch(getPro());
+  }, [isFocused]);
 
-  const handleDelete = (email) => {
+  const handleDelete = (email) =>
+  {
     navigation.navigate("HomeAdm");
     dispatch(deleteProEmail(email))
       .then((res) => res)
@@ -47,12 +50,13 @@ const CardsUserAdmin = () => {
   return (
     <ScrollView style={tw`mt-1 h-56 `}>
       {professional.length > 0 ? (
-        professional.map((user) => {
+        professional.map((user) =>
+        {
           return (
             <View key={user.id}>
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate("DetailAdm", { id: user.id })
+                  navigation.navigate("Detalle de Usuario", { id: user.id })
                 }
               >
                 <View
