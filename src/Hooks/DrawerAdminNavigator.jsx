@@ -6,6 +6,8 @@ import Profile from "../screen/Profile/Profile";
 import { Text } from "react-native";
 import tw from "twrnc";
 import ButtonDrawer from "../components/button/ButtonDrawer";
+import { useDispatch } from "react-redux";
+import { logout } from "../redux/reducers/authSlice";
  
 
 const Drawer = createDrawerNavigator();
@@ -26,6 +28,7 @@ const DrawerAdminNavigator = () => {
 
 const MenuItems =({navigation})=>{
 
+  const dispatch=useDispatch()
 
   return(
   <DrawerContentScrollView style={tw`p-5`}>
