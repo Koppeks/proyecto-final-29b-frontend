@@ -11,13 +11,15 @@ const specialSlice = createSlice({
   reducers: {
     getSpecials: (state, action) => {
       state.Special = action.payload;
+
     },
     bySpecials: (state, action) => {
-      
+
       const bySpecial = state.Special.filter((e) =>
-      e.occupation.includes(action.payload)
+      e.categoryId === action.payload
       );
-      state.SpecialFilt = [...bySpecial];
+
+       state.SpecialFilt = [...bySpecial];
     },
 
     SpecialsById: ( state, action)=>{

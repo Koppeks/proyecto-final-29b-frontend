@@ -15,27 +15,28 @@ const Profile = () =>
     const  {informationToken}  = useSelector((state) => state.informationToken);
     const  name= informationToken?.fullName
     useEffect(() => {
-        dispatch(getProId(5));
+        dispatch(getProId(informationToken.id));
       
       }, [dispatch]);
 
-    console.log(professionalId)
-    console.log(informationToken.id)
+
+    console.log(informationToken)
 
     return (
 
        <ScrollView >
          
             <View style={tw`flex items-center mx-2 my-1 p-0`}>
-                 <Image style={tw` rounded-full w-50 h-50 border-2 border-indigo-500/100`} source={ professionalId.image} />
-                 <Text style={tw`font-bold `}>{name}</Text>
+                 <Image style={tw` rounded-full w-25 h-25 border-2 border-indigo-500/100`} source={{uri: informationToken?.image}} />
+                 <Text style={tw`font-bold  text-base`}>{name}</Text>
+                 <Text style={tw`font-bold `}>{informationToken?.occupation}</Text>
                  <View style={tw `flex-row `} >
                  <Text style={tw `font-bold `} > Correo Electronico: </Text>
-                 <Text style={tw ` `}>{professionalId.email}</Text>
+                 <Text style={tw ` `}>{informationToken?.email}</Text>
                 </View>
                 <View style={tw `flex-row `} >
                  <Text style={tw `font-bold `} > Telefono: </Text>
-                 <Text style={tw ``}>{professionalId.phoneNumber}</Text>
+                 <Text style={tw ``}>{informationToken?.phoneNumber}</Text>
                 </View>
                <View style={tw `flex-row `} >
                  <Text style={tw `font-bold `} > Direccion: </Text>

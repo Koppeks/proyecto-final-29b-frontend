@@ -99,6 +99,15 @@ export const getspecial = () => async (dispatch) => {
     .catch((e) => console.log(e));
 };
 
+export const getspecialByID = (id) => async (dispatch) =>
+{
+  axios
+    .get(`https://proyecto-final-29b-backend-production.up.railway.app/specialization/id/${id}?apikey=${apikey} `)
+    .then((res) => dispatch(SpecialsById(res.data)))
+    .catch((e) => console.log(e));
+};
+
+
 export const postDispute = (data) => async () => {
   await axios({
     method: "POST",

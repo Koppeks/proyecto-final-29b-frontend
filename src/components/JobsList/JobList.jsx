@@ -8,9 +8,9 @@ const JobList = ()=>{
        
       
         <View style={tw` items-center  `}>
-        <Text style={tw`font-bold text-lg`}>Trabajos Pendientes</Text>
+        <Text style={tw`font-bold text-l`}>Trabajos Pendientes</Text>
        </View>
-       <ScrollView  style={tw` pl-2 pr-2 mx-4 h-60 border-4 rounded-md border-indigo-500/100`}  showsVerticalScrollIndicator={false}   >
+       <ScrollView  style={tw` pl-2 pr-2 mx-4 h-60 border-2 rounded-md border-indigo-500/100`}  showsVerticalScrollIndicator={false}   >
         
          <View  style={tw` my-2 pl-1 pr-1  border-4 rounded-md border-indigo-500/100`}>
             <Text  style={tw`font-bold text-sm`}> Reparacion de Muebles de madera</Text>

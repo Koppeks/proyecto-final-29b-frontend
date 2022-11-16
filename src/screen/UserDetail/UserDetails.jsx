@@ -22,27 +22,18 @@ export const UserDetails = ({ navigation }) => {
         <TouchableOpacity
           style={tw`w-12  h-7 rounded-lg border-2 border-rose-500 justify-center pl-1`}
         >
-          <Text>Share</Text>
+          <Text>Reportar</Text>
         </TouchableOpacity>
       </View>
 
-      <ScrollView  horizontal={true} showsHorizontalScrollIndicator={false} >
+      <View  >
         <Image
           style={tw`h-70 w-80
-            m-6 mt-7 md:h-80 md:h-80 rounded-md`}
+            md:h-80 md:h-80 rounded-md`}
           source={{ uri: professionalId.image }}
         />
-        <Image
-          style={tw`h-70 w-80
-            m-6 mt-7 md:h-80 md:h-80 rounded-md`}
-          source={{ uri: professionalId.image }}
-        />
-        <Image
-          style={tw`h-70 w-80
-            m-6 mt-7 md:h-80 md:h-80 rounded-md`}
-          source={{ uri: professionalId.image }}
-        />
-      </ScrollView>
+      
+      </View>
       <View style={tw` items-center`}>
         <Text style={tw`pt-5 px-3 text-2xl`}>{professionalId.occupation}</Text>
       </View>
@@ -80,7 +71,7 @@ export const UserDetails = ({ navigation }) => {
      
 
       <ScrollView style={tw`h-screen `}>
-
+          <Text>No tiene Especializaciones publicadas</Text>
             
       {/* {Special.map( item => {return(
           <>
