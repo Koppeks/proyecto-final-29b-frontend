@@ -1,6 +1,11 @@
 import React from "react";
+
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import AdminStack from "./AdminStack";
+=======
 import { createDrawerNavigator, DrawerContentScrollView } from "@react-navigation/drawer";
 import HomeAdm from "../containers/ContainerHome/HomeAdm";
+
 import HomeNavigation from "./HomeNavigation";
 import Profile from "../screen/Profile/Profile";
 import { Text } from "react-native";
@@ -26,6 +31,9 @@ const DrawerAdminNavigator = () => {
   ); 
 };
 
+
+export default DrawerAdminNavigator;
+
 const MenuItems =({navigation})=>{
 
   const dispatch=useDispatch()
@@ -46,6 +54,8 @@ const MenuItems =({navigation})=>{
     text="HomeAdm"
     onPress={()=>navigation.navigate('HomeAdm')}
     />
+    
+    <Drawer.Screen name="Admin Dashboard" component={AdminStack} />
 
     <ButtonDrawer
     text="Cerrar sesión"
@@ -57,3 +67,4 @@ const MenuItems =({navigation})=>{
 }
 
 export default DrawerAdminNavigator;
+
