@@ -61,7 +61,8 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.6"
+    "@babel/core": "^7.18.6",
+    "sharp-cli": "^2.1.0"
   },
   "private": true
 }
