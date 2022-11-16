@@ -12,10 +12,15 @@ const categoriesSlice = createSlice({
         state.shopList = [...state.shopList, action.payload]
       }
     },
+    removeToList: (state, action) => {
+      const removeItem = state.shopList.filter( i => i.id !== action.payload) 
+      state.shopList = removeItem
+    },
   },
 });
 
 export const {
   addToList,
+  removeToList,
 } = categoriesSlice.actions;
 export default categoriesSlice.reducer;

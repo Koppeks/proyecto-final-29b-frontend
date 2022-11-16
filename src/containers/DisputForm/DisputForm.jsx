@@ -7,7 +7,7 @@ import SelectDropdown from "react-native-select-dropdown";
 import { postDispute } from "../../redux/actions";
 import tw from "twrnc";
 
-const disputForm = () =>
+const DisputForm = () =>
 {
     const disputeTypes = [
         {
@@ -87,4 +87,4 @@ const disputForm = () =>
     )
 }
 
-export default disputForm;
+export default DisputForm;
