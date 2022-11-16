@@ -41,11 +41,10 @@ const SeeSpecialties = ({navigation}) => {
     dispatch(getspecialByID(e));
    };
   const handleFilter = (e) => {
-
     dispatch(bySpecials(e));
   };
   
-
+console.log(Special)
   return (
     <ScrollView>
 
@@ -59,7 +58,7 @@ const SeeSpecialties = ({navigation}) => {
                 style={tw`bg-cyan-300`}
                 onPress={() =>  {
                   {
-                   handleFilter(item.name)}
+                   handleFilter(item.id)}
                    if(item.id===filt){
                      setFilt(-1)
                    }else{

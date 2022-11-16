@@ -7,16 +7,10 @@ import {
   searchProfessionalName,
   deleteProf,
 } from "../reducers/profetionalSlice";
-<<<<<<< HEAD
 import { getOcupacion } from '../reducers/ocupacionSlice'
 import { getSpecials , SpecialsById } from '../reducers/specialSlice';
 import { informationProfile } from '../reducers/informationProfileSlice'
 
-=======
-import { getOcupacion } from "../reducers/ocupacionSlice";
-import { getSpecials } from "../reducers/specialSlice";
-import { informationProfile } from "../reducers/informationProfileSlice";
->>>>>>> 8d396b3c953c18e98e711eea7efabba123dd95aa
 
 const apikey = "1f5dbe34-3f44-4ec9-9d4b-078362fd7eb3";
 
@@ -101,8 +95,6 @@ export const getspecial = () => async (dispatch) => {
     .then((res) => dispatch(getSpecials(res.data)))
     .catch((e) => console.log(e));
 };
-
-<<<<<<< HEAD
 export const getspecialByID = (id) => async (dispatch) =>
 {
   axios
@@ -111,11 +103,7 @@ export const getspecialByID = (id) => async (dispatch) =>
     .catch((e) => console.log(e));
 };
 
-export const postDispute = (data) => async () =>
-{
-=======
 export const postDispute = (data) => async () => {
->>>>>>> 8d396b3c953c18e98e711eea7efabba123dd95aa
   await axios({
     method: "POST",
     url: `https://proyecto-final-29b-backend-production.up.railway.app/dispute?apikey=${apikey}`,
@@ -141,27 +129,13 @@ export const logIn = (data) => async (dispatch) => {
     });
     dispatch(setAuth(result?.data));
   } catch (error) {
-<<<<<<< HEAD
-    
-    const errorAuth= error.response.data.message
-// console.log("error12",error2) /id/:id
-    dispatch(setErrorAuth(errorAuth))
-=======
     const errorAuth = error.response.data.message;
     // console.log("error12",error2)
     dispatch(setErrorAuth(errorAuth));
->>>>>>> 8d396b3c953c18e98e711eea7efabba123dd95aa
   }
 };
 
-<<<<<<< HEAD
-
-
-export const information = (token) => async (dispatch) =>
-{
-=======
 export const information = (token) => async (dispatch) => {
->>>>>>> 8d396b3c953c18e98e711eea7efabba123dd95aa
   try {
     const result = {
       data: {
