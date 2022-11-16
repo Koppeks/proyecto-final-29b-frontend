@@ -1,4 +1,5 @@
-import {
+import
+{
   View,
   Text,
   Image,
@@ -14,22 +15,26 @@ import { Ionicons } from "@expo/vector-icons";
 import tw from "twrnc";
 import { useNavigation } from "@react-navigation/native";
 
-const DetailAdm = (id) => {
+const DetailAdm = (id) =>
+{
   //console.log(id.route.params.id);
   const dispatch = useDispatch();
   const { professionalId } = useSelector((state) => state.professionalId);
 
   const navigation = useNavigation();
 
-  useEffect(() => {
+  useEffect(() =>
+  {
     dispatch(getProId(id.route.params.id));
     dispatch(deleteProf());
-    return () => {
+    return () =>
+    {
       dispatch(clear());
     };
   }, [dispatch]);
 
-  const handleDelete = async (email) => {
+  const handleDelete = async (email) =>
+  {
     navigation.navigate("HomeAdm");
     dispatch(deleteProEmail(email))
       .then((res) => res)
@@ -60,7 +65,7 @@ const DetailAdm = (id) => {
       {
         text: "Editar",
         onPress: () =>
-          navigation.navigate("EditForm", { email: professionalId.email }),
+          navigation.navigate("Editar Usuario", { email: professionalId.email }),
       },
     ]);
 
@@ -72,7 +77,6 @@ const DetailAdm = (id) => {
           <TouchableOpacity
             onPress={
               () => alertEdit()
-              //navigation.navigate("EditForm", { email: professionalId.email })
             }
             style={tw`flex-row m-3 items-center`}
           >
