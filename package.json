@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@expo-google-fonts/poppins": "^0.2.2",
+    "@expo/dev-server": "^0.1.120",
     "@expo/metro-config": "^0.4.0",
     "@expo/react-native-action-sheet": "^4.0.1",
     "@expo/vector-icons": "^13.0.0",
@@ -36,6 +37,7 @@
     "nativewind": "^2.0.11",
     "react": "18.0.0",
     "react-dom": "18.0.0",
+    "react-icons": "^4.6.0",
     "react-native": "0.69.6",
     "react-native-awesome-alerts": "^2.0.0",
     "react-native-calendars": "^1.1291.0",
@@ -48,6 +50,7 @@
     "react-native-select-dropdown": "^3.0.1",
     "react-native-svg": "12.3.0",
     "react-native-svg-transformer": "^1.0.0",
+    "react-native-toast-message": "^2.1.5",
     "react-native-web": "~0.18.7",
     "react-redux": "^8.0.4",
     "react-select": "^5.5.7",

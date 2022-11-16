@@ -52,7 +52,7 @@ console.log(Special)
       {Ocupacion && Ocupacion.map( item => {return(
         
             <View key={item.id}
-              style={tw`flex justify-items-center m-2 mt-4 mb-4 bg-gray-500`}>
+              style={tw`flex justify-center m-2 mt-4 mb-4 bg-gray-500`}>
               <Image style={tw`w-5 h-5 p-7 mb-2 mt-2`} source={{uri: item.image}} />
               <TouchableOpacity
                 style={tw`bg-cyan-300`}
@@ -80,15 +80,14 @@ console.log(Special)
                                             onPressId(e.userId);
                                             onPressIdSpecial(e.id)  }}> 
           <View  style={tw`flex flex-row `}>
-            {
+          {
                 e.pictures?.length > 0 ? e.pictures.map((image, i) =>
                   <Image key={i}
                   style={tw` bottom-0  p-1 m-1 left-0 h-16 w-16 rounded-full`} source={{ uri: image}}
                   />
                 ) : <View ><Image style={tw`bottom-0  p-1 m-1  rounded w-16 h-16`} source={Usuario} /></View>
               }
-              <Text style={tw`pt-5 m-2 font-bold text-center`}>{e.name}</Text>
-              
+              <Text style={tw`pt-5 m-2 font-bold text-center`}>{e.name}</Text>        
             </View>
             </TouchableOpacity>
               <Text style={tw`text-center p-1 m-1`}>{e.description}</Text>
