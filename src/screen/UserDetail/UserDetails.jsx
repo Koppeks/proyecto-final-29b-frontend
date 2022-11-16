@@ -9,12 +9,8 @@ export const UserDetails = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const { professionalId } = useSelector((state) => state.professional);
-  const { Special } = useSelector((state) => state.Special);
+
   
-  useEffect(() => {
-    dispatch(getspecial());
-  
-  }, [dispatch]);
 
   return (
     <ScrollView style={tw`flex `}>
@@ -86,7 +82,7 @@ export const UserDetails = ({ navigation }) => {
       <ScrollView style={tw`h-screen `}>
 
             
-      {Special.map( item => {return(
+      {/* {Special.map( item => {return(
           <>
             <View key={item.id}
               style={tw`flex justify-items-center m-2 mt-4 mb-4 bg-gray-500`}
@@ -97,7 +93,7 @@ export const UserDetails = ({ navigation }) => {
                 <Text style={tw`text-black font-bold mx-1 `}>{item.occupation}</Text>
               </TouchableOpacity>
             </View>
-          </> )})}
+          </> )})} */}
 
 
         
