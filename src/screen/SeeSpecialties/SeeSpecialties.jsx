@@ -41,11 +41,10 @@ const SeeSpecialties = ({navigation}) => {
     dispatch(getspecialByID(e));
    };
   const handleFilter = (e) => {
-
     dispatch(bySpecials(e));
   };
   
-
+console.log(Special)
   return (
     <ScrollView>
 
@@ -59,7 +58,7 @@ const SeeSpecialties = ({navigation}) => {
                 style={tw`bg-cyan-300`}
                 onPress={() =>  {
                   {
-                   handleFilter(item.name)}
+                   handleFilter(item.id)}
                    if(item.id===filt){
                      setFilt(-1)
                    }else{
@@ -81,12 +80,12 @@ const SeeSpecialties = ({navigation}) => {
                                             onPressId(e.userId);
                                             onPressIdSpecial(e.id)  }}> 
           <View  style={tw`flex flex-row `}>
-            {
+          {
                 e.pictures?.length > 0 ? e.pictures.map((image, i) =>
                   <Image key={i}
-                  style={tw` bottom-0  p-1 m-1 left-0 h-16 w-16 rounded-full`} source={{ uri: pic}}
+                  style={tw` bottom-0  p-1 m-1 left-0 h-16 w-16 rounded-full`} source={{ uri: image}}
                   />
-                ) : null
+                ) : <View ><Image style={tw`bottom-0  p-1 m-1  rounded w-16 h-16`} source={Usuario} /></View>
               }
               <Text style={tw`pt-5 m-2 font-bold text-center`}>{e.name}</Text>        
             </View>

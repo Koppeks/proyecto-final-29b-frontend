@@ -109,9 +109,15 @@ export const getspecial = () => async (dispatch) =>
     .then((res) => dispatch(getSpecials(res.data)))
     .catch((e) => console.log(e));
 };
-
-export const postDispute = (data) => async () =>
+export const getspecialByID = (id) => async (dispatch) =>
 {
+  axios
+    .get(`https://proyecto-final-29b-backend-production.up.railway.app/specialization/id/${id}?apikey=${apikey} `)
+    .then((res) => dispatch(SpecialsById(res.data)))
+    .catch((e) => console.log(e));
+};
+
+export const postDispute = (data) => async () => {
   await axios({
     method: "POST",
     url: `https://proyecto-final-29b-backend-production.up.railway.app/dispute?apikey=${apikey}`,
