@@ -15,6 +15,7 @@ import { UserDetails } from "../screen/UserDetail/UserDetails";
 import Favs from "../screen/Favs/Favs";
 import Profile from "../screen/Profile/Profile";
 import SpecialDetail from "../screen/SpecialDetail/specialDetail";
+import ButtonLogout from "../components/button/ButtonLogout";
 
 const Stack = createNativeStackNavigator();
 
@@ -30,7 +31,9 @@ const HomeNavigation = ({ navigation }) =>
           headerRight: () => (
             <View style={tw`flex-row items-center justify-between w-70`}>
               <Search />
+
               <ButtonNav navigation={navigation} />
+              <ButtonLogout/>
             </View>
           ),
         }}

@@ -1,18 +1,56 @@
 import React from "react";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import AdminStack from './AdminStack';
+import { createDrawerNavigator, DrawerContentScrollView } from "@react-navigation/drawer";
+import HomeAdm from "../containers/ContainerHome/HomeAdm";
 import HomeNavigation from "./HomeNavigation";
+import Profile from "../screen/Profile/Profile";
+import { Text } from "react-native";
+import tw from "twrnc";
+import ButtonDrawer from "../components/button/ButtonDrawer";
+ 
 
 const Drawer = createDrawerNavigator();
 
-const DrawerAdminNavigator = () =>
-{
+const DrawerAdminNavigator = () => {
   return (
-    <Drawer.Navigator useLegacyImplementation={true}>
+    <Drawer.Navigator 
+    useLegacyImplementation={true} 
+    drawerContent={(props)=>< MenuItems {...props}/>}>
+
       <Drawer.Screen name="Home" component={HomeNavigation} />
-      <Drawer.Screen name="Admin Dashboard" component={AdminStack} />
+      <Drawer.Screen name="HomeAdm" component={HomeAdm} />
+      <Drawer.Screen name="Perfil" component={Profile} />
+
     </Drawer.Navigator>
-  );
+  ); 
 };
+
+const MenuItems =({navigation})=>{
+
+
+  return(
+  <DrawerContentScrollView style={tw`p-5`}>
+    <Text style={tw`text-lg font-bold mb-4`}>Mi menú</Text >
+
+    <ButtonDrawer
+    text="Perfil"
+    onPress={()=>navigation.navigate('Perfil')}
+    />
+    <ButtonDrawer
+    text="Home"
+    onPress={()=>navigation.navigate('Home')}
+    />
+     <ButtonDrawer
+    text="HomeAdm"
+    onPress={()=>navigation.navigate('HomeAdm')}
+    />
+
+    <ButtonDrawer
+    text="Cerrar sesión"
+    onPress={()=>dispatch(logout())}
+    />
+
+  </DrawerContentScrollView>
+  )
+}
 
 export default DrawerAdminNavigator;
