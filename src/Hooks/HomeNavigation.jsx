@@ -15,13 +15,11 @@ import { UserDetails } from "../screen/UserDetail/UserDetails";
 import Favs from "../screen/Favs/Favs";
 import Profile from "../screen/Profile/Profile";
 import SpecialDetail from "../screen/SpecialDetail/specialDetail";
-import HomeAdm from "../containers/ContainerHome/HomeAdm";
-import DetailAdm from "../containers/DetailAdm/DetailAdm";
-import EditForm from "../containers/RegisterForm/EditForm";
 
 const Stack = createNativeStackNavigator();
 
-const HomeNavigation = ({ navigation }) => {
+const HomeNavigation = ({ navigation }) =>
+{
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -39,9 +37,6 @@ const HomeNavigation = ({ navigation }) => {
       />
       <Stack.Screen name="Filtros" component={Filtros} />
       <Stack.Screen name="UserDetails" component={UserDetails} />
-      <Stack.Screen name="HomeAdm" component={HomeAdm} />
-      <Stack.Screen name="DetailAdm" component={DetailAdm} />
-      <Stack.Screen name="EditForm" component={EditForm} />
       <Stack.Screen
         name="SeeSpecialties"
         component={SeeSpecialties}
