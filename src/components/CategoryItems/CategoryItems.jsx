@@ -24,6 +24,8 @@ export default function CategoryItems({navigation}) {
   const { Ocupacion } = useSelector((state) => state.Ocupacion);
 
   const [filtCateg, setFiltCateg] = useState(-1);
+  const gifLoading =
+    "https://raw.githubusercontent.com/Codelessly/FlutterLoadingGIFs/master/packages/cupertino_activity_indicator.gif"
 
   useEffect(() => {
     dispatch(getCategories());
@@ -67,7 +69,7 @@ export default function CategoryItems({navigation}) {
           </> )})}
       </ScrollView>
 
-    <SelectFilter/>
+    {/* <SelectFilter/> */}
 
       <View>
       <ScrollView  style={tw`h-120 `}>
@@ -92,7 +94,7 @@ export default function CategoryItems({navigation}) {
            );
          })
           ) : (
-          <Text>hola</Text>
+            <Image source={{ uri: gifLoading }} style={tw`mr-40 w-20 h-20 `} />
             )} 
              </ScrollView> 
         )}</ScrollView>

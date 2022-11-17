@@ -8,6 +8,7 @@ export default function ButtonNav({ navigation })
 {
   return (
     <TouchableOpacity
+      style={tw`ml-10`}
       onPress={() =>
         navigation.navigate("Filtros", {
           name: "Filtros",

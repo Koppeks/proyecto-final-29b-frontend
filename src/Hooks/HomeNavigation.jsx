@@ -16,6 +16,7 @@ import Favs from "../screen/Favs/Favs";
 import Profile from "../screen/Profile/Profile";
 import SpecialDetail from "../screen/SpecialDetail/specialDetail";
 import ButtonLogout from "../components/button/ButtonLogout";
+import { Text } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,12 +28,18 @@ const HomeNavigation = ({ navigation }) =>
         name=" "
         component={Home}
         options={{
-          headerLeft: () => <Image source={logo} style={tw`w-12 h-10`} />,
+          headerLeft: () => (
+            <View style={tw`flex-row items-center`}>
+              <Image source={logo} style={tw`w-12 h-10`} />
+              <Text style={tw`ml-3 text-lg `}>Vinculando</Text>
+            </View>
+          ),
           headerRight: () => (
-            <View style={tw`flex-row items-center justify-between w-70`}>
-              <Search />
-
-              <ButtonNav navigation={navigation} />
+            <View style={tw`flex-row items-center justify-between m-3 `}>
+              {/* <Search /> */}
+              <View style={tw`mr-2`}>
+                <ButtonNav navigation={navigation} />
+              </View>
               <ButtonLogout/>
             </View>
           ),
