@@ -6,6 +6,7 @@ import
   getProfessional,
   getProfessionalId,
   searchProfessionalName,
+  getProfessionalPerfil,
   deleteProf,
 } from "../reducers/profetionalSlice";
 
@@ -36,6 +37,15 @@ export const getProId = (id) => async (dispatch) =>
       `https://proyecto-final-29b-backend-production.up.railway.app/user/id/${id}?apikey=${apikey}`
     )
     .then((res) => dispatch(getProfessionalId(res.data)))
+    .catch((e) => console.log(e));
+};
+export const getProPerfil = (id) => async (dispatch) =>
+{
+  axios
+    .get(
+      `https://proyecto-final-29b-backend-production.up.railway.app/user/id/${id}?apikey=${apikey}`
+    )
+    .then((res) => dispatch(getProfessionalPerfil(res.data)))
     .catch((e) => console.log(e));
 };
 

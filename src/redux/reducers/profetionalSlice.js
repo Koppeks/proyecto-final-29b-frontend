@@ -5,13 +5,26 @@ const professionalSlice = createSlice({
   initialState: {
     professional: [],
     professionalId: [],
+    professionalPerfil: [],
   },
   reducers: {
-    getProfessional: (state, action) => {
-      state.professional = action.payload;
+
+      
+      getProfessional: (state, action) => {
+      const data = action.payload.filter((e)=>e.isProfessional === true  )
+      state.professional = data
     },
     getProfessionalId: (state, action) => {
+      
       state.professionalId = action.payload;
+  
+
+    },
+    getProfessionalPerfil: (state, action) => {
+      
+ 
+      state.professionalPerfil= action.payload;
+
     },
     searchProfessionalName: (state, action) => {
       state.professional = [...action.payload];
@@ -31,6 +44,7 @@ const professionalSlice = createSlice({
 export const {
   getProfessional,
   getProfessionalId,
+  getProfessionalPerfil,
   searchProfessionalName,
   clear,
   deleteProf,

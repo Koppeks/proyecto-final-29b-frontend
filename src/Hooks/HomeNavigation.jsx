@@ -15,6 +15,7 @@ import { UserDetails } from "../screen/UserDetail/UserDetails";
 import Favs from "../screen/Favs/Favs";
 import Profile from "../screen/Profile/Profile";
 import SpecialDetail from "../screen/SpecialDetail/specialDetail";
+import EditForm from "../screen/Profile/EditProfile"
 
 const Stack = createNativeStackNavigator();
 
@@ -45,9 +46,8 @@ const HomeNavigation = ({ navigation }) =>
       <Stack.Screen name="SpecialDetail" component={SpecialDetail} />
       <Stack.Screen name="Favs" component={Favs} />
       <Stack.Screen name="Home Cards Professional" component={CategoryItems} />
-
+      <Stack.Screen name="Editar Pefil" component={EditForm} />
       <Stack.Screen name="Profile" component={Profile} />
-
       <Stack.Screen name="Perfil profesional" component={EditProfession} />
       <Stack.Screen
         name="TakePhoto"

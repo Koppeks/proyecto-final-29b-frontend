@@ -24,12 +24,15 @@ const specialSlice = createSlice({
 
     SpecialsById: ( state, action)=>{
       state.SpecialId = action.payload;
-      console.log(state.SpecialId)
       
-    }
+      
+    },
+    clear: (state, action) => {
+      state.SpecialId = [];
+    },
   
   },
 });
 
-export const {getSpecials, bySpecials,SpecialsById} = specialSlice.actions;
+export const {getSpecials, bySpecials,SpecialsById,clear} = specialSlice.actions;
 export default specialSlice.reducer;

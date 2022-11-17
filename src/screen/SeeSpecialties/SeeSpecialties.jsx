@@ -10,6 +10,7 @@ import { bySpecials } from "../../redux/reducers/specialSlice";
 import Usuario from '../../images/usuario.png';
 import { getProId } from "../../redux/actions";
 import { getspecialByID } from "../../redux/actions";
+import { clear } from "../../redux/reducers/specialSlice";
 
 
 
@@ -19,12 +20,14 @@ const SeeSpecialties = ({navigation}) => {
   const { Special } = useSelector((state) => state.Special);
   const { Ocupacion } = useSelector((state) => state.Ocupacion);
   const { SpecialFilt } = useSelector((state) => state.Special);
-
-
-  
-  useEffect(() => {
+  useEffect(() =>
+  {
     dispatch(getspecial());
-    dispatch(getoccupation())
+    dispatch(getoccupation());
+    return () =>
+    {
+      dispatch(clear());
+    };
   }, [dispatch]);
 
   const [filt, setFilt] = useState(-1);
@@ -34,14 +37,19 @@ const SeeSpecialties = ({navigation}) => {
   }
   const onPressId = (e) => {
     dispatch(getProId(e));
+    
    
    };
 
    const onPressIdSpecial = (e) => {
     dispatch(getspecialByID(e));
+  
+
    };
   const handleFilter = (e) => {
-    dispatch(bySpecials(e));
+   
+      dispatch(bySpecials(e));
+    dispatch(clear())
   };
   
 console.log(Special)
