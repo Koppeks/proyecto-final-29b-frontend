@@ -3,9 +3,11 @@ import React from 'react'
 import { removeToList } from "../../redux/reducers/shopList";
 import tw from "twrnc";
 import { useDispatch, useSelector } from "react-redux";
+import Toast from "react-native-toast-message"
 
 
 const RequestList = () => {
+	const dispatch = useDispatch();
     const {shopList} = useSelector(state=> state.shopList)
     console.log(shopList[0])
     const deleteItemShopList = (e) =>{
