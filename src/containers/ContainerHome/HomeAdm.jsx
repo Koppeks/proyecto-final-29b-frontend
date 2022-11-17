@@ -7,6 +7,7 @@ import SelectFilter from "../../components/SelectFilter/SelectFilter";
 import CardsUserAdmin from "../../components/CardAdm/CardsUserAdmin";
 import { useIsFocused } from "@react-navigation/native";
 import { getPro } from "../../redux/actions";
+import { AntDesign } from "@expo/vector-icons";
 import tw from "twrnc";
 
 const HomeAdm = ({ navigation }) => {
@@ -28,8 +29,10 @@ const HomeAdm = ({ navigation }) => {
       <View style={tw`flex items-center `}>
         <Search />
       </View>
-      <SelectFilter />
       <CardsUserAdmin navigation={navigation} />
+      <View style={tw`flex items-center`}>
+        <AntDesign name="downcircleo" size={24} color="black" />
+      </View>
     </View>
   );
 };
