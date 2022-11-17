@@ -41,7 +41,7 @@ const SpecialDetail = ({navigation}) =>{
                     {
                       SpecialId.pictures?.length > 0 ? SpecialId.pictures.map((image, i) =>
                       <Image key={i} style={tw` bottom-0  p-1 m-1 left-0 h-50 w-50 `} source={{ uri: image}} />) 
-                      :null
+                      : null
                      }
                         {
                       SpecialId.pictures?.length > 0 ? SpecialId.pictures.map((image, i) =>

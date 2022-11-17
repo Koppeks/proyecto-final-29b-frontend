@@ -1,8 +1,7 @@
 import axios from "axios";
 import { setAuth, setErrorAuth } from "../reducers/authSlice";
 import { allCategories } from "../reducers/categoriesSlice";
-import
-{
+import {
   getProfessional,
   getProfessionalId,
   searchProfessionalName,
@@ -10,15 +9,14 @@ import
   deleteProf,
 } from "../reducers/profetionalSlice";
 
-import { getOcupacion } from '../reducers/ocupacionSlice'
-import { getSpecials, SpecialsById } from '../reducers/specialSlice';
-import { informationProfile } from '../reducers/informationProfileSlice'
+import { getOcupacion } from "../reducers/ocupacionSlice";
+import { getSpecials, SpecialsById } from "../reducers/specialSlice";
+import { informationProfile } from "../reducers/informationProfileSlice";
 
 const apikey = "1f5dbe34-3f44-4ec9-9d4b-078362fd7eb3";
 
 // get de profesionales
-export const getPro = () => async (dispatch) =>
-{
+export const getPro = () => async (dispatch) => {
   // Limpiar data antigua
   dispatch(getProfessional([]));
 
@@ -30,8 +28,7 @@ export const getPro = () => async (dispatch) =>
     .catch((e) => console.log(e));
 };
 
-export const getProId = (id) => async (dispatch) =>
-{
+export const getProId = (id) => async (dispatch) => {
   axios
     .get(
       `https://proyecto-final-29b-backend-production.up.railway.app/user/id/${id}?apikey=${apikey}`
@@ -49,16 +46,14 @@ export const getProPerfil = (id) => async (dispatch) =>
     .catch((e) => console.log(e));
 };
 
-export const deleteProEmail = (email) => async (dispatch) =>
-{
+export const deleteProEmail = (email) => async (dispatch) => {
   await dispatch(deleteProf(email));
   axios.delete(
     `https://proyecto-final-29b-backend-production.up.railway.app/user/email/${email}/?apikey=${apikey}`
   );
 };
 
-export const updateProEmail = (email, data) => async (dispatch) =>
-{
+export const updateProEmail = (email, data) => async (dispatch) => {
   await dispatch(getProfessionalId(data));
   axios.put(
     `https://proyecto-final-29b-backend-production.up.railway.app/user/email/${email}/?apikey=${apikey}`,
@@ -66,22 +61,19 @@ export const updateProEmail = (email, data) => async (dispatch) =>
   );
 };
 
-export const getProName = (name) => async (dispatch) =>
-{
+export const getProName = (name) => async (dispatch) => {
   axios
     .get(
-      `https://proyecto-final-29b-backend-production.up.railway.app/user${name}?apikey=${apikey}`
+      `https://proyecto-final-29b-backend-production.up.railway.app/user/name/${name}?apikey=${apikey}`
     )
-    .then((res) =>
-    {
+    .then((res) => {
       dispatch(searchProfessionalName(res.data));
     })
     .catch((e) => console.log(e));
 };
 
 //post de profesionales
-export const registerUser = (data) => async () =>
-{
+export const registerUser = (data) => async () => {
   console.log(data);
   await axios({
     method: "POST",
@@ -92,8 +84,7 @@ export const registerUser = (data) => async () =>
 
 //Hacer el filtrado de trabajos de expertos disponibles por categoria no quiero
 
-export const getCategories = () => async (dispatch) =>
-{
+export const getCategories = () => async (dispatch) => {
   axios
     .get(
       `https://proyecto-final-29b-backend-production.up.railway.app/user?apikey=${apikey}`
@@ -101,8 +92,7 @@ export const getCategories = () => async (dispatch) =>
     .then((res) => dispatch(allCategories(res.data)))
     .catch((e) => console.log(e));
 };
-export const getoccupation = () => async (dispatch) =>
-{
+export const getoccupation = () => async (dispatch) => {
   axios
     .get(
       `https://proyecto-final-29b-backend-production.up.railway.app/category?apikey=${apikey}`
@@ -110,8 +100,7 @@ export const getoccupation = () => async (dispatch) =>
     .then((res) => dispatch(getOcupacion(res.data)))
     .catch((e) => console.log(e));
 };
-export const getspecial = () => async (dispatch) =>
-{
+export const getspecial = () => async (dispatch) => {
   axios
     .get(
       `https://proyecto-final-29b-backend-production.up.railway.app/specialization?apikey=${apikey}`
@@ -119,10 +108,12 @@ export const getspecial = () => async (dispatch) =>
     .then((res) => dispatch(getSpecials(res.data)))
     .catch((e) => console.log(e));
 };
-export const getspecialByID = (id) => async (dispatch) =>
-{
+
+export const getspecialByID = (id) => async (dispatch) => {
   axios
-    .get(`https://proyecto-final-29b-backend-production.up.railway.app/specialization/id/${id}?apikey=${apikey} `)
+    .get(
+      `https://proyecto-final-29b-backend-production.up.railway.app/specialization/id/${id}?apikey=${apikey} `
+    )
     .then((res) => dispatch(SpecialsById(res.data)))
     .catch((e) => console.log(e));
 };
@@ -135,8 +126,7 @@ export const postDispute = (data) => async () => {
   }).catch((e) => console.log(e));
 };
 
-export const postJob = (data) => async () =>
-{
+export const postJob = (data) => async () => {
   await axios({
     method: "POST",
     url: `https://proyecto-final-29b-backend-production.up.railway.app/specialization?apikey=${apikey}`,
@@ -144,29 +134,24 @@ export const postJob = (data) => async () =>
   }).catch((e) => console.log(e));
 };
 
-export const logIn = (data) => async (dispatch) =>
-{
+export const logIn = (data) => async (dispatch) => {
   // console.log(data)
-  try
-  {
+  try {
     const result = await axios({
       method: "POST",
       url: `https://proyecto-final-29b-backend-production.up.railway.app/user/token?apikey=${apikey}`,
       data: data,
     });
     dispatch(setAuth(result?.data));
-  } catch (error)
-  {
+  } catch (error) {
     const errorAuth = error.response.data.message;
     // console.log("error12",error2)
     dispatch(setErrorAuth(errorAuth));
   }
 };
 
-export const information = (token) => async (dispatch) =>
-{
-  try
-  {
+export const information = (token) => async (dispatch) => {
+  try {
     const result = {
       data: {
         id: 102,
@@ -180,8 +165,7 @@ export const information = (token) => async (dispatch) =>
       },
     };
     dispatch(informationProfile(result.data));
-  } catch (error)
-  {
+  } catch (error) {
     console.log(error);
   }
 };

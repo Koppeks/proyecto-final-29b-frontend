@@ -8,6 +8,7 @@ import JobList from '../../components/JobsList/JobList';
 import RequestList from '../../components/RequestList/RequestList';
 
 
+
 const Profile = ({navigation}) =>
 {   
     const dispatch = useDispatch();
@@ -44,8 +45,6 @@ const Profile = ({navigation}) =>
                 </View> 
              </View>  
  
-
-        <JobList/>
           
         <RequestList/>
 

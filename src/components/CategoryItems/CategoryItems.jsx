@@ -24,6 +24,8 @@ export default function CategoryItems({navigation}) {
   const { Ocupacion } = useSelector((state) => state.Ocupacion);
 
   const [filtCateg, setFiltCateg] = useState(-1);
+  const gifLoading =
+    "https://raw.githubusercontent.com/Codelessly/FlutterLoadingGIFs/master/packages/cupertino_activity_indicator.gif"
 
   useEffect(() => {
     dispatch(getCategories());
@@ -38,11 +40,12 @@ export default function CategoryItems({navigation}) {
 
   return (
     <View>
+        <Text style={tw`mt-4 text-lg font-bold`}>Categorias</Text>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
       {Ocupacion.map( item => {return(
           <>
             <View key={item.id}
-              style={tw`flex justify-items-center m-2 mt-4 mb-4 bg-gray-500`}
+              style={tw`flex justify-items-center m-2 mt-4 mb-5 bg-gray-500`}
             >
               <Image style={tw`w-5 h-5 p-7 mb-2 mt-2`} source={{uri: item.image}} />
               <TouchableOpacity
@@ -67,10 +70,10 @@ export default function CategoryItems({navigation}) {
           </> )})}
       </ScrollView>
 
-    <SelectFilter/>
+    {/* <SelectFilter/> */}
 
       <View>
-      <ScrollView  style={tw`h-120 `}>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={tw`h-50 `}>
         { filtCateg > 0 ? (
 
           categoriesfilter.map((elem, i) => {
@@ -83,7 +86,7 @@ export default function CategoryItems({navigation}) {
         ) : 
         
         (
-           <ScrollView  style={tw`h-120 `}>
+           <ScrollView  horizontal={true} showsHorizontalScrollIndicator={false} style={tw`h-50 `}>
           {professional.length > 0 ? (
             
           professional.map((elem, i) => {
@@ -92,7 +95,7 @@ export default function CategoryItems({navigation}) {
            );
          })
           ) : (
-          <Text>hola</Text>
+            <Image source={{ uri: gifLoading }} style={tw`mr-40 w-20 h-20 `} />
             )} 
              </ScrollView> 
         )}</ScrollView>

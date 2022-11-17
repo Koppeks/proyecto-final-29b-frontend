@@ -30,9 +30,16 @@ const specialSlice = createSlice({
     clear: (state, action) => {
       state.SpecialId = [];
     },
+     byPrice: (state, action) => {
+      const orderRating =
+        action.payload === "MaxPrecio"
+          ? state.Special.sort((a, b) => (a.pricing > b.pricing ? -1 : 1))
+          : state.Special.sort((a, b) => (a.pricing > b.pricing ? 1 : -1));
+      state.Special = [...orderRating];
+    },
   
   },
 });
 
-export const {getSpecials, bySpecials,SpecialsById,clear} = specialSlice.actions;
+export const {getSpecials, bySpecials,SpecialsById,clear,byPrice} = specialSlice.actions;
 export default specialSlice.reducer;

@@ -14,8 +14,10 @@ import SeeSpecialties from "../screen/SeeSpecialties/SeeSpecialties";
 import { UserDetails } from "../screen/UserDetail/UserDetails";
 import Favs from "../screen/Favs/Favs";
 import Profile from "../screen/Profile/Profile";
+import EditProfile from "../screen/Profile/EditProfile";
 import SpecialDetail from "../screen/SpecialDetail/specialDetail";
-import EditForm from "../screen/Profile/EditProfile"
+import ButtonLogout from "../components/button/ButtonLogout";
+import { Text } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,11 +29,19 @@ const HomeNavigation = ({ navigation }) =>
         name=" "
         component={Home}
         options={{
-          headerLeft: () => <Image source={logo} style={tw`w-12 h-10`} />,
+          headerLeft: () => (
+            <View style={tw`flex-row items-center`}>
+              <Image source={logo} style={tw`w-12 h-10`} />
+              <Text style={tw`ml-3 text-lg `}>Vinculando</Text>
+            </View>
+          ),
           headerRight: () => (
-            <View style={tw`flex-row items-center justify-between w-70`}>
-              <Search />
-              <ButtonNav navigation={navigation} />
+            <View style={tw`flex-row items-center justify-between m-3 `}>
+              {/* <Search /> */}
+              {/* <View style={tw`mr-2`}>
+                <ButtonNav navigation={navigation} />
+              </View> */}
+              <ButtonLogout/>
             </View>
           ),
         }}
@@ -46,7 +56,7 @@ const HomeNavigation = ({ navigation }) =>
       <Stack.Screen name="SpecialDetail" component={SpecialDetail} />
       <Stack.Screen name="Favs" component={Favs} />
       <Stack.Screen name="Home Cards Professional" component={CategoryItems} />
-      <Stack.Screen name="Editar Pefil" component={EditForm} />
+      <Stack.Screen name="Editar Pefil" component={EditProfile} />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Perfil profesional" component={EditProfession} />
       <Stack.Screen

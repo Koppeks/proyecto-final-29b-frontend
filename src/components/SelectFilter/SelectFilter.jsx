@@ -1,11 +1,12 @@
 import { View, Text, Image } from "react-native";
 import React, { useEffect } from "react";
 import tw from "twrnc";
-import { byRating, byPrice } from "../../redux/reducers/categoriesSlice";
+import { byPrice } from "../../redux/reducers/specialSlice";
 import { useDispatch, useSelector } from "react-redux";
 import SelectDropdown from "react-native-select-dropdown";
 import { getCategories} from "../../redux/actions/index";
 import image from '../../images/stars.png';
+
 
 export default function SelectFilter()
 {
@@ -18,22 +19,22 @@ export default function SelectFilter()
 
   const { categories } = useSelector((state) => state.categories);
   
-  const handleRating = (e) =>
-  {
-    dispatch(byRating(e));
-  };
+  // const handleRating = (e) =>
+  // {
+  //   dispatch(byRating(e));
+  // };
   const handlePrice = (e) =>
   {
     dispatch(byPrice(e));
   };
 
-  const rating = ["MaxRating", "MinRating"];
+  // const rating = ["MaxRating", "MinRating"];
   const price = ["MaxPrecio", "MinPrecio"];
 
   return (
     <View style={tw`flex-row mt-5 ml-2 z-50`}>
 
-      <View style={tw`flex-row`}>
+      {/* <View style={tw`flex-row`}>
         <Text style={tw`font-bold text-base`}>Rating</Text>
         <Image style={tw`w-5 h-5 ml-1 `} source={image} />
         <SelectDropdown
@@ -46,7 +47,7 @@ export default function SelectFilter()
             handleRating(selectedItem);
           }}
         />
-      </View>
+      </View> */}
 
       <View style={tw`flex-row ml-3`}>
         <Text style={tw`font-bold text-base`}>Precio h/</Text>

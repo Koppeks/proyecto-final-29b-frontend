@@ -11,10 +11,9 @@ const CardServsExpert = ({ navigation, elem }) => {
    };
 
   return (
-    <>
-    <ScrollView>
+    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
       <TouchableOpacity
-        style={tw`bg-white rounded-md mr-7 mt-2 flex-row items-center w-80`}
+        style={tw` shadow-2xl bg-white rounded-md ml-2 mr-2 mt-4 flex-row items-center w-100`}
         onPress={() => {
           navigation.navigate("UserDetails", { name: "UserDetails" });
           onPressId(elem.id);
@@ -43,7 +42,7 @@ const CardServsExpert = ({ navigation, elem }) => {
         </View>
       </TouchableOpacity>
       </ScrollView>
-    </>
+
   );
 };
 

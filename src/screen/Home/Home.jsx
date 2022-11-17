@@ -21,9 +21,6 @@ const Home = ({ navigation }) => {
 
   return (
     <ScrollView>
-      <Button 
-      onPress={()=>dispatch(logout())}
-      title="Cerrar sesion" />
       <ContainerHome navigation={navigation} />
     </ScrollView>
   );

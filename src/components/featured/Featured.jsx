@@ -5,11 +5,15 @@ import CardServsExpert from "../CardServsExpert/CardServsExpert";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPro } from "../../redux/actions/index";
+import { Image } from "react-native";
 
 const Featured = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const { professional } = useSelector((state) => state.professional);
+
+  const gifLoading =
+    "https://raw.githubusercontent.com/Codelessly/FlutterLoadingGIFs/master/packages/cupertino_activity_indicator.gif"
 
 
    useEffect(() => {
@@ -32,7 +36,7 @@ const Featured = ({ navigation }) => {
               );
             })
           ) : (
-            <Text>hola</Text>
+            <Image source={{ uri: gifLoading }} style={tw`mr-40 w-20 h-20 `} />
           )} 
         </ScrollView>
       </View>

@@ -1,5 +1,4 @@
-import
-{
+import {
   View,
   Text,
   ScrollView,
@@ -7,27 +6,27 @@ import
   TouchableOpacity,
   Alert,
 } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteProEmail, getPro } from "../../redux/actions/index";
 import { Ionicons } from "@expo/vector-icons";
 import tw from "twrnc";
 import { useIsFocused } from "@react-navigation/native";
 
-const CardsUserAdmin = ({ navigation }) =>
-{
+const CardsUserAdmin = ({ navigation }) => {
   const dispatch = useDispatch();
   const { professional } = useSelector((state) => state.professional);
   const isFocused = useIsFocused();
 
-  useEffect(() =>
-  {
-    if (isFocused)
-      dispatch(getPro());
+  const gifLoading =
+    "https://raw.githubusercontent.com/Codelessly/FlutterLoadingGIFs/master/packages/cupertino_activity_indicator.gif";
+
+  useEffect(() => {
+    if (isFocused) dispatch(getPro());
+    if (isFocused) dispatch(deleteProEmail());
   }, [isFocused]);
 
-  const handleDelete = (email) =>
-  {
+  const handleDelete = (email) => {
     navigation.navigate("HomeAdm");
     dispatch(deleteProEmail(email))
       .then((res) => res)
@@ -50,13 +49,12 @@ const CardsUserAdmin = ({ navigation }) =>
   return (
     <ScrollView style={tw`mt-1 h-56 `}>
       {professional.length > 0 ? (
-        professional.map((user) =>
-        {
+        professional.map((user) => {
           return (
             <View key={user.id}>
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate("Detalle de Usuario", { id: user.id })
+                  navigation.navigate("DetailUser", { id: user.id })
                 }
               >
                 <View
@@ -91,7 +89,9 @@ const CardsUserAdmin = ({ navigation }) =>
           );
         })
       ) : (
-        <Text>No hay usuarios</Text>
+        <View style={tw`flex items-center mt-10`}>
+          <Image source={{ uri: gifLoading }} style={tw`w-20 h-20 m-3`} />
+        </View>
       )}
     </ScrollView>
   );
