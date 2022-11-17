@@ -7,7 +7,7 @@ export default function Filter({ navigation }) {
   return (
     <View>
       <CategoryItems navigation={navigation} />
-      <SelectFilter />
+      {/* <SelectFilter /> */}
     </View>
   );
 }
