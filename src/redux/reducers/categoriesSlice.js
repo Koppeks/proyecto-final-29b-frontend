@@ -4,17 +4,23 @@ const categoriesSlice = createSlice({
   name: "getCategories",
   initialState: {
     categories: [],
+    categoriesfilter: []
   },
   reducers: {
     allCategories: (state, action) => {
-      console.log(action);
-      state.categories = action.payload;
+    
+     const data = action.payload.filter((e)=>e.isProfessional === true  )
+      state.categories = data
+  
     },
     byCategories: (state, action) => {
+      
       const byCateg = state.categories.filter((e) =>
-        e.occupation.includes(action.payload)
+       
+      e.occupation.includes(action.payload)
       );
-      state.categories = [...byCateg];
+
+      state.categoriesfilter = [...byCateg];
     },
     byRating: (state, action) => {
       const orderRating =

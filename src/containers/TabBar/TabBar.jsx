@@ -2,15 +2,19 @@ import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import CartShop from '../../screen/CartShop/CartShop';
 import Favs from '../../screen/Favs/Favs';
-import Message from '../../screen/Message/Message';
+import DisputForm from '../DisputForm/DisputForm';
 import SignUp from '../../screen/SignUp/SignUp';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
+import DrawerAdminNavigator from '../../Hooks/DrawerAdminNavigator';
+import { useSelector } from 'react-redux';
 import HomeNavigation from '../../Hooks/HomeNavigation';
 
 const Tab = createBottomTabNavigator();
 
-const NavigationBar = () =>
+const TabBar = () =>
 {
+    const { informationToken } = useSelector(state => state.informationToken);
+    const ADMIN = 9;
     return (
 
         <Tab.Navigator
@@ -20,16 +24,27 @@ const NavigationBar = () =>
                 headerShown: false
             }}
         >
-
-            <Tab.Screen
-                name="Inicio"
-                component={HomeNavigation}
-                options={{
-                    tabBarIcon: ({ color, size }) => (
-                        <Ionicons name="home-sharp" size={size} color={color} />
-                    )
-                }}
-            />
+            {
+                informationToken?.role === ADMIN ?
+                    <Tab.Screen
+                        name="Inicio"
+                        component={DrawerAdminNavigator}
+                        options={{
+                            tabBarIcon: ({ color, size }) => (
+                                <Ionicons name="home-sharp" size={size} color={color} />
+                            )
+                        }}
+                    /> :
+                    <Tab.Screen
+                        name="Inicio"
+                        component={HomeNavigation}
+                        options={{
+                            tabBarIcon: ({ color, size }) => (
+                                <Ionicons name="home-sharp" size={size} color={color} />
+                            )
+                        }}
+                    />
+            }
             <Tab.Screen
                 name="SignUp"
                 component={SignUp}
@@ -41,7 +56,7 @@ const NavigationBar = () =>
             />
             <Tab.Screen
                 name="Chat"
-                component={Message}
+                component={DisputForm}
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <Ionicons name="chatbubbles" size={size} color={color} />
@@ -70,4 +85,4 @@ const NavigationBar = () =>
     )
 }
 
-export default NavigationBar;
+export default TabBar;

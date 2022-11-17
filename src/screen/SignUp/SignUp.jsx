@@ -1,7 +1,7 @@
 import React from "react"
 import { ScrollView, Text, Button } from "react-native"
-import ProForm from "../../containers/ProForm/ProForm"
 import tw from "twrnc"
+import RegisterForm from "../../containers/RegisterForm/RegisterForm"
 
 
 const SignUp = ({navigation}) =>
@@ -12,7 +12,7 @@ const SignUp = ({navigation}) =>
       title="Vuelve al inicio"
       onPress={()=> navigation.goBack()}
       />
-    <ProForm/>
+    <RegisterForm/>
   </ScrollView>
   )
 }
