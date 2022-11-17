@@ -16,6 +16,7 @@ import Favs from "../screen/Favs/Favs";
 import Profile from "../screen/Profile/Profile";
 import SpecialDetail from "../screen/SpecialDetail/specialDetail";
 import ButtonLogout from "../components/button/ButtonLogout";
+import Payment from "../screen/Payment/Payment";
 import { Text } from "react-native";
 
 const Stack = createNativeStackNavigator();
@@ -37,9 +38,9 @@ const HomeNavigation = ({ navigation }) =>
           headerRight: () => (
             <View style={tw`flex-row items-center justify-between m-3 `}>
               {/* <Search /> */}
-              {/* <View style={tw`mr-2`}>
+              <View style={tw`mr-2`}>
                 <ButtonNav navigation={navigation} />
-              </View> */}
+              </View>
               <ButtonLogout/>
             </View>
           ),
@@ -59,6 +60,7 @@ const HomeNavigation = ({ navigation }) =>
       <Stack.Screen name="Profile" component={Profile} />
 
       <Stack.Screen name="Perfil profesional" component={EditProfession} />
+      <Stack.Screen name="Pasarela de pago" component={Payment} />
       <Stack.Screen
         name="TakePhoto"
         component={CameraHook}

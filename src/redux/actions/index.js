@@ -21,7 +21,7 @@ export const getPro = () => async (dispatch) => {
 
   axios
     .get(
-      `https://proyecto-final-29b-backend-production.up.railway.app/user?apikey=${apikey}`
+      `http://localhost:3001/user?apikey=${apikey}`
     )
     .then((res) => dispatch(getProfessional(res.data)))
     .catch((e) => console.log(e));
@@ -30,7 +30,7 @@ export const getPro = () => async (dispatch) => {
 export const getProId = (id) => async (dispatch) => {
   axios
     .get(
-      `https://proyecto-final-29b-backend-production.up.railway.app/user/id/${id}?apikey=${apikey}`
+      `http://localhost:3001/user/id/${id}?apikey=${apikey}`
     )
     .then((res) => dispatch(getProfessionalId(res.data)))
     .catch((e) => console.log(e));
@@ -39,14 +39,14 @@ export const getProId = (id) => async (dispatch) => {
 export const deleteProEmail = (email) => async (dispatch) => {
   await dispatch(deleteProf(email));
   axios.delete(
-    `https://proyecto-final-29b-backend-production.up.railway.app/user/email/${email}/?apikey=${apikey}`
+    `http://localhost:3001/user/email/${email}/?apikey=${apikey}`
   );
 };
 
 export const updateProEmail = (email, data) => async (dispatch) => {
   await dispatch(getProfessionalId(data));
   axios.put(
-    `https://proyecto-final-29b-backend-production.up.railway.app/user/email/${email}/?apikey=${apikey}`,
+    `http://localhost:3001/user/email/${email}/?apikey=${apikey}`,
     data
   );
 };
@@ -54,7 +54,7 @@ export const updateProEmail = (email, data) => async (dispatch) => {
 export const getProName = (name) => async (dispatch) => {
   axios
     .get(
-      `https://proyecto-final-29b-backend-production.up.railway.app/user/name/${name}?apikey=${apikey}`
+      `http://localhost:3001/user/name/${name}?apikey=${apikey}`
     )
     .then((res) => {
       dispatch(searchProfessionalName(res.data));
@@ -67,7 +67,7 @@ export const registerUser = (data) => async () => {
   console.log(data);
   await axios({
     method: "POST",
-    url: `https://proyecto-final-29b-backend-production.up.railway.app/user?apikey=${apikey}`,
+    url: `http://localhost:3001/user?apikey=${apikey}`,
     data: data,
   });
 };
@@ -77,7 +77,7 @@ export const registerUser = (data) => async () => {
 export const getCategories = () => async (dispatch) => {
   axios
     .get(
-      `https://proyecto-final-29b-backend-production.up.railway.app/user?apikey=${apikey}`
+      `http://localhost:3001/user?apikey=${apikey}`
     )
     .then((res) => dispatch(allCategories(res.data)))
     .catch((e) => console.log(e));
@@ -85,7 +85,7 @@ export const getCategories = () => async (dispatch) => {
 export const getoccupation = () => async (dispatch) => {
   axios
     .get(
-      `https://proyecto-final-29b-backend-production.up.railway.app/category?apikey=${apikey}`
+      `http://localhost:3001/category?apikey=${apikey}`
     )
     .then((res) => dispatch(getOcupacion(res.data)))
     .catch((e) => console.log(e));
@@ -93,7 +93,7 @@ export const getoccupation = () => async (dispatch) => {
 export const getspecial = () => async (dispatch) => {
   axios
     .get(
-      `https://proyecto-final-29b-backend-production.up.railway.app/specialization?apikey=${apikey}`
+      `http://localhost:3001/specialization?apikey=${apikey}`
     )
     .then((res) => dispatch(getSpecials(res.data)))
     .catch((e) => console.log(e));
@@ -102,7 +102,7 @@ export const getspecial = () => async (dispatch) => {
 export const getspecialByID = (id) => async (dispatch) => {
   axios
     .get(
-      `https://proyecto-final-29b-backend-production.up.railway.app/specialization/id/${id}?apikey=${apikey} `
+      `http://localhost:3001/specialization/id/${id}?apikey=${apikey} `
     )
     .then((res) => dispatch(SpecialsById(res.data)))
     .catch((e) => console.log(e));
@@ -111,7 +111,7 @@ export const getspecialByID = (id) => async (dispatch) => {
 export const postDispute = (data) => async () => {
   await axios({
     method: "POST",
-    url: `https://proyecto-final-29b-backend-production.up.railway.app/dispute?apikey=${apikey}`,
+    url: `http://localhost:3001/dispute?apikey=${apikey}`,
     data: data,
   }).catch((e) => console.log(e));
 };
@@ -119,7 +119,7 @@ export const postDispute = (data) => async () => {
 export const postJob = (data) => async () => {
   await axios({
     method: "POST",
-    url: `https://proyecto-final-29b-backend-production.up.railway.app/specialization?apikey=${apikey}`,
+    url: `http://localhost:3001/specialization?apikey=${apikey}`,
     data: data,
   }).catch((e) => console.log(e));
 };
@@ -129,13 +129,12 @@ export const logIn = (data) => async (dispatch) => {
   try {
     const result = await axios({
       method: "POST",
-      url: `https://proyecto-final-29b-backend-production.up.railway.app/user/token?apikey=${apikey}`,
+      url: `http://localhost:3001/user/token?apikey=${apikey}`,
       data: data,
     });
     dispatch(setAuth(result?.data));
   } catch (error) {
     const errorAuth = error.response.data.message;
-    // console.log("error12",error2)
     dispatch(setErrorAuth(errorAuth));
   }
 };
