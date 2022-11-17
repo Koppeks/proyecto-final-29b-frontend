@@ -17,12 +17,12 @@ import Profile from "../screen/Profile/Profile";
 import EditProfile from "../screen/Profile/EditProfile";
 import SpecialDetail from "../screen/SpecialDetail/specialDetail";
 import ButtonLogout from "../components/button/ButtonLogout";
+import Payment from "../screen/Payment/Payment";
 import { Text } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
-const HomeNavigation = ({ navigation }) =>
-{
+const HomeNavigation = ({ navigation }) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -41,7 +41,7 @@ const HomeNavigation = ({ navigation }) =>
               {/* <View style={tw`mr-2`}>
                 <ButtonNav navigation={navigation} />
               </View> */}
-              <ButtonLogout/>
+              <ButtonLogout />
             </View>
           ),
         }}
@@ -59,6 +59,7 @@ const HomeNavigation = ({ navigation }) =>
       <Stack.Screen name="Editar Pefil" component={EditProfile} />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Perfil profesional" component={EditProfession} />
+      <Stack.Screen name="Pasarela de pago" component={Payment} />
       <Stack.Screen
         name="TakePhoto"
         component={CameraHook}
