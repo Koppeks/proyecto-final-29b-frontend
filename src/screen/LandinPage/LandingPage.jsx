@@ -5,7 +5,7 @@ import * as WebBrowser from 'expo-web-browser';
 import * as Linking from 'expo-linking';
 import tw from "twrnc";
 import logo from "../../images/logo.png";
-import google from "../../images/google-logo.png";
+import linked from "../../images/linked.png";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/actions";
 
@@ -18,17 +18,28 @@ const LandingPage = ({ navigation }) =>
   const api = (typeof manifest.packagerOpts === 'object') && manifest.packagerOpts.dev ?
     manifest.debuggerHost.split(':').shift().concat(':3001') :
     'localhost:3001';
+  // Cuando funcione el elephant
+  //const api = 'https://proyecto-final-29b-backend-production.up.railway.app';
 
   const linkedinSignIn = async () =>
   {
-    let result = await WebBrowser.openAuthSessionAsync(
-      `http://${api}/user/linkedin?returnTo=${Linking.createURL('/')}`
-    );
+    try
+    {
+      let result = await WebBrowser.openAuthSessionAsync(
+        `http://${api}/user/linkedin?returnTo=${Linking.createURL('/')}`
+      );
 
-    let data = {};
-    if (result.url)
-      data = Linking.parse(result.url);
-    dispatch(logIn({ ...data.queryParams }));
+      console.log('Result');
+      console.log(result);
+      let data = {};
+      if (result.url)
+        data = Linking.parse(result.url);
+      dispatch(logIn({ ...data.queryParams }));
+    }
+    catch (error)
+    {
+      console.log(error);
+    }
   }
 
   return (
@@ -47,7 +58,7 @@ const LandingPage = ({ navigation }) =>
       </TouchableOpacity>
       <TouchableOpacity onPress={linkedinSignIn}>
         <View style={tw` flex-row bg-white rounded w-72 p-2 mt-4 border-2 border-black`}>
-          <Image style={tw`h-8 w-8 ml-2 mr-2`} source={google} />
+          <Image style={tw`h-8 w-8 ml-2 mr-2`} source={linked} />
           <Text style={tw`text-center text-lg text-black `}>Iniciar sesión con Linkedin</Text>
         </View>
       </TouchableOpacity>
