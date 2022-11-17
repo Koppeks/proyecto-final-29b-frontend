@@ -15,11 +15,11 @@ const LandingPage = ({ navigation }) =>
 {
   const dispatch = useDispatch();
 
-  const api = (typeof manifest.packagerOpts === 'object') && manifest.packagerOpts.dev ?
-    manifest.debuggerHost.split(':').shift().concat(':3001') :
-    'localhost:3001';
+  // const api = (typeof manifest.packagerOpts === 'object') && manifest.packagerOpts.dev ?
+  //   manifest.debuggerHost.split(':').shift().concat(':3001') :
+  //   'localhost:3001';
   // Cuando funcione el elephant
-  //const api = 'https://proyecto-final-29b-backend-production.up.railway.app';
+  const api = 'https://proyecto-final-29b-backend-production.up.railway.app';
 
   const linkedinSignIn = async () =>
   {
