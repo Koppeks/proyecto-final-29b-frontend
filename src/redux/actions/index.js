@@ -16,8 +16,8 @@ import { informationProfile } from "../reducers/informationProfileSlice";
 
 const { manifest } = Constants;
 const api = (typeof manifest.packagerOpts === 'object') && manifest.packagerOpts.dev ?
-  manifest.debuggerHost.split(':').shift().concat(':3001') :
-  'localhost:3001';
+  'http://' + manifest.debuggerHost.split(':').shift().concat(':3001') :
+  'http://localhost:3001';
 // Cuando funcione el elephant
 //const api = 'https://proyecto-final-29b-backend-production.up.railway.app';
 const apikey = "1f5dbe34-3f44-4ec9-9d4b-078362fd7eb3";
@@ -147,7 +147,7 @@ export const postJob = (data) => async () =>
 
 export const logIn = (data) => async (dispatch) =>
 {
-  // console.log(data)
+  console.log(data)
   try
   {
     const result = await axios({
@@ -158,7 +158,8 @@ export const logIn = (data) => async (dispatch) =>
     dispatch(setAuth(result?.data));
   } catch (error)
   {
-    const errorAuth = error.response.data.message;
+    console.log(error);
+    const errorAuth = error?.response?.data?.message ?? 'Error desconocido';
     dispatch(setErrorAuth(errorAuth));
   }
 };
