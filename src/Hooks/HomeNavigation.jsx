@@ -37,9 +37,9 @@ const HomeNavigation = ({ navigation }) =>
           headerRight: () => (
             <View style={tw`flex-row items-center justify-between m-3 `}>
               {/* <Search /> */}
-              <View style={tw`mr-2`}>
+              {/* <View style={tw`mr-2`}>
                 <ButtonNav navigation={navigation} />
-              </View>
+              </View> */}
               <ButtonLogout/>
             </View>
           ),
