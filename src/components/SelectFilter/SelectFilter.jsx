@@ -1,11 +1,12 @@
 import { View, Text, Image } from "react-native";
 import React, { useEffect } from "react";
 import tw from "twrnc";
-import { byRating, byPrice } from "../../redux/reducers/categoriesSlice";
+import { byPrice } from "../../redux/reducers/specialSlice";
 import { useDispatch, useSelector } from "react-redux";
 import SelectDropdown from "react-native-select-dropdown";
 import { getCategories} from "../../redux/actions/index";
 import image from '../../images/stars.png';
+
 
 export default function SelectFilter()
 {

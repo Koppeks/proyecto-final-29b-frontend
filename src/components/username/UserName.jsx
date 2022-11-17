@@ -1,11 +1,13 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import tw from "twrnc";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import jwt_decode from "jwt-decode";
 import { Image } from "react-native";
 
 const username = ({ navigation }) => {
+  const dispatch = useDispatch();
+
   const { informationToken } = useSelector((state) => state.informationToken);
   // console.log(informationToken);
   const name = informationToken?.fullName;
