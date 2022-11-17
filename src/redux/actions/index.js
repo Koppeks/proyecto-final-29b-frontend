@@ -43,6 +43,13 @@ export const deleteProEmail = (email) => async (dispatch) => {
   );
 };
 
+export const restoreProEmail = (email) => async (dispatch) => {
+  await dispatch(deleteProf(email));
+  axios.delete(
+    `https://proyecto-final-29b-backend-production.up.railway.app/user/email/${email}/?apikey=${apikey}&restoreuser=true`
+  );
+};
+
 export const updateProEmail = (email, data) => async (dispatch) => {
   await dispatch(getProfessionalId(data));
   axios.put(
