@@ -26,7 +26,7 @@ const LandingPage = ({ navigation }) =>
     try
     {
       let result = await WebBrowser.openAuthSessionAsync(
-        `http://${api}/user/linkedin?returnTo=${Linking.createURL('/')}`
+        `${api}/user/linkedin?returnTo=${Linking.createURL('/')}`
       );
 
       console.log('Result');
