@@ -5,18 +5,34 @@ import { Provider } from "react-redux";
 import MainContainer from "./src/containers/MainContainer/MainContainer";
 import { PersistGate } from "redux-persist/integration/react";
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
+import * as Linking from 'expo-linking';
 
 export default function App()
 {
+  const linking = {
+    prefixes: [Linking.createURL('/')],
+    config: {
+      screens: {
+        NoAuthenticated: {
+          screens: {
+            Landing: '',
+            Login: 'login',
+            Registro: 'signup'
+          }
+        }
+      }
+    }
+  };
+
   return (
-    <NavigationContainer>
-      <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          <ActionSheetProvider>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <ActionSheetProvider>
+          <NavigationContainer linking={linking}>
             <MainContainer />
-          </ActionSheetProvider>
-        </PersistGate>
-      </Provider>
-    </NavigationContainer>
+          </NavigationContainer>
+        </ActionSheetProvider>
+      </PersistGate>
+    </Provider>
   );
 }

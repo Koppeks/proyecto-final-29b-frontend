@@ -1,11 +1,36 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
+import { View, Text, TouchableOpacity, Image } from "react-native";
+import Constants from 'expo-constants';
+import * as WebBrowser from 'expo-web-browser';
+import * as Linking from 'expo-linking';
 import tw from "twrnc";
 import logo from "../../images/logo.png";
 import google from "../../images/google-logo.png";
+import { useDispatch } from "react-redux";
+import { logIn } from "../../redux/actions";
+
+const { manifest } = Constants;
 
 const LandingPage = ({ navigation }) =>
 {
+  const dispatch = useDispatch();
+
+  const api = (typeof manifest.packagerOpts === 'object') && manifest.packagerOpts.dev ?
+    manifest.debuggerHost.split(':').shift().concat(':3001') :
+    'localhost:3001';
+
+  const linkedinSignIn = async () =>
+  {
+    let result = await WebBrowser.openAuthSessionAsync(
+      `http://${api}/user/linkedin?returnTo=${Linking.createURL('/')}`
+    );
+
+    let data = {};
+    if (result.url)
+      data = Linking.parse(result.url);
+    dispatch(logIn({ ...data.queryParams }));
+  }
+
   return (
     <View style={tw`flex h-full justify-center items-center bg-white`}>
       <View style={tw`flex-row items-center mb-12`}>
@@ -20,10 +45,10 @@ const LandingPage = ({ navigation }) =>
       <TouchableOpacity onPress={() => navigation.navigate("Registro")}>
         <Text style={tw`text-center text-base mb-6`}>¿Aun no tienes cuenta?</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+      <TouchableOpacity onPress={linkedinSignIn}>
         <View style={tw` flex-row bg-white rounded w-72 p-2 mt-4 border-2 border-black`}>
           <Image style={tw`h-8 w-8 ml-2 mr-2`} source={google} />
-          <Text style={tw`text-center text-lg text-black `}>Iniciar sesión con Google</Text>
+          <Text style={tw`text-center text-lg text-black `}>Iniciar sesión con Linkedin</Text>
         </View>
       </TouchableOpacity>
 
