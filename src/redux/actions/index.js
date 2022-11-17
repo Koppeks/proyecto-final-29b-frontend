@@ -159,7 +159,6 @@ export const logIn = (data) => async (dispatch) =>
   } catch (error)
   {
     const errorAuth = error.response.data.message;
-    // console.log("error12",error2)
     dispatch(setErrorAuth(errorAuth));
   }
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, ScrollView, Text, Image, TouchableOpacity } from "react-native";
 import { Header } from "react-native-elements/dist/header/Header";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,12 +6,16 @@ import tw from "twrnc"
 import GoBack from "../../components/button/GoBack"
 import { removeToList } from "../../redux/reducers/shopList";
 import Toast from "react-native-toast-message"
+import AwesomeAlert from 'react-native-awesome-alerts';
+import { useNavigation } from "@react-navigation/native";
 
-const CartShop = ({navigation}) => {
+const CartShop = () => {
 	
 	const dispatch = useDispatch()
+	const navigation = useNavigation()
 
 	const {shopList} = useSelector(state=> state.shopList)
+	const [showAlert, setShowAlert] = useState(false)
 
 	const totalCost = (data) =>{
 		let total = 0
@@ -20,6 +24,13 @@ const CartShop = ({navigation}) => {
 		}
 		return total
 	}
+
+  const handleConfirm = () => {
+    setShowAlert(false)
+    setTimeout(()=> {
+      navigation.navigate("Pasarela de pago")
+    }, 600)
+  }
 
 	const deleteItemShopList = (e) =>{
 		dispatch(removeToList(e))
@@ -81,13 +92,30 @@ const CartShop = ({navigation}) => {
 									<Text>Total del envio</Text>
 									<Text>${totalCost(shopList)}</Text>
 								</View>
-								<TouchableOpacity style={tw`flex items-center w-full pt-7`}>
+								<TouchableOpacity onPress={()=> setShowAlert(true)} style={tw`flex items-center w-full pt-7`}>
 									<Text style={tw`text-center text-base text-white bg-blue-400 rounded-lg w-40 p-4`}>Finaliza la compra</Text>
 								</TouchableOpacity>
 							</View>
 							:
 							null
 						}
+						<AwesomeAlert
+                show={showAlert}
+                showProgress={false}
+                animatedValue= {0}
+                titleStyle={tw`font-bold`}
+                title="Confirma tus datos"
+                message="¿Estás seguro de que tus datos están correctos?"
+                cancelText="No"
+                confirmText="Si, quiero registrarme"
+                confirmButtonColor="#6C77F6"
+                closeOnTouchOutside={true}
+                closeOnHardwareBackPress={false}
+                showCancelButton={true}
+                showConfirmButton={true}
+                onCancelPressed={() => setShowAlert(false)}
+                onConfirmPressed={() => handleConfirm()}
+              />
 			</ScrollView>
 			<Toast ref={(ref) => Toast.setRef(ref)}/>
     </ScrollView>
