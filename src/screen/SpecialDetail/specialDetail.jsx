@@ -67,7 +67,6 @@ const SpecialDetail = ({navigation}) =>{
                 <View  style={tw` my-2 mx-3 h-50  border-2 rounded-md border-indigo-500/100`}>
             <Text  style={tw`font-bold text-sm`}>Info...</Text>
             <Text  style={tw`flex items-center mx-2 my-1 p-0`}>{SpecialId.description} </Text>
-           
              </View>
 
              <View style={tw`flex-row justify-center p-4`}>
