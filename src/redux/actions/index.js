@@ -54,7 +54,7 @@ export const updateProEmail = (email, data) => async (dispatch) => {
 export const getProName = (name) => async (dispatch) => {
   axios
     .get(
-      `https://proyecto-final-29b-backend-production.up.railway.app/user${name}?apikey=${apikey}`
+      `https://proyecto-final-29b-backend-production.up.railway.app/user/name/${name}?apikey=${apikey}`
     )
     .then((res) => {
       dispatch(searchProfessionalName(res.data));
@@ -99,14 +99,14 @@ export const getspecial = () => async (dispatch) => {
     .catch((e) => console.log(e));
 };
 
-export const getspecialByID = (id) => async (dispatch) =>
-{
+export const getspecialByID = (id) => async (dispatch) => {
   axios
-    .get(`https://proyecto-final-29b-backend-production.up.railway.app/specialization/id/${id}?apikey=${apikey} `)
+    .get(
+      `https://proyecto-final-29b-backend-production.up.railway.app/specialization/id/${id}?apikey=${apikey} `
+    )
     .then((res) => dispatch(SpecialsById(res.data)))
     .catch((e) => console.log(e));
 };
-
 
 export const postDispute = (data) => async () => {
   await axios({
